@@ -84,13 +84,7 @@ variable "has_downloads" {
 variable "auto_init" {
   description = "(Optional) Wether or not to produce an initial commit in the repository"
   type        = bool
-  #[{
-  #   active = false
-  #   events = ["issues"]
-  #   url          = "https://xxxx.xx/"
-  #   content_type = "form"
-  #   insecure_ssl = false
-  default = null
+  default     = null
 }
 
 variable "gitignore_template" {
