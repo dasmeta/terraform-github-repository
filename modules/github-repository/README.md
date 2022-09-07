@@ -3,6 +3,7 @@ This module allows you to create and manage repositories within your GitHub orga
 
 ## Minimal requirements
 
+```terraform
 module "github_repository" {
     source                 = "dasmeta/modules/github//github-repository"
 
@@ -11,9 +12,11 @@ module "github_repository" {
     default_branch         = "main"
     visibility             = "public"
 }
+```
 
 ## Maximal example of usage
 
+```terraform
 module "github_repository" {
     source                 = "dasmeta/modules/github//github-repository"
 
@@ -59,6 +62,7 @@ module "github_repository" {
 
     admin_teams = ["user1"]
 }
+```
 
 ## Requirements
 
