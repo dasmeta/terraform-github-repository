@@ -5,7 +5,8 @@ This module allows you to create and manage repositories within your GitHub orga
 
 ```terraform
 module "github_repository" {
-    source                 = "dasmeta/modules/github//github-repository"
+    source  = "dasmeta/repository/github//modules/github-repository"
+    version = "0.0.1"
 
     name                   = "test-repository"
     description            = "Testing env for terraform github repo"
@@ -18,7 +19,8 @@ module "github_repository" {
 
 ```terraform
 module "github_repository" {
-    source                 = "dasmeta/modules/github//github-repository"
+    source  = "dasmeta/repository/github//modules/github-repository"
+    version = "0.0.1"
 
     name                   = "test-repository"
     description            = "Testing env for terraform github repo"
