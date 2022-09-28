@@ -173,13 +173,15 @@ No outputs.
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| <a name="requirement_github"></a> [github](#requirement\_github) | ~> 4.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_github"></a> [github](#provider\_github) | n/a |
+| <a name="provider_github"></a> [github](#provider\_github) | 4.31.0 |
 
 ## Modules
 
@@ -189,15 +191,15 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [github_actions_secret.repository_secret](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/actions_secret) | resource |
-| [github_branch.branch](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/branch) | resource |
-| [github_branch_default.default](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/branch_default) | resource |
-| [github_branch_protection_v3.branch_protection](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/branch_protection_v3) | resource |
-| [github_repository.repository](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/repository) | resource |
-| [github_repository_collaborator.collaborator](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/repository_collaborator) | resource |
-| [github_repository_webhook.repository_webhook](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/repository_webhook) | resource |
-| [github_team_repository.team_repository](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/team_repository) | resource |
-| [github_team_repository.team_repository_by_slug](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/team_repository) | resource |
+| [github_actions_secret.repository_secret](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_secret) | resource |
+| [github_branch.branch](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch) | resource |
+| [github_branch_default.default](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_default) | resource |
+| [github_branch_protection_v3.branch_protection](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_protection_v3) | resource |
+| [github_repository.repository](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository) | resource |
+| [github_repository_collaborator.collaborator](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_collaborator) | resource |
+| [github_repository_webhook.repository_webhook](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_webhook) | resource |
+| [github_team_repository.team_repository](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/team_repository) | resource |
+| [github_team_repository.team_repository_by_slug](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/team_repository) | resource |
 
 ## Inputs
 
