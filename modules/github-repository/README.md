@@ -173,13 +173,15 @@ No outputs.
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| <a name="requirement_github"></a> [github](#requirement\_github) | ~> 4.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_github"></a> [github](#provider\_github) | n/a |
+| <a name="provider_github"></a> [github](#provider\_github) | ~> 4.0 |
 
 ## Modules
 
@@ -189,20 +191,22 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [github_actions_secret.repository_secret](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/actions_secret) | resource |
-| [github_branch.branch](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/branch) | resource |
-| [github_branch_default.default](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/branch_default) | resource |
-| [github_branch_protection_v3.branch_protection](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/branch_protection_v3) | resource |
-| [github_repository.repository](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/repository) | resource |
-| [github_repository_collaborator.collaborator](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/repository_collaborator) | resource |
-| [github_repository_webhook.repository_webhook](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/repository_webhook) | resource |
-| [github_team_repository.team_repository](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/team_repository) | resource |
-| [github_team_repository.team_repository_by_slug](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/team_repository) | resource |
+| [github_actions_secret.repository_secret](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_secret) | resource |
+| [github_branch.branch](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch) | resource |
+| [github_branch_default.default](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_default) | resource |
+| [github_branch_protection_v3.branch_protection](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_protection_v3) | resource |
+| [github_repository.repository](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository) | resource |
+| [github_repository_collaborator.collaborator](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_collaborator) | resource |
+| [github_repository_file.githooks-semantic-release](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_file) | resource |
+| [github_repository_webhook.repository_webhook](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_webhook) | resource |
+| [github_team_repository.team_repository](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/team_repository) | resource |
+| [github_team_repository.team_repository_by_slug](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/team_repository) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_add_precommit"></a> [add\_precommit](#input\_add\_precommit) | Add precommit configuration to repo's files | `bool` | `false` | no |
 | <a name="input_admin_collaborators"></a> [admin\_collaborators](#input\_admin\_collaborators) | (Optional) A list of users to add as collaborators granting them admin (full) permission. | `list(string)` | `[]` | no |
 | <a name="input_admin_team_ids"></a> [admin\_team\_ids](#input\_admin\_team\_ids) | (Optional) A list of teams (by id) to grant admin (full) permission to. | `list(string)` | `[]` | no |
 | <a name="input_admin_teams"></a> [admin\_teams](#input\_admin\_teams) | (Optional) A list of teams (by name/slug) to grant admin (full) permission to. | `list(string)` | `[]` | no |
@@ -216,6 +220,7 @@ No modules.
 | <a name="input_branch_protections"></a> [branch\_protections](#input\_branch\_protections) | Default is []. | `any` | `null` | no |
 | <a name="input_branch_protections_v3"></a> [branch\_protections\_v3](#input\_branch\_protections\_v3) | (Optional) A list of branch protections to apply to the repository. Default is [] unless branch\_protections is set. | `any` | `null` | no |
 | <a name="input_branches"></a> [branches](#input\_branches) | (Optional) A list of branches to be created in this repository. | `any` | `[]` | no |
+| <a name="input_commit_message"></a> [commit\_message](#input\_commit\_message) | n/a | `string` | `"initial commit"` | no |
 | <a name="input_default_branch"></a> [default\_branch](#input\_default\_branch) | (Optional) The name of the default branch of the repository. | `string` | `null` | no |
 | <a name="input_delete_branch_on_merge"></a> [delete\_branch\_on\_merge](#input\_delete\_branch\_on\_merge) | (Optional) Whether or not to delete the merged branch after merging a pull request | `bool` | `null` | no |
 | <a name="input_description"></a> [description](#input\_description) | (Optional) A description of the repository. | `string` | `""` | no |
@@ -228,6 +233,7 @@ No modules.
 | <a name="input_homepage_url"></a> [homepage\_url](#input\_homepage\_url) | (Optional) The website of the repository. | `string` | `null` | no |
 | <a name="input_is_template"></a> [is\_template](#input\_is\_template) | (Optional) Whether or not to tell GitHub that this is a template repository | `bool` | `null` | no |
 | <a name="input_license_template"></a> [license\_template](#input\_license\_template) | (Optional) Use the name of the template without the extension | `string` | `null` | no |
+| <a name="input_local_remote_list"></a> [local\_remote\_list](#input\_local\_remote\_list) | n/a | <pre>list(object({<br>    remote_name = string<br>    local_name  = string<br>  }))</pre> | <pre>[<br>  {<br>    "local_name": "/resources/semantic-release.yaml",<br>    "remote_name": ".github/workflows/commitlint.yaml"<br>  },<br>  {<br>    "local_name": "/resources/pre-commit-config.yaml",<br>    "remote_name": ".pre-commit-config.yaml"<br>  },<br>  {<br>    "local_name": "/resources/pre-commit",<br>    "remote_name": "githooks/pre-commit"<br>  },<br>  {<br>    "local_name": "/resources/pre-commit.yaml",<br>    "remote_name": ".github/workflows/pre-commit.yaml"<br>  },<br>  {<br>    "local_name": "/resources/pr-title-checker.yaml",<br>    "remote_name": ".github/workflows/pr-title-checker.yaml"<br>  }<br>]</pre> | no |
 | <a name="input_maintain_collaborators"></a> [maintain\_collaborators](#input\_maintain\_collaborators) | (Optional) A list of users to add as collaborators granting them maintain permission. | `list(string)` | `[]` | no |
 | <a name="input_maintain_team_ids"></a> [maintain\_team\_ids](#input\_maintain\_team\_ids) | (Optional) A list of teams (by id) to grant maintain permission to. | `list(string)` | `[]` | no |
 | <a name="input_maintain_teams"></a> [maintain\_teams](#input\_maintain\_teams) | (Optional) A list of teams (by name/slug) to grant maintain permission to. | `list(string)` | `[]` | no |

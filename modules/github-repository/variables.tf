@@ -324,11 +324,11 @@ variable "webhooks" {
 
 variable "add_precommit" {
   description = "Add precommit configuration to repo's files"
-  type = bool
-  default = false
+  type        = bool
+  default     = false
 }
 
 variable "commit_message" {
-  type = string
+  type    = string
   default = "initial commit"
 }
