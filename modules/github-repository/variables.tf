@@ -361,5 +361,13 @@ variable "default_files" {
     }, {
     remote_path = ".github/workflows/pr-title-checker.yaml"
     local_path  = "/resources/pr-title-checker.yaml"
+    },
+    {
+      remote_path = "commitlint.config.js"
+      local_path  = "/resources/commitlint.config.js"
+    },
+    {
+      remote_path = "package.json"
+      local_path  = "/resources/package.json"
   }]
 }
