@@ -321,3 +321,14 @@ variable "webhooks" {
   #   insecure_ssl = false
   # }]
 }
+
+variable "add_precommit" {
+  description = "Add precommit configuration to repo's files"
+  type = bool
+  default = false
+}
+
+variable "commit_message" {
+  type = string
+  default = "initial commit"
+}

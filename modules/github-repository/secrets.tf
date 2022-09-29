@@ -1,4 +1,3 @@
-
 resource "github_actions_secret" "repository_secret" {
   for_each = local.secrets
 
