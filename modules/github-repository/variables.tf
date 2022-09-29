@@ -369,5 +369,8 @@ variable "default_files" {
     {
       remote_path = "package.json"
       local_path  = "/resources/package.json"
+      }, {
+      remote_path = ".github/workflows/branch-name-check.yaml"
+      local_path  = "/resources/branch-name-check.yaml"
   }]
 }
