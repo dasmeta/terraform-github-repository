@@ -321,3 +321,53 @@ variable "webhooks" {
   #   insecure_ssl = false
   # }]
 }
+
+variable "add_precommit" {
+  description = "Add precommit configuration to repo's files"
+  type        = bool
+  default     = true
+}
+
+variable "commit_message" {
+  description = "Message to apply when default files are commited"
+  type        = string
+  default     = "initial commit"
+}
+
+variable "init_files" {
+  description = "List of local and remote path binding objects, ability to push files from local to remote during init"
+  type = list(object({
+    remote_name = string
+    local_name  = string
+  }))
+  default = []
+}
+
+variable "default_files" {
+  description = "List of default files local and remote binding, not recommended to edit, ability to disable/enable with 'add_precommit' variable"
+  type = list(object({
+    remote_path = string
+    local_path  = string
+  }))
+  default = [{
+    remote_path = ".github/workflows/commitlint.yaml"
+    local_path  = "/resources/semantic-release.yaml"
+    }, {
+    remote_path = ".pre-commit-config.yaml"
+    local_path  = "/resources/pre-commit-config.yaml"
+    }, {
+    remote_path = "githooks/pre-commit"
+    local_path  = "/resources/pre-commit"
+    }, {
+    remote_path = ".github/workflows/pr-title-checker.yaml"
+    local_path  = "/resources/pr-title-checker.yaml"
+    },
+    {
+      remote_path = "commitlint.config.js"
+      local_path  = "/resources/commitlint.config.js"
+    },
+    {
+      remote_path = "package.json"
+      local_path  = "/resources/package.json"
+  }]
+}

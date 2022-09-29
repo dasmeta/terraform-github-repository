@@ -181,7 +181,8 @@ No outputs.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_github"></a> [github](#provider\_github) | 4.31.0 |
+| <a name="provider_github"></a> [github](#provider\_github) | ~> 4.0 |
+
 
 ## Modules
 
@@ -197,6 +198,8 @@ No modules.
 | [github_branch_protection_v3.branch_protection](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_protection_v3) | resource |
 | [github_repository.repository](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository) | resource |
 | [github_repository_collaborator.collaborator](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_collaborator) | resource |
+| [github_repository_file.githooks-default-files](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_file) | resource |
+| [github_repository_file.user-files](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_file) | resource |
 | [github_repository_webhook.repository_webhook](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_webhook) | resource |
 | [github_team_repository.team_repository](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/team_repository) | resource |
 | [github_team_repository.team_repository_by_slug](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/team_repository) | resource |
@@ -205,6 +208,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_add_precommit"></a> [add\_precommit](#input\_add\_precommit) | Add precommit configuration to repo's files | `bool` | `true` | no |
 | <a name="input_admin_collaborators"></a> [admin\_collaborators](#input\_admin\_collaborators) | (Optional) A list of users to add as collaborators granting them admin (full) permission. | `list(string)` | `[]` | no |
 | <a name="input_admin_team_ids"></a> [admin\_team\_ids](#input\_admin\_team\_ids) | (Optional) A list of teams (by id) to grant admin (full) permission to. | `list(string)` | `[]` | no |
 | <a name="input_admin_teams"></a> [admin\_teams](#input\_admin\_teams) | (Optional) A list of teams (by name/slug) to grant admin (full) permission to. | `list(string)` | `[]` | no |
@@ -218,7 +222,9 @@ No modules.
 | <a name="input_branch_protections"></a> [branch\_protections](#input\_branch\_protections) | Default is []. | `any` | `null` | no |
 | <a name="input_branch_protections_v3"></a> [branch\_protections\_v3](#input\_branch\_protections\_v3) | (Optional) A list of branch protections to apply to the repository. Default is [] unless branch\_protections is set. | `any` | `null` | no |
 | <a name="input_branches"></a> [branches](#input\_branches) | (Optional) A list of branches to be created in this repository. | `any` | `[]` | no |
+| <a name="input_commit_message"></a> [commit\_message](#input\_commit\_message) | Message to apply when default files are commited | `string` | `"initial commit"` | no |
 | <a name="input_default_branch"></a> [default\_branch](#input\_default\_branch) | (Optional) The name of the default branch of the repository. | `string` | `null` | no |
+| <a name="input_default_files"></a> [default\_files](#input\_default\_files) | List of default files local and remote binding, not recommended to edit, ability to disable/enable with 'add\_precommit' variable | <pre>list(object({<br>    remote_path = string<br>    local_path  = string<br>  }))</pre> | <pre>[<br>  {<br>    "local_path": "/resources/semantic-release.yaml",<br>    "remote_path": ".github/workflows/commitlint.yaml"<br>  },<br>  {<br>    "local_path": "/resources/pre-commit-config.yaml",<br>    "remote_path": ".pre-commit-config.yaml"<br>  },<br>  {<br>    "local_path": "/resources/pre-commit",<br>    "remote_path": "githooks/pre-commit"<br>  },<br>  {<br>    "local_path": "/resources/pr-title-checker.yaml",<br>    "remote_path": ".github/workflows/pr-title-checker.yaml"<br>  },<br>  {<br>    "local_path": "/resources/commitlint.config.js",<br>    "remote_path": "commitlint.config.js"<br>  },<br>  {<br>    "local_path": "/resources/package.json",<br>    "remote_path": "package.json"<br>  }<br>]</pre> | no |
 | <a name="input_delete_branch_on_merge"></a> [delete\_branch\_on\_merge](#input\_delete\_branch\_on\_merge) | (Optional) Whether or not to delete the merged branch after merging a pull request | `bool` | `null` | no |
 | <a name="input_description"></a> [description](#input\_description) | (Optional) A description of the repository. | `string` | `""` | no |
 | <a name="input_encrypted_secrets"></a> [encrypted\_secrets](#input\_encrypted\_secrets) | (Optional) Configuring encrypted actions secrets. | `map(string)` | `{}` | no |
@@ -228,6 +234,7 @@ No modules.
 | <a name="input_has_projects"></a> [has\_projects](#input\_has\_projects) | (Optional) Set to true to enable the GitHub Projects features on the repository | `bool` | `null` | no |
 | <a name="input_has_wiki"></a> [has\_wiki](#input\_has\_wiki) | (Optional) Set to true to enable the GitHub Wiki features on the repository | `bool` | `null` | no |
 | <a name="input_homepage_url"></a> [homepage\_url](#input\_homepage\_url) | (Optional) The website of the repository. | `string` | `null` | no |
+| <a name="input_init_files"></a> [init\_files](#input\_init\_files) | List of local and remote path binding objects, ability to push files from local to remote during init | <pre>list(object({<br>    remote_name = string<br>    local_name  = string<br>  }))</pre> | `[]` | no |
 | <a name="input_is_template"></a> [is\_template](#input\_is\_template) | (Optional) Whether or not to tell GitHub that this is a template repository | `bool` | `null` | no |
 | <a name="input_license_template"></a> [license\_template](#input\_license\_template) | (Optional) Use the name of the template without the extension | `string` | `null` | no |
 | <a name="input_maintain_collaborators"></a> [maintain\_collaborators](#input\_maintain\_collaborators) | (Optional) A list of users to add as collaborators granting them maintain permission. | `list(string)` | `[]` | no |
