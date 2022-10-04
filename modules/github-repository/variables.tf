@@ -374,7 +374,7 @@ variable "default_files" {
 }
 
 variable "project_name" {
-  description = ""
+  description = "Project name variable to configure in default-files"
   type        = string
   default     = "DMVP"
 }
