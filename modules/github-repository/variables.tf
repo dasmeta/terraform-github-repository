@@ -372,3 +372,9 @@ variable "default_files" {
       local_path  = "/resources/package.json"
   }, ]
 }
+
+variable "project_name" {
+  description = ""
+  type        = string
+  default     = "DMVP"
+}
