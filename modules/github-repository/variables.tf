@@ -350,9 +350,6 @@ variable "default_files" {
     local_path  = string
   }))
   default = [{
-    remote_path = ".github/workflows/commitlint.yaml"
-    local_path  = "/resources/semantic-release.yaml"
-    }, {
     remote_path = ".pre-commit-config.yaml"
     local_path  = "/resources/pre-commit-config.yaml"
     }, {
@@ -363,11 +360,21 @@ variable "default_files" {
     local_path  = "/resources/pr-title-checker.yaml"
     },
     {
-      remote_path = "commitlint.config.js"
-      local_path  = "/resources/commitlint.config.js"
+      remote_path = ".github/workflows/branch-name-check.yaml"
+      local_path  = "/resources/branch-name-check.yaml"
+    },
+    {
+      remote_path = ".github/workflows/semantic-release.yaml"
+      local_path  = "/resources/semantic-release.yaml"
     },
     {
       remote_path = "package.json"
       local_path  = "/resources/package.json"
-  }]
+  }, ]
+}
+
+variable "project_name" {
+  description = ""
+  type        = string
+  default     = "DMVP"
 }
