@@ -350,7 +350,7 @@ variable "default_files" {
     local_path  = string
   }))
   default = [{
-    remote_path = ".github/workflows/commitlint.yaml"
+    remote_path = ".github/workflows/semantic-release.yaml"
     local_path  = "/resources/semantic-release.yaml"
     }, {
     remote_path = ".pre-commit-config.yaml"
@@ -361,6 +361,10 @@ variable "default_files" {
     }, {
     remote_path = ".github/workflows/pr-title-checker.yaml"
     local_path  = "/resources/pr-title-checker.yaml"
+    },
+    {
+      remote_path = ".github/workflows/pr-description-check.yaml"
+      local_path  = "/resources/pr-description-check.yaml"
     },
     {
       remote_path = "commitlint.config.js"
