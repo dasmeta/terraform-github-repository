@@ -369,19 +369,24 @@ variable "default_files" {
     {
       remote_path = "commitlint.config.js"
       local_path  = "/resources/commitlint.config.js"
-      },
-      {
+    },
+    {
       remote_path = ".github/workflows/branch-name-check.yaml"
       local_path  = "/resources/branch-name-check.yaml"
     },
     {
-      remote_path = ".github/workflows/semantic-release.yaml"
-      local_path  = "/resources/semantic-release.yaml"
-    },
-    {
       remote_path = "package.json"
       local_path  = "/resources/package.json"
-  }, ]
+    },
+    {
+      remote_path = "git-conventional-commits.json"
+      local_path  = "/resources/git-conventional-commits.json"
+      }, {
+      remote_path = "githooks/commit-msg"
+      local_path  = "/resources/commit-msg"
+    }
+
+  ]
 }
 
 variable "project_name" {
