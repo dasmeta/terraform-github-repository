@@ -19,9 +19,9 @@ locals {
   )
 }
 
-locals {
-  branches_map = { for b in var.branches : b.name => b }
-}
+#locals {
+#  branches_map = { for b in var.branches : b.name => b }
+#}
 
 locals {
   branch_protections = try([
@@ -104,4 +104,10 @@ locals {
   encrypted_secrets = { for name, value in var.encrypted_secrets : name => { encrypted = value } }
 
   secrets = merge(local.plaintext_secrets, local.encrypted_secrets)
+}
+
+locals {
+  repository_name = var.create_repository ? github_repository.repository[0].name : data.github_repository.existing_repo[0].name
+  branch_name     = var.create_repository ? var.default_branch : var.branch_toPush
+  commit_message  = var.commit_message
 }

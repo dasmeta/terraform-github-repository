@@ -1,7 +1,7 @@
 resource "github_repository_webhook" "repository_webhook" {
   count = length(var.webhooks)
 
-  repository = var.existing_repository == null ? github_repository.repository[0].name : data.github_repository.imported_github[0].name
+  repository = local.repository_name
   active     = try(var.webhooks[count.index].active, true)
   events     = var.webhooks[count.index].events
 

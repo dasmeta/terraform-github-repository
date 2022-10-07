@@ -1,5 +1,5 @@
 resource "github_repository" "repository" {
-  count                  = var.existing_repository == null ? 1 : 0
+  count                  = var.create_repository == null ? 1 : 0
   name                   = var.name
   description            = var.description
   homepage_url           = var.homepage_url
@@ -55,13 +55,7 @@ resource "github_repository" "repository" {
   }
 }
 
-data "github_repository" "imported_github" {
-  count     = var.existing_repository == null ? 0 : 1
-  full_name = var.existing_repository.existing_repo_name
-}
-
-resource "github_branch" "best-practice-branch" {
-  count      = var.existing_repository == null ? 0 : 1
-  branch     = var.existing_repository.branch_toPush
-  repository = data.github_repository.imported_github[0].name
+data "github_repository" "existing_repo" {
+  count     = var.create_repository ? 0 : 1
+  full_name = var.name
 }
