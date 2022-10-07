@@ -350,6 +350,9 @@ variable "default_files" {
     local_path  = string
   }))
   default = [{
+    remote_path = ".github/workflows/semantic-release.yaml"
+    local_path  = "/resources/semantic-release.yaml"
+    }, {
     remote_path = ".pre-commit-config.yaml"
     local_path  = "/resources/pre-commit-config.yaml"
     }, {
@@ -360,21 +363,43 @@ variable "default_files" {
     local_path  = "/resources/pr-title-checker.yaml"
     },
     {
+      remote_path = ".github/workflows/pr-description-check.yaml"
+      local_path  = "/resources/pr-description-check.yaml"
+    },
+    {
+      remote_path = "commitlint.config.js"
+      local_path  = "/resources/commitlint.config.js"
+    },
+    {
       remote_path = ".github/workflows/branch-name-check.yaml"
       local_path  = "/resources/branch-name-check.yaml"
     },
     {
-      remote_path = ".github/workflows/semantic-release.yaml"
-      local_path  = "/resources/semantic-release.yaml"
-    },
-    {
       remote_path = "package.json"
       local_path  = "/resources/package.json"
-  }, ]
+    },
+    {
+      remote_path = "git-conventional-commits.json"
+      local_path  = "/resources/git-conventional-commits.json"
+      }, {
+      remote_path = "githooks/commit-msg"
+      local_path  = "/resources/commit-msg"
+    }
+
+  ]
 }
 
 variable "project_name" {
   description = "Project name variable to configure in default-files"
   type        = string
   default     = "DMVP"
+}
+
+variable "secrets" {
+  description = ""
+  type = list(object({
+    secret_name     = string
+    plaintext_value = string
+  }))
+  default = []
 }
