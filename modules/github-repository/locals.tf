@@ -19,10 +19,6 @@ locals {
   )
 }
 
-#locals {
-#  branches_map = { for b in var.branches : b.name => b }
-#}
-
 locals {
   branch_protections = try([
     for b in local.branch_protections_v3 : merge({
