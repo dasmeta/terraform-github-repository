@@ -14,20 +14,20 @@ if [ ! $? -eq 0 ]; then
   source ~/.nvm/nvm.sh
 
   if [ `command -v nvm` ]; then
-      echo -e "${GREEN}[ OK ]${NC} nvm installed successfully"
+      echo -e "$${GREEN}[ OK ]$${NC} nvm installed successfully"
   else
-     echo -e "${RED}[ FAIL ]${NC} Error during nvm installation"
+     echo -e "$${RED}[ FAIL ]$${NC} Error during nvm installation"
   fi
 fi
 
 
 if  [  `command -v node`  ]; then
-    echo -e "${GREEN}[ OK ]${NC} npm and node is already installed"
+    echo -e "$${GREEN}[ OK ]$${NC} npm and node is already installed"
 else
-  echo -e "${YELLOW}[ WAIT ]${NC} npm is not installed.. installing"
+  echo -e "$${YELLOW}[ WAIT ]$${NC} npm is not installed.. installing"
   nvm install node > /dev/null 2>&1
   if [ `command -v node` ] && [ `command -v npm` ]; then
-      echo -e "${GREEN}[ OK ]${NC} npm installed successfully"
+      echo -e "$${GREEN}[ OK ]$${NC} npm installed successfully"
   fi
 
 #  mkdir ~/.npm-global > /dev/null 2>&1
@@ -39,7 +39,7 @@ fi
 
 
 if [ `command -v yarn` ]; then
-  echo -e "${GREEN}[ OK ]${NC} Yarn already installed"
+  echo -e "$${GREEN}[ OK ]$${NC} Yarn already installed"
 
 else
   rm -rf ~/.yarn
@@ -48,19 +48,19 @@ else
   yarn config set prefix ~/.yarn -g
 
   if [ `command -v yarn` ]; then
-      echo -e "${GREEN}[ OK ]${NC} Yarn installed successfully"
+      echo -e "$${GREEN}[ OK ]$${NC} Yarn installed successfully"
   fi
 fi
 
-echo -e "${GREEN}[ OK ]${NC}" nvm cache clear --force
+echo -e "$${GREEN}[ OK ]$${NC}" nvm cache clear --force
 
 PATH="/c/Program Files/nodejs:$HOME/AppData/Roaming/npm/:$PATH"
 
 npm install --global git-conventional-commits > /dev/null 2>&1
 if [ $? -eq 0 ]; then
-    echo -e "${GREEN}[ OK ]${NC} git-conventional-commit successfully installed"
+    echo -e "$${GREEN}[ OK ]$${NC} git-conventional-commit successfully installed"
   else
-    echo -e "${RED}[ FAIL ]${NC} Error during installation of git-conventional-commit"
+    echo -e "$${RED}[ FAIL ]$${NC} Error during installation of git-conventional-commit"
 fi
 
 git-conventional-commits commit-msg-hook "$1"

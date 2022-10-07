@@ -31,10 +31,8 @@ resource "github_branch_protection_v3" "branch_protection" {
   enforce_admins                  = local.branch_protections[count.index].enforce_admins
   require_conversation_resolution = local.branch_protections[count.index].require_conversation_resolution
   require_signed_commits          = local.branch_protections[count.index].require_signed_commits
-
   dynamic "required_status_checks" {
     for_each = local.required_status_checks[count.index]
-
     content {
       strict   = required_status_checks.value.strict
       contexts = required_status_checks.value.contexts

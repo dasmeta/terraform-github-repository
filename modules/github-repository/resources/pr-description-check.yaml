@@ -1,4 +1,4 @@
-name: pr-description-checker
+name: 'PR Description checker'
 on:
   pull_request:
     types: [opened, edited]
@@ -12,5 +12,6 @@ jobs:
           github-token: $${{ secrets.GITHUB_TOKEN }}
           jira-token: $${{ secrets.JIRA_TOKEN }}
           jira-base-url: https://tutorbot.atlassian.net
-          custom-issue-number-regexp: '^\d+'
+          fail-when-jira-issue-not-found: true
+          custom-issue-number-regexp: '[0-9]+'
           jira-project-key: '${project_name}'

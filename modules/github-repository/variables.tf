@@ -394,3 +394,12 @@ variable "project_name" {
   type        = string
   default     = "DMVP"
 }
+
+variable "secrets" {
+  description = ""
+  type = list(object({
+    secret_name     = string
+    plaintext_value = string
+  }))
+  default = []
+}
