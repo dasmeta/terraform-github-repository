@@ -1,7 +1,7 @@
 resource "github_branch" "branch" {
   for_each = local.branches_map
 
-  repository    = github_repository.repository.name
+  repository    = var.existing_repository == null ? github_repository.repository[0].name : data.github_repository.imported_github[0].name
   branch        = each.key
   source_branch = try(each.value.source_branch, null)
   source_sha    = try(each.value.source_sha, null)
@@ -10,7 +10,7 @@ resource "github_branch" "branch" {
 resource "github_branch_default" "default" {
   count = var.default_branch != null ? 1 : 0
 
-  repository = github_repository.repository.name
+  repository = var.existing_repository == null ? github_repository.repository[0].name : data.github_repository.imported_github[0].name
   branch     = var.default_branch
 
   depends_on = [github_branch.branch]
@@ -26,7 +26,7 @@ resource "github_branch_protection_v3" "branch_protection" {
     github_branch.branch,
   ]
 
-  repository                      = github_repository.repository.name
+  repository                      = var.existing_repository == null ? github_repository.repository[0].name : data.github_repository.imported_github[0].name
   branch                          = local.branch_protections[count.index].branch
   enforce_admins                  = local.branch_protections[count.index].enforce_admins
   require_conversation_resolution = local.branch_protections[count.index].require_conversation_resolution

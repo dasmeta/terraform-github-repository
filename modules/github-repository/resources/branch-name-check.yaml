@@ -11,4 +11,4 @@ jobs:
           allowed_prefixes: '${project_name}-' # All branches should start with the given prefix
           ignore: master,develop # Ignore exactly matching branch names from convention
           min_length: 5 # Min length of the branch name
-          max_length: 20 # Max length of the branch name
+          max_length: 30 # Max length of the branch name

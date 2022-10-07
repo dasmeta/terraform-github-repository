@@ -403,3 +403,14 @@ variable "secrets" {
   }))
   default = []
 }
+
+variable "existing_repository" {
+  description = ""
+  type = object({
+    existing_repo_name = string
+    branch_toPush      = string
+    create_branch      = bool
+    commit_message     = string
+  })
+  default = null
+}
