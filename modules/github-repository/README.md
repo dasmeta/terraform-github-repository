@@ -203,6 +203,7 @@ No modules.
 | [github_repository_webhook.repository_webhook](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_webhook) | resource |
 | [github_team_repository.team_repository](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/team_repository) | resource |
 | [github_team_repository.team_repository_by_slug](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/team_repository) | resource |
+| [github_repository.existing_repo](https://registry.terraform.io/providers/integrations/github/latest/docs/data-sources/repository) | data source |
 
 ## Inputs
 
@@ -221,8 +222,10 @@ No modules.
 | <a name="input_auto_init"></a> [auto\_init](#input\_auto\_init) | (Optional) Wether or not to produce an initial commit in the repository | `bool` | `null` | no |
 | <a name="input_branch_protections"></a> [branch\_protections](#input\_branch\_protections) | Default is []. | `any` | `null` | no |
 | <a name="input_branch_protections_v3"></a> [branch\_protections\_v3](#input\_branch\_protections\_v3) | (Optional) A list of branch protections to apply to the repository. Default is [] unless branch\_protections is set. | `any` | `null` | no |
-| <a name="input_branches"></a> [branches](#input\_branches) | (Optional) A list of branches to be created in this repository. | `any` | `[]` | no |
+| <a name="input_branch_toPush"></a> [branch\_toPush](#input\_branch\_toPush) | The Branch, where to push best practices | `string` | `""` | no |
+| <a name="input_branches"></a> [branches](#input\_branches) | (Optional) A list of branches to be created in this repository. | `list(string)` | `[]` | no |
 | <a name="input_commit_message"></a> [commit\_message](#input\_commit\_message) | Message to apply when default files are commited | `string` | `"initial commit"` | no |
+| <a name="input_create_repository"></a> [create\_repository](#input\_create\_repository) | Whether create repository  or not | `bool` | `true` | no |
 | <a name="input_default_branch"></a> [default\_branch](#input\_default\_branch) | (Optional) The name of the default branch of the repository. | `string` | `null` | no |
 | <a name="input_default_files"></a> [default\_files](#input\_default\_files) | List of default files local and remote binding, not recommended to edit, ability to disable/enable with 'add\_precommit' variable | <pre>list(object({<br>    remote_path = string<br>    local_path  = string<br>  }))</pre> | <pre>[<br>  {<br>    "local_path": "/resources/semantic-release.yaml",<br>    "remote_path": ".github/workflows/semantic-release.yaml"<br>  },<br>  {<br>    "local_path": "/resources/pre-commit-config.yaml",<br>    "remote_path": ".pre-commit-config.yaml"<br>  },<br>  {<br>    "local_path": "/resources/pre-commit",<br>    "remote_path": "githooks/pre-commit"<br>  },<br>  {<br>    "local_path": "/resources/pr-title-checker.yaml",<br>    "remote_path": ".github/workflows/pr-title-checker.yaml"<br>  },<br>  {<br>    "local_path": "/resources/pr-description-check.yaml",<br>    "remote_path": ".github/workflows/pr-description-check.yaml"<br>  },<br>  {<br>    "local_path": "/resources/commitlint.config.js",<br>    "remote_path": "commitlint.config.js"<br>  },<br>  {<br>    "local_path": "/resources/branch-name-check.yaml",<br>    "remote_path": ".github/workflows/branch-name-check.yaml"<br>  },<br>  {<br>    "local_path": "/resources/package.json",<br>    "remote_path": "package.json"<br>  },<br>  {<br>    "local_path": "/resources/git-conventional-commits.json",<br>    "remote_path": "git-conventional-commits.json"<br>  },<br>  {<br>    "local_path": "/resources/commit-msg",<br>    "remote_path": "githooks/commit-msg"<br>  }<br>]</pre> | no |
 | <a name="input_delete_branch_on_merge"></a> [delete\_branch\_on\_merge](#input\_delete\_branch\_on\_merge) | (Optional) Whether or not to delete the merged branch after merging a pull request | `bool` | `null` | no |
@@ -251,7 +254,7 @@ No modules.
 | <a name="input_push_collaborators"></a> [push\_collaborators](#input\_push\_collaborators) | (Optional) A list of users to add as collaborators granting them push (read-write) permission. | `list(string)` | `[]` | no |
 | <a name="input_push_team_ids"></a> [push\_team\_ids](#input\_push\_team\_ids) | (Optional) A list of teams (by id) to grant push (read-write) permission to. | `list(string)` | `[]` | no |
 | <a name="input_push_teams"></a> [push\_teams](#input\_push\_teams) | (Optional) A list of teams (by name/slug) to grant push (read-write) permission to. | `list(string)` | `[]` | no |
-| <a name="input_secrets"></a> [secrets](#input\_secrets) | n/a | <pre>list(object({<br>    secret_name     = string<br>    plaintext_value = string<br>  }))</pre> | `[]` | no |
+| <a name="input_secrets"></a> [secrets](#input\_secrets) | Secret list to create in repository | <pre>list(object({<br>    secret_name     = string<br>    plaintext_value = string<br>  }))</pre> | `[]` | no |
 | <a name="input_template"></a> [template](#input\_template) | (Optional) Template repository to use. (Default: {}) | <pre>object({<br>    owner      = string<br>    repository = string<br>  })</pre> | `null` | no |
 | <a name="input_topics"></a> [topics](#input\_topics) | (Optional) The list of topics of the repository | `list(string)` | `null` | no |
 | <a name="input_triage_collaborators"></a> [triage\_collaborators](#input\_triage\_collaborators) | (Optional) A list of users to add as collaborators granting them triage permission. | `list(string)` | `[]` | no |

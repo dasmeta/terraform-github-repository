@@ -1,4 +1,6 @@
 resource "github_repository" "repository" {
+  count = var.create_repository ? 1 : 0
+
   name                   = var.name
   description            = var.description
   homepage_url           = var.homepage_url
@@ -52,4 +54,9 @@ resource "github_repository" "repository" {
       template,
     ]
   }
+}
+
+data "github_repository" "existing_repo" {
+  count     = var.create_repository ? 0 : 1
+  full_name = var.name
 }

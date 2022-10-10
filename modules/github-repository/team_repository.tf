@@ -1,7 +1,7 @@
 resource "github_team_repository" "team_repository" {
   count = length(local.team_ids)
 
-  repository = github_repository.repository.name
+  repository = local.repository_name
   team_id    = local.team_ids[count.index].team_id
   permission = local.team_ids[count.index].permission
 }
@@ -9,7 +9,7 @@ resource "github_team_repository" "team_repository" {
 resource "github_team_repository" "team_repository_by_slug" {
   for_each = local.teams
 
-  repository = github_repository.repository.name
+  repository = local.repository_name
   team_id    = each.value.slug
   permission = each.value.permission
 

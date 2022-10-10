@@ -175,7 +175,7 @@ variable "maintain_collaborators" {
 
 variable "branches" {
   description = "(Optional) A list of branches to be created in this repository."
-  type        = any
+  type        = list(string)
   default     = []
 }
 
@@ -396,10 +396,22 @@ variable "project_name" {
 }
 
 variable "secrets" {
-  description = ""
+  description = "Secret list to create in repository"
   type = list(object({
     secret_name     = string
     plaintext_value = string
   }))
   default = []
+}
+
+variable "branch_toPush" {
+  description = "The Branch, where to push best practices"
+  type        = string
+  default     = ""
+}
+
+variable "create_repository" {
+  description = "Whether create repository  or not"
+  type        = bool
+  default     = true
 }
