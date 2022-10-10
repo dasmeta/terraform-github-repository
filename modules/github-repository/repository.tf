@@ -1,5 +1,6 @@
 resource "github_repository" "repository" {
-  count                  = var.create_repository == null ? 1 : 0
+  count = var.create_repository ? 1 : 0
+
   name                   = var.name
   description            = var.description
   homepage_url           = var.homepage_url
