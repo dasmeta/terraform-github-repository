@@ -5,7 +5,7 @@ resource "github_repository_file" "githooks-default-files" {
   branch              = local.branch_name
   file                = each.value.remote_path
   content             = templatefile("${path.module}/${each.value.local_path}", { project_name = var.project_name })
-  commit_message      = local.commit_message
+  commit_message      = "${local.commit_message}, Add ${each.value.remote_path}"
   overwrite_on_create = true
 }
 
