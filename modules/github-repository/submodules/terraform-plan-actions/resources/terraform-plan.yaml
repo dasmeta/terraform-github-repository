@@ -14,4 +14,8 @@ jobs:
       - name: terraform plan
         uses: dflook/terraform-plan@v1
         with:
-          path: ${path_to_config}
+          path: ${path_to_module}
+          variables: |
+            %{ for variable_name, variable_value in variables }
+            ${variable_name} = "${variable_value}"
+            %{ endfor ~}

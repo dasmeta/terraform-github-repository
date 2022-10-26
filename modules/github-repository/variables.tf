@@ -322,12 +322,6 @@ variable "webhooks" {
   # }]
 }
 
-variable "add_precommit" {
-  description = "Add precommit configuration to repo's files"
-  type        = bool
-  default     = true
-}
-
 variable "commit_message" {
   description = "Message to apply when default files are commited"
   type        = string
@@ -414,4 +408,53 @@ variable "create_repository" {
   description = "Whether create repository  or not"
   type        = bool
   default     = true
+}
+
+
+variable "branch_name_checker" {
+  description = ""
+  type        = bool
+  default     = false
+}
+
+variable "pr_description_checker" {
+  description = ""
+  type        = bool
+  default     = false
+}
+
+variable "pr_title_checker" {
+  description = ""
+  type        = bool
+  default     = false
+}
+
+variable "pre_commit" {
+  description = ""
+  type        = bool
+  default     = false
+}
+
+variable "semantic_release" {
+  description = ""
+  type        = bool
+  default     = false
+}
+
+variable "pr_terraform_plan" {
+  description = ""
+  type = object({
+    path_to_module   = string
+    module_variables = map(string)
+  })
+  default = null
+}
+
+variable "terraform_apply" {
+  description = ""
+  type = object({
+    path_to_module   = string
+    module_variables = map(string)
+  })
+  default = null
 }
