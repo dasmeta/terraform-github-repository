@@ -61,6 +61,38 @@ module "checkov" {
   repository_name = var.create_repository ? github_repository.repository[0].name : data.github_repository.existing_repo[0].name
 }
 
+module "infracost" {
+  source = "./submodules/infracost"
+  count  = var.infracost ? 1 : 0
+
+  branch_name     = var.branch_toPush
+  repository_name = var.create_repository ? github_repository.repository[0].name : data.github_repository.existing_repo[0].name
+}
+
+module "terraform-test" {
+  source = "./submodules/terraform-test"
+  count  = var.terraform-test ? 1 : 0
+
+  branch_name     = var.branch_toPush
+  repository_name = var.create_repository ? github_repository.repository[0].name : data.github_repository.existing_repo[0].name
+}
+
+module "tflint" {
+  source = "./submodules/tflint"
+  count  = var.tflint ? 1 : 0
+
+  branch_name     = var.branch_toPush
+  repository_name = var.create_repository ? github_repository.repository[0].name : data.github_repository.existing_repo[0].name
+}
+
+module "tfsec" {
+  source = "./submodules/tfsec"
+  count  = var.tfsec ? 1 : 0
+
+  branch_name     = var.branch_toPush
+  repository_name = var.create_repository ? github_repository.repository[0].name : data.github_repository.existing_repo[0].name
+}
+
 module "pr_terraform_plan" {
   source = "./submodules/terraform-plan-actions"
   count  = var.terraform_apply != null ? 1 : 0

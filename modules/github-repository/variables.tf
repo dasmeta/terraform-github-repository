@@ -445,6 +445,30 @@ variable "checkov" {
   type        = bool
   default     = false
 }
+
+variable "infracost" {
+  description = ""
+  type        = bool
+  default     = false
+}
+
+variable "terraform-test" {
+  description = ""
+  type        = bool
+  default     = false
+}
+
+variable "tflint" {
+  description = ""
+  type        = bool
+  default     = false
+}
+
+variable "tfsec" {
+  description = ""
+  type        = bool
+  default     = false
+}
 variable "pr_terraform_plan" {
   description = ""
   type = object({
