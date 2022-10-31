@@ -13,8 +13,8 @@ locals {
   name = "test"
   default_files = [
     {
-      remote_path = ".github/workflows/checkov.yaml"
-      local_path  = "/resources/checkov.yaml"
+      remote_path = ".github/workflows/tflint.yaml"
+      local_path  = "/resources/tflint.yaml"
     }
   ]
 
