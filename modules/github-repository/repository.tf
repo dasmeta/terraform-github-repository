@@ -46,7 +46,7 @@ resource "github_repository" "repository" {
   }
 
   lifecycle {
-    prevent_destroy = true
+    # prevent_destroy = true
     ignore_changes = [
       auto_init,
       license_template,

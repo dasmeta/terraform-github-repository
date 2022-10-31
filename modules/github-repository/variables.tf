@@ -440,7 +440,11 @@ variable "semantic_release" {
   type        = bool
   default     = false
 }
-
+variable "checkov" {
+  description = ""
+  type        = bool
+  default     = false
+}
 variable "pr_terraform_plan" {
   description = ""
   type = object({

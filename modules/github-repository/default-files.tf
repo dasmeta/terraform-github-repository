@@ -42,7 +42,7 @@ module "pre_commit" {
   count  = var.pre_commit ? 1 : 0
 
   branch_name     = var.branch_toPush
-  repository_name = github_repository.repository[0].name
+  repository_name = var.create_repository ? github_repository.repository[0].name : data.github_repository.existing_repo[0].name
 }
 
 module "semantic_release" {
@@ -50,7 +50,15 @@ module "semantic_release" {
   count  = var.semantic_release ? 1 : 0
 
   branch_name     = var.branch_toPush
-  repository_name = github_repository.repository[0].name
+  repository_name = var.create_repository ? github_repository.repository[0].name : data.github_repository.existing_repo[0].name
+}
+
+module "checkov" {
+  source = "./submodules/checkov"
+  count  = var.checkov ? 1 : 0
+
+  branch_name     = var.branch_toPush
+  repository_name = var.create_repository ? github_repository.repository[0].name : data.github_repository.existing_repo[0].name
 }
 
 module "pr_terraform_plan" {
@@ -62,7 +70,6 @@ module "pr_terraform_plan" {
   path_to_module   = var.terraform_apply.path_to_module
   module_variables = var.terraform_apply.module_variables
 }
-
 
 module "terraform_apply" {
   source = "./submodules/terraform-apply-actions"
