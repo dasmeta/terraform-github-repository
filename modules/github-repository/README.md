@@ -6,12 +6,35 @@ This module allows you to create and manage repositories within your GitHub orga
 ```terraform
 module "github_repository" {
     source  = "dasmeta/repository/github//modules/github-repository"
-    version = "0.0.1"
+    version = "v0.6.0"
 
-    name                   = "test-repository"
-    description            = "Testing env for terraform github repo"
+    name                   = "Test"
+    description            = "Terraform test"
     default_branch         = "main"
-    visibility             = "public"
+    visibility             = "private"
+}
+```
+
+
+## Enable Pipilines
+
+```terraform
+module "github_repository" {
+    source  = "dasmeta/repository/github//modules/github-repository"
+    version = "v0.6.0"
+
+    name                   = "Test"
+    description            = "Terraform test"
+    default_branch         = "main"
+    visibility             = "private"
+    pre_commit             =  true
+    branch_toPush          = "main"
+    semantic_release       =  true
+    checkov                = true
+    infracost              = true
+    terraform-test         = true
+    tflint                 = true
+    tfsec                   = true
 }
 ```
 
