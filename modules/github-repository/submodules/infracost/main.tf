@@ -3,18 +3,17 @@ resource "github_repository_file" "githooks-default-files" {
   repository          = var.repository_name
   branch              = var.branch_name
   file                = each.value.remote_path
-  content             = file("${path.module}/${each.value.local_path}")
+  content             = templatefile("${path.module}/${each.value.local_path}", { name = var.name, secret = var.secret, ref = var.ref, path = var.path, token = var.token, pr = var.pr })
   commit_message      = "${local.commit_message}, Add ${each.value.remote_path}"
   overwrite_on_create = true
 
 }
 
 locals {
-  name = "test"
   default_files = [
     {
       remote_path = ".github/workflows/infracost.yaml"
-      local_path  = "/resources/infracost.yaml"
+      local_path  = "/resources/infracost.tpl"
     }
   ]
 

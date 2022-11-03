@@ -1,4 +1,4 @@
-# semantic-release
+# infracost
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -28,7 +28,13 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_branch_name"></a> [branch\_name](#input\_branch\_name) | Branch name to apply actions | `string` | n/a | yes |
+| <a name="input_name"></a> [name](#input\_name) | n/a | `list` | <pre>[<br>  "fold1",<br>  "fold2"<br>]</pre> | no |
+| <a name="input_path"></a> [path](#input\_path) | n/a | `string` | `"${{ matrix.path }}"` | no |
+| <a name="input_pr"></a> [pr](#input\_pr) | n/a | `string` | `"${{github.event.pull_request.number}}"` | no |
+| <a name="input_ref"></a> [ref](#input\_ref) | n/a | `string` | `"'${{ github.event.pull_request.base.ref }}'"` | no |
 | <a name="input_repository_name"></a> [repository\_name](#input\_repository\_name) | Repository name to apply actions | `string` | n/a | yes |
+| <a name="input_secret"></a> [secret](#input\_secret) | n/a | `string` | `"${{secret.API_KEY}}"` | no |
+| <a name="input_token"></a> [token](#input\_token) | n/a | `string` | `"${{github.token}}"` | no |
 
 ## Outputs
 

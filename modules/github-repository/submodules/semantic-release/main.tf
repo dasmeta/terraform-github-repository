@@ -16,6 +16,9 @@ locals {
       }, {
       remote_path = "package.json"
       local_path  = "/resources/package.json"
+      }, {
+      remote_path = "commitlint.config.js"
+      local_path  = "/resources/commitlint.config.js"
     }
   ]
 

@@ -9,11 +9,7 @@ jobs:
     strategy:
       matrix:
         path:
-          - aws-security-hub-opsgenie
-          - billing
-          - dashboard
-          - eventbridge
-          - sns_to_lambda
+
     permissions: write-all
     steps:
       - name: Setup Infracost

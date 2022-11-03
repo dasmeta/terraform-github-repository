@@ -34,6 +34,5 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_commit_message"></a> [commit\_message](#output\_commit\_message) | n/a |
 | <a name="output_repository_name"></a> [repository\_name](#output\_repository\_name) | n/a |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

@@ -1,4 +1,4 @@
-name: Pre-Commit
+name: Terraform Test
 on:
   pull_request:
   push:
@@ -6,12 +6,15 @@ on:
 jobs:
   terraform-validate:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        path:
+          - github-repository
     permissions: write-all
     steps:
-    - name: Pre-Commit
-      uses: dasmeta/reusable-actions-workflows/pre-commit@main
+    - uses: dasmeta/reusable-actions-workflows/terraform-test@main
       with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        aws-region: ${{ secrets.AWS_REGION}}
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         path: modules/${{ matrix.path }}

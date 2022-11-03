@@ -9,26 +9,24 @@ jobs:
     strategy:
       matrix:
         path:
-          - aws-security-hub-opsgenie
-          - billing
-          - dashboard
-          - eventbridge
-          - sns_to_lambda
+     %{ for item in name ~}
+     - ${item}
+     %{ endfor ~}
     permissions: write-all
     steps:
       - name: Setup Infracost
         uses: infracost/actions/setup@v2
         with:
-          api-key: ${{ secrets.INFRACOST_API_KEY }}
+           api-key: ${secret}
 
       - name: Checkout base branch
         uses: actions/checkout@v3
         with:
-          ref: '${{ github.event.pull_request.base.ref }}'
+          ref: ${ref}
 
       - name: Generate Infracost cost estimate baseline
         run: |
-          infracost breakdown --path=modules/${{ matrix.path }} \
+          infracost breakdown --path=modules/${path} \
                               --format=json \
                               --out-file=/tmp/infracost-base.json
         continue-on-error: true
@@ -38,7 +36,7 @@ jobs:
 
       - name: Generate Infracost diff
         run: |
-          infracost diff --path=modules/${{ matrix.path }}\
+          infracost diff --path=modules/${path}\
                           --format=json \
                           --compare-to=/tmp/infracost-base.json \
                           --out-file=/tmp/infracost.json
@@ -48,7 +46,7 @@ jobs:
         run: |
             infracost comment github --path=/tmp/infracost.json \
                                      --repo=$GITHUB_REPOSITORY \
-                                     --github-token=${{github.token}} \
-                                     --pull-request=${{github.event.pull_request.number}} \
+                                     --github-token=${token} \
+                                     --pull-request=${pr} \
                                      --behavior=update
         continue-on-error: true

@@ -12,16 +12,19 @@ locals {
   default_files = [
     {
       remote_path = "git-conventional-commits.json"
-      local_path  = "/resources/git-conventional-commits.json"
+      local_path  = "resources/git-conventional-commits.json"
       }, {
       remote_path = "githooks/commit-msg"
-      local_path  = "/resources/commit-msg"
+      local_path  = "resources/commit-msg"
       }, {
       remote_path = "githooks/pre-commit"
-      local_path  = "/resources/pre-commit"
+      local_path  = "resources/pre-commit"
+      }, {
+      remote_path = ".github/workflows/pre-commit.yaml"
+      local_path  = "resources/pre-commit.yaml"
       }, {
       remote_path = ".pre-commit-config.yaml"
-      local_path  = "/resources/pre-commit-config.yaml"
+      local_path  = "resources/.pre-commit-config.yaml"
     }
   ]
 

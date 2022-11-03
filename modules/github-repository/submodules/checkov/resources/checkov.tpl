@@ -9,15 +9,13 @@ jobs:
     strategy:
       matrix:
         path:
-          - aws-security-hub-opsgenie
-          - billing
-          - dashboard
-          - eventbridge
-          - sns_to_lambda
+      %{ for item in name ~}
+      - ${item}
+      %{ endfor ~}
     permissions: write-all
     steps:
     - uses: dasmeta/reusable-actions-workflows/checkov@main
       with:
         fetch-depth: 0
-        directory: modules/${{ matrix.path }}
+        directory: modules/${path}
       continue-on-error: true
