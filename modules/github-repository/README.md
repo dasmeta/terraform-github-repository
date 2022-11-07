@@ -204,7 +204,7 @@ No outputs.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_github"></a> [github](#provider\_github) | ~> 4.0 |
+| <a name="provider_github"></a> [github](#provider\_github) | 4.31.0 |
 
 ## Modules
 

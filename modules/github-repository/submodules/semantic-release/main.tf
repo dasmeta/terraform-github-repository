@@ -12,13 +12,13 @@ locals {
   default_files = [
     {
       remote_path = ".github/workflows/semantic-release.yaml"
-      local_path  = "/resources/semantic-release.yaml"
+      local_path  = "resources/semantic-release.yaml"
       }, {
       remote_path = "package.json"
-      local_path  = "/resources/package.json"
+      local_path  = "resources/package.json"
       }, {
       remote_path = "commitlint.config.js"
-      local_path  = "/resources/commitlint.config.js"
+      local_path  = "resources/commitlint.config.js"
     }
   ]
 
