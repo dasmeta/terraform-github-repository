@@ -469,16 +469,7 @@ variable "tfsec" {
   type        = bool
   default     = false
 }
-variable "pr_terraform_plan" {
-  description = ""
-  type = object({
-    path_to_module   = string
-    module_variables = map(string)
-  })
-  default = null
-}
-
-variable "terraform_apply" {
+variable "terraform_plan_and_apply" {
   description = ""
   type = object({
     path_to_module   = string

@@ -95,20 +95,20 @@ module "tfsec" {
 
 module "pr_terraform_plan" {
   source = "./submodules/terraform-plan-actions"
-  count  = var.terraform_apply != null ? 1 : 0
+  count  = var.terraform_plan_and_apply != null ? 1 : 0
 
   branch_name      = var.branch_toPush
   repository_name  = github_repository.repository[0].name
-  path_to_module   = var.terraform_apply.path_to_module
-  module_variables = var.terraform_apply.module_variables
+  path_to_module   = var.terraform_plan_and_apply.path_to_module
+  module_variables = var.terraform_plan_and_apply.module_variables
 }
 
 module "terraform_apply" {
   source = "./submodules/terraform-apply-actions"
-  count  = var.terraform_apply != null ? 1 : 0
+  count  = var.terraform_plan_and_apply != null ? 1 : 0
 
   branch_name      = var.branch_toPush
   repository_name  = github_repository.repository[0].name
-  path_to_module   = var.terraform_apply.path_to_module
-  module_variables = var.terraform_apply.module_variables
+  path_to_module   = var.terraform_plan_and_apply.path_to_module
+  module_variables = var.terraform_plan_and_apply.module_variables
 }
