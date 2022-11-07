@@ -13,7 +13,7 @@ locals {
   default_files = [
     {
       remote_path = ".github/workflows/infracost.yaml"
-      local_path  = "/resources/infracost.tpl"
+      local_path  = "/resources/infracost.yaml.tpl"
     }
   ]
 

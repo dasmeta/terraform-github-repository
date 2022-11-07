@@ -14,7 +14,7 @@ locals {
   default_files = [
     {
       remote_path = ".github/workflows/terraform-test.yaml"
-      local_path  = "resources/terraform-test.tpl"
+      local_path  = "resources/terraform-test.yaml.tpl"
     }
   ]
 

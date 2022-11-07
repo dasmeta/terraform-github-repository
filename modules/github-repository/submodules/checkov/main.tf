@@ -13,7 +13,7 @@ locals {
   default_files = [
     {
       remote_path = ".github/workflows/checkov.yaml"
-      local_path  = "resources/checkov.tpl"
+      local_path  = "resources/checkov.yaml.tpl"
     }
   ]
 

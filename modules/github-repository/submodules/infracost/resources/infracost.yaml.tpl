@@ -6,13 +6,14 @@ on:
 jobs:
   terraform-validate:
     runs-on: ubuntu-latest
+    permissions: write-all
     strategy:
       matrix:
         path:
      %{ for item in name ~}
      - ${item}
      %{ endfor ~}
-    permissions: write-all
+
     steps:
       - name: Setup Infracost
         uses: infracost/actions/setup@v2

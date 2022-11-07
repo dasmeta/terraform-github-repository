@@ -6,13 +6,14 @@ on:
 jobs:
   terraform-validate:
     runs-on: ubuntu-latest
+    permissions: write-all
     strategy:
       matrix:
         path:
-      %{ for item in name ~}
-      - ${item}
-      %{ endfor ~}
-    permissions: write-all
+     %{ for item in name ~}
+     - ${item}
+     %{ endfor ~}
+
     steps:
     - uses: dasmeta/reusable-actions-workflows/checkov@main
       with:

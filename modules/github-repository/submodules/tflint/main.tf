@@ -13,7 +13,7 @@ locals {
   default_files = [
     {
       remote_path = ".github/workflows/tflint.yaml"
-      local_path  = "resources/tflint.tpl"
+      local_path  = "resources/tflint.yaml.tpl"
     }
   ]
 

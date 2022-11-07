@@ -13,7 +13,7 @@ variable "name" {
 }
 
 variable "secret" {
-  default = "$${{secret.API_KEY}}"
+  default = "$${{secret.INFRACOST_API_KEY}}"
 }
 
 variable "ref" {
