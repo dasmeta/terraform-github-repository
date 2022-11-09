@@ -1,15 +1,7 @@
 version: 2
-
-#registries:
-#spacelift:
-#  type: terraform-registry
-#  url: https://app.spacelift.io
-#  token: ${{ secrets.SPACELIFT_TOKEN }}
-
 updates:
- - package-ecosystem: "terraform"
-   directory: "modules/github-repository"
-  #registries:
-  #  - spacelift
-   schedule:
-     interval: "daily"
+  - package-ecosystem: "terraform"
+    directory:
+      - "modules/github-repository"
+    schedule:
+      interval: "daily"
