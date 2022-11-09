@@ -7,9 +7,10 @@ version: 2
 #  token: ${{ secrets.SPACELIFT_TOKEN }}
 
 updates:
- - package-ecosystem: "terraform"
-   directory: "modules/github-repository"
+  - package-ecosystem: "terraform"
+    directory:
+      - "modules/github-repository"
   #registries:
   #  - spacelift
-   schedule:
-     interval: "daily"
+    schedule:
+      interval: "daily"
