@@ -8,7 +8,7 @@ version: 2
 
 updates:
  - package-ecosystem: "terraform"
-   directory: "modules/"
+   directory: "modules/github-repository"
   #registries:
   #  - spacelift
    schedule:
