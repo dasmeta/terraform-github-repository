@@ -344,42 +344,63 @@ variable "default_files" {
     local_path  = string
   }))
   default = [{
-    remote_path = ".github/workflows/semantic-release.yaml"
-    local_path  = "/resources/semantic-release.yaml"
+    remote_path = ".github/workflows/branch-name-check.yaml"
+    local_path  = "/resources/branch-name-check.yaml"
     }, {
-    remote_path = ".pre-commit-config.yaml"
-    local_path  = "/resources/pre-commit-config.yaml"
+    remote_path = ".github/workflows/checkov.yaml"
+    local_path  = "resources/checkov.yaml.tpl"
     }, {
-    remote_path = "githooks/pre-commit"
-    local_path  = "/resources/pre-commit"
+    remote_path = ".github/workflows/infracost.yaml"
+    local_path  = "/resources/infracost.yaml.tpl"
+    }, {
+    remote_path = ".github/workflows/pr-description-check.yaml"
+    local_path  = "/resources/pr-description-check.yaml"
     }, {
     remote_path = ".github/workflows/pr-title-checker.yaml"
     local_path  = "/resources/pr-title-checker.yaml"
-    },
-    {
-      remote_path = ".github/workflows/pr-description-check.yaml"
-      local_path  = "/resources/pr-description-check.yaml"
-    },
-    {
-      remote_path = "commitlint.config.js"
-      local_path  = "/resources/commitlint.config.js"
-    },
-    {
-      remote_path = ".github/workflows/branch-name-check.yaml"
-      local_path  = "/resources/branch-name-check.yaml"
-    },
-    {
-      remote_path = "package.json"
-      local_path  = "/resources/package.json"
-    },
-    {
-      remote_path = "git-conventional-commits.json"
-      local_path  = "/resources/git-conventional-commits.json"
-      }, {
-      remote_path = "githooks/commit-msg"
-      local_path  = "/resources/commit-msg"
+    }, {
+    remote_path = "git-conventional-commits.json"
+    local_path  = "resources/git-conventional-commits.json"
+    }, {
+    remote_path = "githooks/commit-msg"
+    local_path  = "resources/commit-msg"
+    }, {
+    remote_path = "githooks/pre-commit"
+    local_path  = "resources/pre-commit"
+    }, {
+    remote_path = ".github/workflows/pre-commit.yaml"
+    local_path  = "resources/pre-commit.yaml"
+    }, {
+    remote_path = ".pre-commit-config.yaml"
+    local_path  = "resources/.pre-commit-config.yaml"
+    }, {
+    remote_path = ".github/workflows/semantic-release.yaml"
+    local_path  = "resources/semantic-release.yaml"
+    }, {
+    remote_path = "package.json"
+    local_path  = "resources/package.json"
+    }, {
+    remote_path = "commitlint.config.js"
+    local_path  = "resources/commitlint.config.js"
+    }, {
+    remote_path = ".github/workflows/semantic-release.yaml"
+    local_path  = "/resources/semantic-release.yaml"
+    }, {
+    remote_path = "package.json"
+    local_path  = "/resources/package.json"
+    }, {
+    remote_path = ".github/workflows/terraform-plan.yaml"
+    local_path  = "/resources/terraform-plan.yaml"
+    }, {
+    remote_path = ".github/workflows/terraform-test.yaml"
+    local_path  = "resources/terraform-test.yaml.tpl"
+    }, {
+    remote_path = ".github/workflows/tflint.yaml"
+    local_path  = "resources/tflint.yaml.tpl"
+    }, {
+    remote_path = ".github/workflows/tfsec.yaml"
+    local_path  = "/resources/tfsec.yaml"
     }
-
   ]
 }
 

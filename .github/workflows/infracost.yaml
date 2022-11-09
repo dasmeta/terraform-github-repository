@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         path:
-
+          - github-repository
     permissions: write-all
     steps:
       - name: Setup Infracost

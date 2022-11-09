@@ -5,7 +5,11 @@ on:
     branches: [main, master]
 jobs:
   terraform-validate:
-    permissions: write-all
+    permissions:
+      actions: write
+      contents: write
+      discussions: write
+      pull-requests: write
     runs-on: ubuntu-latest
     strategy:
       matrix:

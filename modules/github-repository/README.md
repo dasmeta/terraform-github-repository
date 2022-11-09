@@ -38,6 +38,60 @@ module "github_repository" {
 }
 ```
 
+name  
+description  
+homepage_url  
+visibility  
+has_issues  
+has_projects  
+has_wiki  
+allow_merge_commit  
+allow_rebase_merge  
+allow_squash_merge  
+allow_auto_merge  
+delete_branch_on_merge  
+is_template  
+has_downloads  
+auto_init  
+gitignore_template  
+license_template  
+archived  
+topics  
+archive_on_destroy  
+vulnerability_alerts
+
+branches = ["Best-Practices","main"]
+default_branch = "main"
+branch_protections_v3 = [
+    {
+        branch                 = "main"
+        enforce_admins         = true
+        require_signed_commits = true
+
+        required_status_checks = {
+        strict   = false
+        contexts = ["ci"]
+        }
+
+        required_pull_request_reviews = {
+        dismiss_stale_reviews           = true
+        dismissal_users                 = ["user1", "user2"]
+        dismissal_teams                 = ["team-slug-1", "team-slug-2"]
+        require_code_owner_reviews      = true
+        required_approving_review_count = 1
+        }
+
+        restrictions = {
+        users = ["user1"]
+        teams = ["team-slug-1"]
+        }
+    }
+    ]
+
+    admin_teams = ["user1"]
+}
+
+
 ## Maximal example of usage
 
 ```terraform
@@ -204,7 +258,7 @@ No outputs.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_github"></a> [github](#provider\_github) | 4.31.0 |
+| <a name="provider_github"></a> [github](#provider\_github) | ~> 4.0 |
 
 ## Modules
 
@@ -263,7 +317,7 @@ No outputs.
 | <a name="input_commit_message"></a> [commit\_message](#input\_commit\_message) | Message to apply when default files are commited | `string` | `"initial commit"` | no |
 | <a name="input_create_repository"></a> [create\_repository](#input\_create\_repository) | Whether create repository  or not | `bool` | `true` | no |
 | <a name="input_default_branch"></a> [default\_branch](#input\_default\_branch) | (Optional) The name of the default branch of the repository. | `string` | `null` | no |
-| <a name="input_default_files"></a> [default\_files](#input\_default\_files) | List of default files local and remote binding, not recommended to edit, ability to disable/enable with 'add\_precommit' variable | <pre>list(object({<br>    remote_path = string<br>    local_path  = string<br>  }))</pre> | <pre>[<br>  {<br>    "local_path": "/resources/semantic-release.yaml",<br>    "remote_path": ".github/workflows/semantic-release.yaml"<br>  },<br>  {<br>    "local_path": "/resources/pre-commit-config.yaml",<br>    "remote_path": ".pre-commit-config.yaml"<br>  },<br>  {<br>    "local_path": "/resources/pre-commit",<br>    "remote_path": "githooks/pre-commit"<br>  },<br>  {<br>    "local_path": "/resources/pr-title-checker.yaml",<br>    "remote_path": ".github/workflows/pr-title-checker.yaml"<br>  },<br>  {<br>    "local_path": "/resources/pr-description-check.yaml",<br>    "remote_path": ".github/workflows/pr-description-check.yaml"<br>  },<br>  {<br>    "local_path": "/resources/commitlint.config.js",<br>    "remote_path": "commitlint.config.js"<br>  },<br>  {<br>    "local_path": "/resources/branch-name-check.yaml",<br>    "remote_path": ".github/workflows/branch-name-check.yaml"<br>  },<br>  {<br>    "local_path": "/resources/package.json",<br>    "remote_path": "package.json"<br>  },<br>  {<br>    "local_path": "/resources/git-conventional-commits.json",<br>    "remote_path": "git-conventional-commits.json"<br>  },<br>  {<br>    "local_path": "/resources/commit-msg",<br>    "remote_path": "githooks/commit-msg"<br>  }<br>]</pre> | no |
+| <a name="input_default_files"></a> [default\_files](#input\_default\_files) | List of default files local and remote binding, not recommended to edit, ability to disable/enable with 'add\_precommit' variable | <pre>list(object({<br>    remote_path = string<br>    local_path  = string<br>  }))</pre> | <pre>[<br>  {<br>    "local_path": "/resources/branch-name-check.yaml",<br>    "remote_path": ".github/workflows/branch-name-check.yaml"<br>  },<br>  {<br>    "local_path": "resources/checkov.yaml.tpl",<br>    "remote_path": ".github/workflows/checkov.yaml"<br>  },<br>  {<br>    "local_path": "/resources/infracost.yaml.tpl",<br>    "remote_path": ".github/workflows/infracost.yaml"<br>  },<br>  {<br>    "local_path": "/resources/pr-description-check.yaml",<br>    "remote_path": ".github/workflows/pr-description-check.yaml"<br>  },<br>  {<br>    "local_path": "/resources/pr-title-checker.yaml",<br>    "remote_path": ".github/workflows/pr-title-checker.yaml"<br>  },<br>  {<br>    "local_path": "resources/git-conventional-commits.json",<br>    "remote_path": "git-conventional-commits.json"<br>  },<br>  {<br>    "local_path": "resources/commit-msg",<br>    "remote_path": "githooks/commit-msg"<br>  },<br>  {<br>    "local_path": "resources/pre-commit",<br>    "remote_path": "githooks/pre-commit"<br>  },<br>  {<br>    "local_path": "resources/pre-commit.yaml",<br>    "remote_path": ".github/workflows/pre-commit.yaml"<br>  },<br>  {<br>    "local_path": "resources/.pre-commit-config.yaml",<br>    "remote_path": ".pre-commit-config.yaml"<br>  },<br>  {<br>    "local_path": "resources/semantic-release.yaml",<br>    "remote_path": ".github/workflows/semantic-release.yaml"<br>  },<br>  {<br>    "local_path": "resources/package.json",<br>    "remote_path": "package.json"<br>  },<br>  {<br>    "local_path": "resources/commitlint.config.js",<br>    "remote_path": "commitlint.config.js"<br>  },<br>  {<br>    "local_path": "/resources/semantic-release.yaml",<br>    "remote_path": ".github/workflows/semantic-release.yaml"<br>  },<br>  {<br>    "local_path": "/resources/package.json",<br>    "remote_path": "package.json"<br>  },<br>  {<br>    "local_path": "/resources/terraform-plan.yaml",<br>    "remote_path": ".github/workflows/terraform-plan.yaml"<br>  },<br>  {<br>    "local_path": "resources/terraform-test.yaml.tpl",<br>    "remote_path": ".github/workflows/terraform-test.yaml"<br>  },<br>  {<br>    "local_path": "resources/tflint.yaml.tpl",<br>    "remote_path": ".github/workflows/tflint.yaml"<br>  },<br>  {<br>    "local_path": "/resources/tfsec.yaml",<br>    "remote_path": ".github/workflows/tfsec.yaml"<br>  }<br>]</pre> | no |
 | <a name="input_delete_branch_on_merge"></a> [delete\_branch\_on\_merge](#input\_delete\_branch\_on\_merge) | (Optional) Whether or not to delete the merged branch after merging a pull request | `bool` | `null` | no |
 | <a name="input_description"></a> [description](#input\_description) | (Optional) A description of the repository. | `string` | `""` | no |
 | <a name="input_encrypted_secrets"></a> [encrypted\_secrets](#input\_encrypted\_secrets) | (Optional) Configuring encrypted actions secrets. | `map(string)` | `{}` | no |
