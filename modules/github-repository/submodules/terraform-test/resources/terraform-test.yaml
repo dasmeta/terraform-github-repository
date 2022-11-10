@@ -10,7 +10,11 @@ jobs:
       matrix:
         path:
           - "${name}"
-    permissions: write-all
+    permissions:
+      actions: write
+      contents: write
+      discussions: write
+      pull-requests: write
     steps:
     - uses: dasmeta/reusable-actions-workflows/terraform-test@main
       with:
