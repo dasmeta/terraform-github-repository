@@ -33,7 +33,7 @@ No modules.
 | <a name="input_pr"></a> [pr](#input\_pr) | n/a | `string` | `"${{github.event.pull_request.number}}"` | no |
 | <a name="input_ref"></a> [ref](#input\_ref) | n/a | `string` | `"'${{ github.event.pull_request.base.ref }}'"` | no |
 | <a name="input_repository_name"></a> [repository\_name](#input\_repository\_name) | Repository name to apply actions | `string` | n/a | yes |
-| <a name="input_secret"></a> [secret](#input\_secret) | n/a | `string` | `"${{secret.INFRACOST_API_KEY}}"` | no |
+| <a name="input_secret"></a> [secret](#input\_secret) | n/a | `string` | `"${{secrets.INFRACOST_API_KEY}}"` | no |
 | <a name="input_token"></a> [token](#input\_token) | n/a | `string` | `"${{github.token}}"` | no |
 
 ## Outputs
