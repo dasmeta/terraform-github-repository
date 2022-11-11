@@ -11,6 +11,12 @@ jobs:
       contents: write
       discussions: write
       pull-requests: write
+      checks: write
+      issues: write
+      packages: write
+      repository-projects: write
+      security-events: write
+      statuses: write
     runs-on: ubuntu-latest
     strategy:
       matrix:
