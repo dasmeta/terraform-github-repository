@@ -322,12 +322,6 @@ variable "webhooks" {
   # }]
 }
 
-variable "add_precommit" {
-  description = "Add precommit configuration to repo's files"
-  type        = bool
-  default     = true
-}
-
 variable "commit_message" {
   description = "Message to apply when default files are commited"
   type        = string
@@ -341,52 +335,6 @@ variable "init_files" {
     local_name  = string
   }))
   default = []
-}
-
-variable "default_files" {
-  description = "List of default files local and remote binding, not recommended to edit, ability to disable/enable with 'add_precommit' variable"
-  type = list(object({
-    remote_path = string
-    local_path  = string
-  }))
-  default = [{
-    remote_path = ".github/workflows/semantic-release.yaml"
-    local_path  = "/resources/semantic-release.yaml"
-    }, {
-    remote_path = ".pre-commit-config.yaml"
-    local_path  = "/resources/pre-commit-config.yaml"
-    }, {
-    remote_path = "githooks/pre-commit"
-    local_path  = "/resources/pre-commit"
-    }, {
-    remote_path = ".github/workflows/pr-title-checker.yaml"
-    local_path  = "/resources/pr-title-checker.yaml"
-    },
-    {
-      remote_path = ".github/workflows/pr-description-check.yaml"
-      local_path  = "/resources/pr-description-check.yaml"
-    },
-    {
-      remote_path = "commitlint.config.js"
-      local_path  = "/resources/commitlint.config.js"
-    },
-    {
-      remote_path = ".github/workflows/branch-name-check.yaml"
-      local_path  = "/resources/branch-name-check.yaml"
-    },
-    {
-      remote_path = "package.json"
-      local_path  = "/resources/package.json"
-    },
-    {
-      remote_path = "git-conventional-commits.json"
-      local_path  = "/resources/git-conventional-commits.json"
-      }, {
-      remote_path = "githooks/commit-msg"
-      local_path  = "/resources/commit-msg"
-    }
-
-  ]
 }
 
 variable "project_name" {
@@ -414,4 +362,72 @@ variable "create_repository" {
   description = "Whether create repository  or not"
   type        = bool
   default     = true
+}
+
+
+variable "branch_name_checker" {
+  description = ""
+  type        = bool
+  default     = false
+}
+
+variable "pr_description_checker" {
+  description = ""
+  type        = bool
+  default     = false
+}
+
+variable "pr_title_checker" {
+  description = ""
+  type        = bool
+  default     = false
+}
+
+variable "pre_commit" {
+  description = ""
+  type        = bool
+  default     = false
+}
+
+variable "semantic_release" {
+  description = ""
+  type        = bool
+  default     = false
+}
+variable "checkov" {
+  description = ""
+  type        = bool
+  default     = false
+}
+
+variable "infracost" {
+  description = ""
+  type        = bool
+  default     = false
+}
+
+variable "terraform-test" {
+  description = ""
+  type        = bool
+  default     = false
+}
+
+variable "tflint" {
+  description = ""
+  type        = bool
+  default     = false
+}
+
+variable "tfsec" {
+  description = ""
+  type        = bool
+  default     = false
+}
+variable "terraform_plan_and_apply" {
+  description = ""
+  type = object({
+    path_to_module   = string
+    module_variables = map(string)
+  })
+  default = null
 }

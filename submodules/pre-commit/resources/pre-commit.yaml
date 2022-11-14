@@ -11,6 +11,7 @@ jobs:
       contents: write
       discussions: write
       pull-requests: write
+      id-token: write
     steps:
     - name: Pre-Commit
       uses: dasmeta/reusable-actions-workflows/pre-commit@main

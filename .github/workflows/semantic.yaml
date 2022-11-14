@@ -1,8 +1,13 @@
-name:  Publish
+name:  Semantic-Release
 on: [pull_request, push]
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      actions: write
+      contents: write
+      discussions: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v2
       - name: Setup Node.js
