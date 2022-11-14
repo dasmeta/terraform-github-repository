@@ -11,12 +11,8 @@ jobs:
       contents: write
       discussions: write
       pull-requests: write
-      checks: write
-      issues: write
-      packages: write
-      repository-projects: write
       security-events: write
-      statuses: write
+      id-token: write
     strategy:
       matrix:
         path:
