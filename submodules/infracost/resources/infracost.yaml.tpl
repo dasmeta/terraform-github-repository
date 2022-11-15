@@ -16,7 +16,7 @@ jobs:
     strategy:
       matrix:
         path:
-     %{ for item in name ~}
+     %{ for item in paths ~}
      - ${item}
      %{ endfor ~}
 
@@ -33,7 +33,7 @@ jobs:
 
       - name: Generate Infracost cost estimate baseline
         run: |
-          infracost breakdown --path=modules/${path} \
+          infracost breakdown --path=${path} \
                               --format=json \
                               --out-file=/tmp/infracost-base.json
         continue-on-error: true
@@ -43,7 +43,7 @@ jobs:
 
       - name: Generate Infracost diff
         run: |
-          infracost diff --path=modules/${path}\
+          infracost diff --path=${path}\
                           --format=json \
                           --compare-to=/tmp/infracost-base.json \
                           --out-file=/tmp/infracost.json
