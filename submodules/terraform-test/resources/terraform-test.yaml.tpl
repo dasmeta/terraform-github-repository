@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         path:
-     %{ for item in name ~}
+     %{ for item in paths ~}
      - ${item}
      %{ endfor ~}
 
@@ -25,5 +25,5 @@ jobs:
         aws-region: ${aws-region}
         aws-access-key-id: ${aws-access-key-id}
         aws-secret-access-key: ${aws-secret-access-key}
-        path: modules/${path}
+        path: ${path}
       continue-on-error: true

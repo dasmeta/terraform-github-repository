@@ -28,8 +28,8 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_branch_name"></a> [branch\_name](#input\_branch\_name) | Branch name to apply actions | `string` | n/a | yes |
-| <a name="input_name"></a> [name](#input\_name) | n/a | `list` | <pre>[<br>  "fold1",<br>  "fold2"<br>]</pre> | no |
 | <a name="input_path"></a> [path](#input\_path) | n/a | `string` | `"${{ matrix.path }}"` | no |
+| <a name="input_paths"></a> [paths](#input\_paths) | n/a | `list` | <pre>[<br>  "/"<br>]</pre> | no |
 | <a name="input_repository_name"></a> [repository\_name](#input\_repository\_name) | Repository name to apply actions | `string` | n/a | yes |
 
 ## Outputs

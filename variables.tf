@@ -260,6 +260,10 @@ variable "admin_teams" {
   default     = []
 }
 
+variable "paths" {
+  type = string
+}
+
 variable "push_teams" {
   description = "(Optional) A list of teams (by name/slug) to grant push (read-write) permission to."
   type        = list(string)

@@ -336,6 +336,7 @@ No outputs.
 | <a name="input_module_depends_on"></a> [module\_depends\_on](#input\_module\_depends\_on) | (Optional) Define resources this module indirectly depends\_on. | `any` | `[]` | no |
 | <a name="input_name"></a> [name](#input\_name) | (Required) The name of the repository. | `string` | n/a | yes |
 | <a name="input_pages"></a> [pages](#input\_pages) | (Optional) The repository's GitHub Pages configuration. (Default: {}) | `any` | `null` | no |
+| <a name="input_paths"></a> [paths](#input\_paths) | n/a | `string` | n/a | yes |
 | <a name="input_plaintext_secrets"></a> [plaintext\_secrets](#input\_plaintext\_secrets) | (Optional) Configuring actions secrets. | `map(string)` | `{}` | no |
 | <a name="input_pr_description_checker"></a> [pr\_description\_checker](#input\_pr\_description\_checker) | n/a | `bool` | `false` | no |
 | <a name="input_pr_title_checker"></a> [pr\_title\_checker](#input\_pr\_title\_checker) | n/a | `bool` | `false` | no |

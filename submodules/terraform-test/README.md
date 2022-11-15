@@ -31,8 +31,8 @@ No modules.
 | <a name="input_aws-region"></a> [aws-region](#input\_aws-region) | n/a | `string` | `"${{ secrets.AWS_REGION}}"` | no |
 | <a name="input_aws-secret-access-key"></a> [aws-secret-access-key](#input\_aws-secret-access-key) | n/a | `string` | `"${{ secrets.AWS_SECRET_ACCESS_KEY }}"` | no |
 | <a name="input_branch_name"></a> [branch\_name](#input\_branch\_name) | Branch name to apply actions | `string` | n/a | yes |
-| <a name="input_name"></a> [name](#input\_name) | n/a | `list` | <pre>[<br>  "fold1",<br>  "fold2"<br>]</pre> | no |
 | <a name="input_path"></a> [path](#input\_path) | n/a | `string` | `"${{ matrix.path }}"` | no |
+| <a name="input_paths"></a> [paths](#input\_paths) | n/a | `list` | <pre>[<br>  "/"<br>]</pre> | no |
 | <a name="input_repository_name"></a> [repository\_name](#input\_repository\_name) | Repository name to apply actions | `string` | n/a | yes |
 
 ## Outputs

@@ -16,7 +16,7 @@ jobs:
     strategy:
       matrix:
         path:
-     %{ for item in name ~}
+     %{ for item in paths ~}
      - ${item}
      %{ endfor ~}
 
@@ -24,5 +24,5 @@ jobs:
     - uses: dasmeta/reusable-actions-workflows/checkov@main
       with:
         fetch-depth: 0
-        directory: modules/${path}
+        directory: ${path}
       continue-on-error: true

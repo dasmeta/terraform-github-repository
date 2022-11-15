@@ -8,8 +8,8 @@ variable "branch_name" {
   type        = string
 }
 
-variable "name" {
-  default = ["fold1", "fold2"]
+variable "paths" {
+  default = ["/"]
 }
 
 variable "secret" {

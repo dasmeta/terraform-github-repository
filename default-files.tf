@@ -59,6 +59,8 @@ module "checkov" {
 
   branch_name     = var.branch_toPush
   repository_name = var.create_repository ? github_repository.repository[0].name : data.github_repository.existing_repo[0].name
+  paths           = ["/"]
+
 }
 
 module "infracost" {
@@ -67,6 +69,8 @@ module "infracost" {
 
   branch_name     = var.branch_toPush
   repository_name = var.create_repository ? github_repository.repository[0].name : data.github_repository.existing_repo[0].name
+  paths           = ["/"]
+
 }
 
 module "terraform-test" {
@@ -83,6 +87,7 @@ module "tflint" {
 
   branch_name     = var.branch_toPush
   repository_name = var.create_repository ? github_repository.repository[0].name : data.github_repository.existing_repo[0].name
+  paths           = ["/"]
 }
 
 module "tfsec" {
