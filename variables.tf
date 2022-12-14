@@ -261,7 +261,7 @@ variable "admin_teams" {
 }
 
 variable "paths" {
-  type = string
+  type = list(any)
 }
 
 variable "push_teams" {

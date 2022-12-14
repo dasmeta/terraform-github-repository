@@ -269,11 +269,12 @@ No outputs.
 | <a name="module_infracost"></a> [infracost](#module\_infracost) | ./submodules/infracost | n/a |
 | <a name="module_pr_description_checker"></a> [pr\_description\_checker](#module\_pr\_description\_checker) | ./submodules/pr-description-checker | n/a |
 | <a name="module_pr_terraform_plan"></a> [pr\_terraform\_plan](#module\_pr\_terraform\_plan) | ./submodules/terraform-plan-actions | n/a |
+| <a name="module_pr_terraform_plan_with_slack_notification"></a> [pr\_terraform\_plan\_with\_slack\_notification](#module\_pr\_terraform\_plan\_with\_slack\_notification) | ./submodules/terraform-plan-with-slack-notify | n/a |
 | <a name="module_pr_title_checker"></a> [pr\_title\_checker](#module\_pr\_title\_checker) | ./submodules/pr-title-checker | n/a |
 | <a name="module_pre_commit"></a> [pre\_commit](#module\_pre\_commit) | ./submodules/pre-commit | n/a |
 | <a name="module_semantic_release"></a> [semantic\_release](#module\_semantic\_release) | ./submodules/semantic-release | n/a |
 | <a name="module_terraform-test"></a> [terraform-test](#module\_terraform-test) | ./submodules/terraform-test | n/a |
-| <a name="module_terraform_apply"></a> [terraform\_apply](#module\_terraform\_apply) | ./submodules/terraform-apply-actions | n/a |
+| <a name="module_terraform_apply"></a> [terraform\_apply](#module\_terraform\_apply) | ./submodules/terraform-apply-with-slack-notify | n/a |
 | <a name="module_tflint"></a> [tflint](#module\_tflint) | ./submodules/tflint | n/a |
 | <a name="module_tfsec"></a> [tfsec](#module\_tfsec) | ./submodules/tfsec | n/a |
 
@@ -336,7 +337,7 @@ No outputs.
 | <a name="input_module_depends_on"></a> [module\_depends\_on](#input\_module\_depends\_on) | (Optional) Define resources this module indirectly depends\_on. | `any` | `[]` | no |
 | <a name="input_name"></a> [name](#input\_name) | (Required) The name of the repository. | `string` | n/a | yes |
 | <a name="input_pages"></a> [pages](#input\_pages) | (Optional) The repository's GitHub Pages configuration. (Default: {}) | `any` | `null` | no |
-| <a name="input_paths"></a> [paths](#input\_paths) | n/a | `string` | n/a | yes |
+| <a name="input_paths"></a> [paths](#input\_paths) | n/a | `list(any)` | n/a | yes |
 | <a name="input_plaintext_secrets"></a> [plaintext\_secrets](#input\_plaintext\_secrets) | (Optional) Configuring actions secrets. | `map(string)` | `{}` | no |
 | <a name="input_pr_description_checker"></a> [pr\_description\_checker](#input\_pr\_description\_checker) | n/a | `bool` | `false` | no |
 | <a name="input_pr_title_checker"></a> [pr\_title\_checker](#input\_pr\_title\_checker) | n/a | `bool` | `false` | no |

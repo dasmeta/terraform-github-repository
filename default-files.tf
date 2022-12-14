@@ -60,7 +60,6 @@ module "checkov" {
   branch_name     = var.branch_toPush
   repository_name = var.create_repository ? github_repository.repository[0].name : data.github_repository.existing_repo[0].name
   paths           = ["/"]
-
 }
 
 module "infracost" {
@@ -79,6 +78,7 @@ module "terraform-test" {
 
   branch_name     = var.branch_toPush
   repository_name = var.create_repository ? github_repository.repository[0].name : data.github_repository.existing_repo[0].name
+  paths           = ["/"]
 }
 
 module "tflint" {
@@ -108,8 +108,28 @@ module "pr_terraform_plan" {
   module_variables = var.terraform_plan_and_apply.module_variables
 }
 
+module "pr_terraform_plan_with_slack_notification" {
+  source = "./submodules/terraform-plan-with-slack-notify"
+  count  = var.terraform_plan_and_apply != null ? 1 : 0
+
+  branch_name      = var.branch_toPush
+  repository_name  = github_repository.repository[0].name
+  path_to_module   = var.terraform_plan_and_apply.path_to_module
+  module_variables = var.terraform_plan_and_apply.module_variables
+}
+
 module "terraform_apply" {
   source = "./submodules/terraform-apply-actions"
+  count  = var.terraform_plan_and_apply != null ? 1 : 0
+
+  branch_name      = var.branch_toPush
+  repository_name  = github_repository.repository[0].name
+  path_to_module   = var.terraform_plan_and_apply.path_to_module
+  module_variables = var.terraform_plan_and_apply.module_variables
+}
+
+module "terraform_apply" {
+  source = "./submodules/terraform-apply-with-slack-notify"
   count  = var.terraform_plan_and_apply != null ? 1 : 0
 
   branch_name      = var.branch_toPush
