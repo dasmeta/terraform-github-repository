@@ -84,7 +84,7 @@ variable "has_downloads" {
 variable "auto_init" {
   description = "(Optional) Wether or not to produce an initial commit in the repository"
   type        = bool
-  default     = null
+  default     = true
 }
 
 variable "gitignore_template" {
@@ -260,10 +260,6 @@ variable "admin_teams" {
   default     = []
 }
 
-variable "paths" {
-  type = string
-}
-
 variable "push_teams" {
   description = "(Optional) A list of teams (by name/slug) to grant push (read-write) permission to."
   type        = list(string)
@@ -332,13 +328,19 @@ variable "commit_message" {
   default     = "initial commit"
 }
 
-variable "init_files" {
-  description = "List of local and remote path binding objects, ability to push files from local to remote during init"
+variable "files" {
+  description = "List of local and remote path binding objects, ability to push files from local to remote"
   type = list(object({
-    remote_name = string
-    local_name  = string
+    remote_path = string
+    local_path  = string
   }))
   default = []
+}
+
+variable "files_commit_message" {
+  description = "Message to set on commit of above files"
+  type        = string
+  default     = "repo file create/change"
 }
 
 variable "project_name" {
