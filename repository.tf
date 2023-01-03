@@ -57,6 +57,7 @@ resource "github_repository" "repository" {
 }
 
 data "github_repository" "existing_repo" {
-  count     = var.create_repository ? 0 : 1
-  full_name = var.name
+  count = var.create_repository ? 0 : 1
+
+  name = var.name
 }
