@@ -12,6 +12,6 @@ jobs:
       discussions: write
       pull-requests: write
     steps:
-    - uses: dasmeta/reusable-actions-workflows/tfsec@main
+    - uses: dasmeta/reusable-actions-workflows/tfsec@4.1.0
       with:
         fetch-depth: 0
