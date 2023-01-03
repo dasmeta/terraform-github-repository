@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         path:
-          - github-repository
+          - ./
     permissions:
       actions: write
       contents: write
@@ -21,6 +21,5 @@ jobs:
         aws-region: ${{ secrets.AWS_REGION}}
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        path: modules/${{ matrix.path }}
+        path: ${{ matrix.path }}
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-      continue-on-error: true

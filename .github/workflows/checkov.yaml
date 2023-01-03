@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         path:
-          - github-repository
+          - ./
     permissions:
       actions: write
       contents: write
@@ -19,5 +19,4 @@ jobs:
     - uses: dasmeta/reusable-actions-workflows/checkov@main
       with:
         fetch-depth: 0
-        directory: modules/${{ matrix.path }}
-      continue-on-error: true
+        directory: ${{ matrix.path }}

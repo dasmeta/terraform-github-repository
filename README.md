@@ -121,18 +121,18 @@ module "github_repository" {
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_branch_name_checker"></a> [branch\_name\_checker](#module\_branch\_name\_checker) | ./submodules/branch-name-checker | n/a |
-| <a name="module_checkov"></a> [checkov](#module\_checkov) | ./submodules/checkov | n/a |
-| <a name="module_infracost"></a> [infracost](#module\_infracost) | ./submodules/infracost | n/a |
-| <a name="module_pr_description_checker"></a> [pr\_description\_checker](#module\_pr\_description\_checker) | ./submodules/pr-description-checker | n/a |
-| <a name="module_pr_terraform_plan"></a> [pr\_terraform\_plan](#module\_pr\_terraform\_plan) | ./submodules/terraform-plan-actions | n/a |
-| <a name="module_pr_title_checker"></a> [pr\_title\_checker](#module\_pr\_title\_checker) | ./submodules/pr-title-checker | n/a |
-| <a name="module_pre_commit"></a> [pre\_commit](#module\_pre\_commit) | ./submodules/pre-commit | n/a |
-| <a name="module_semantic_release"></a> [semantic\_release](#module\_semantic\_release) | ./submodules/semantic-release | n/a |
-| <a name="module_terraform-test"></a> [terraform-test](#module\_terraform-test) | ./submodules/terraform-test | n/a |
-| <a name="module_terraform_apply"></a> [terraform\_apply](#module\_terraform\_apply) | ./submodules/terraform-apply-actions | n/a |
-| <a name="module_tflint"></a> [tflint](#module\_tflint) | ./submodules/tflint | n/a |
-| <a name="module_tfsec"></a> [tfsec](#module\_tfsec) | ./submodules/tfsec | n/a |
+| <a name="module_branch_name_checker"></a> [branch\_name\_checker](#module\_branch\_name\_checker) | ./modules/branch-name-checker | n/a |
+| <a name="module_checkov"></a> [checkov](#module\_checkov) | ./modules/checkov | n/a |
+| <a name="module_infracost"></a> [infracost](#module\_infracost) | ./modules/infracost | n/a |
+| <a name="module_pr_description_checker"></a> [pr\_description\_checker](#module\_pr\_description\_checker) | ./modules/pr-description-checker | n/a |
+| <a name="module_pr_terraform_plan"></a> [pr\_terraform\_plan](#module\_pr\_terraform\_plan) | ./modules/terraform-plan-actions | n/a |
+| <a name="module_pr_title_checker"></a> [pr\_title\_checker](#module\_pr\_title\_checker) | ./modules/pr-title-checker | n/a |
+| <a name="module_pre_commit"></a> [pre\_commit](#module\_pre\_commit) | ./modules/pre-commit | n/a |
+| <a name="module_semantic_release"></a> [semantic\_release](#module\_semantic\_release) | ./modules/semantic-release | n/a |
+| <a name="module_terraform-test"></a> [terraform-test](#module\_terraform-test) | ./modules/terraform-test | n/a |
+| <a name="module_terraform_apply"></a> [terraform\_apply](#module\_terraform\_apply) | ./modules/terraform-apply-actions | n/a |
+| <a name="module_tflint"></a> [tflint](#module\_tflint) | ./modules/tflint | n/a |
+| <a name="module_tfsec"></a> [tfsec](#module\_tfsec) | ./modules/tfsec | n/a |
 
 ## Resources
 
