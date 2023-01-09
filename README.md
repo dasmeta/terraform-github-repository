@@ -108,6 +108,7 @@ module "github_repository" {
 
 | Name | Version |
 |------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.3 |
 | <a name="requirement_github"></a> [github](#requirement\_github) | ~> 4.0 |
 
 ## Providers
@@ -120,18 +121,18 @@ module "github_repository" {
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_branch_name_checker"></a> [branch\_name\_checker](#module\_branch\_name\_checker) | ./submodules/branch-name-checker | n/a |
-| <a name="module_checkov"></a> [checkov](#module\_checkov) | ./submodules/checkov | n/a |
-| <a name="module_infracost"></a> [infracost](#module\_infracost) | ./submodules/infracost | n/a |
-| <a name="module_pr_description_checker"></a> [pr\_description\_checker](#module\_pr\_description\_checker) | ./submodules/pr-description-checker | n/a |
-| <a name="module_pr_terraform_plan"></a> [pr\_terraform\_plan](#module\_pr\_terraform\_plan) | ./submodules/terraform-plan-actions | n/a |
-| <a name="module_pr_title_checker"></a> [pr\_title\_checker](#module\_pr\_title\_checker) | ./submodules/pr-title-checker | n/a |
-| <a name="module_pre_commit"></a> [pre\_commit](#module\_pre\_commit) | ./submodules/pre-commit | n/a |
-| <a name="module_semantic_release"></a> [semantic\_release](#module\_semantic\_release) | ./submodules/semantic-release | n/a |
-| <a name="module_terraform-test"></a> [terraform-test](#module\_terraform-test) | ./submodules/terraform-test | n/a |
-| <a name="module_terraform_apply"></a> [terraform\_apply](#module\_terraform\_apply) | ./submodules/terraform-apply-actions | n/a |
-| <a name="module_tflint"></a> [tflint](#module\_tflint) | ./submodules/tflint | n/a |
-| <a name="module_tfsec"></a> [tfsec](#module\_tfsec) | ./submodules/tfsec | n/a |
+| <a name="module_branch_name_checker"></a> [branch\_name\_checker](#module\_branch\_name\_checker) | ./modules/branch-name-checker | n/a |
+| <a name="module_checkov"></a> [checkov](#module\_checkov) | ./modules/checkov | n/a |
+| <a name="module_infracost"></a> [infracost](#module\_infracost) | ./modules/infracost | n/a |
+| <a name="module_pr_description_checker"></a> [pr\_description\_checker](#module\_pr\_description\_checker) | ./modules/pr-description-checker | n/a |
+| <a name="module_pr_terraform_plan"></a> [pr\_terraform\_plan](#module\_pr\_terraform\_plan) | ./modules/terraform-plan-actions | n/a |
+| <a name="module_pr_title_checker"></a> [pr\_title\_checker](#module\_pr\_title\_checker) | ./modules/pr-title-checker | n/a |
+| <a name="module_pre_commit"></a> [pre\_commit](#module\_pre\_commit) | ./modules/pre-commit | n/a |
+| <a name="module_semantic_release"></a> [semantic\_release](#module\_semantic\_release) | ./modules/semantic-release | n/a |
+| <a name="module_terraform-test"></a> [terraform-test](#module\_terraform-test) | ./modules/terraform-test | n/a |
+| <a name="module_terraform_apply"></a> [terraform\_apply](#module\_terraform\_apply) | ./modules/terraform-apply-actions | n/a |
+| <a name="module_tflint"></a> [tflint](#module\_tflint) | ./modules/tflint | n/a |
+| <a name="module_tfsec"></a> [tfsec](#module\_tfsec) | ./modules/tfsec | n/a |
 
 ## Resources
 
@@ -171,7 +172,7 @@ module "github_repository" {
 | <a name="input_branches"></a> [branches](#input\_branches) | (Optional) A list of branches to be created in this repository. | `list(string)` | `[]` | no |
 | <a name="input_checkov"></a> [checkov](#input\_checkov) | n/a | `bool` | `false` | no |
 | <a name="input_commit_message"></a> [commit\_message](#input\_commit\_message) | Message to apply when default files are commited | `string` | `"initial commit"` | no |
-| <a name="input_create_repository"></a> [create\_repository](#input\_create\_repository) | Whether create repository  or not | `bool` | `true` | no |
+| <a name="input_create_repository"></a> [create\_repository](#input\_create\_repository) | Whether to create repository or not and just link existing one | `bool` | `true` | no |
 | <a name="input_default_branch"></a> [default\_branch](#input\_default\_branch) | (Optional) The name of the default branch of the repository. | `string` | `null` | no |
 | <a name="input_delete_branch_on_merge"></a> [delete\_branch\_on\_merge](#input\_delete\_branch\_on\_merge) | (Optional) Whether or not to delete the merged branch after merging a pull request | `bool` | `null` | no |
 | <a name="input_description"></a> [description](#input\_description) | (Optional) A description of the repository. | `string` | `""` | no |
@@ -191,7 +192,7 @@ module "github_repository" {
 | <a name="input_maintain_team_ids"></a> [maintain\_team\_ids](#input\_maintain\_team\_ids) | (Optional) A list of teams (by id) to grant maintain permission to. | `list(string)` | `[]` | no |
 | <a name="input_maintain_teams"></a> [maintain\_teams](#input\_maintain\_teams) | (Optional) A list of teams (by name/slug) to grant maintain permission to. | `list(string)` | `[]` | no |
 | <a name="input_module_depends_on"></a> [module\_depends\_on](#input\_module\_depends\_on) | (Optional) Define resources this module indirectly depends\_on. | `any` | `[]` | no |
-| <a name="input_name"></a> [name](#input\_name) | (Required) The name of the repository. | `string` | n/a | yes |
+| <a name="input_name"></a> [name](#input\_name) | (Required) The name of the github repository without organization/owner prefix. The owner determined on github provider block | `string` | n/a | yes |
 | <a name="input_pages"></a> [pages](#input\_pages) | (Optional) The repository's GitHub Pages configuration. (Default: {}) | `any` | `null` | no |
 | <a name="input_plaintext_secrets"></a> [plaintext\_secrets](#input\_plaintext\_secrets) | (Optional) Configuring actions secrets. | `map(string)` | `{}` | no |
 | <a name="input_pr_description_checker"></a> [pr\_description\_checker](#input\_pr\_description\_checker) | n/a | `bool` | `false` | no |
@@ -221,5 +222,8 @@ module "github_repository" {
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_full_name"></a> [full\_name](#output\_full\_name) | The name of git repo with org.owner in form '{owner}/{name}' |
+| <a name="output_name"></a> [name](#output\_name) | The name of git repo without org/owner |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

@@ -20,7 +20,7 @@ jobs:
      %{ endfor ~}
 
     steps:
-    - uses: dasmeta/reusable-actions-workflows/terraform-test@main
+    - uses: dasmeta/reusable-actions-workflows/terraform-test@4.1.1
       with:
         aws-region: ${aws-region}
         aws-access-key-id: ${aws-access-key-id}

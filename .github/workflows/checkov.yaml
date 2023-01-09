@@ -9,15 +9,14 @@ jobs:
     strategy:
       matrix:
         path:
-          - github-repository
+          - ./
     permissions:
       actions: write
       contents: write
       discussions: write
       pull-requests: write
     steps:
-    - uses: dasmeta/reusable-actions-workflows/checkov@main
+    - uses: dasmeta/reusable-actions-workflows/checkov@4.1.1
       with:
         fetch-depth: 0
-        directory: modules/${{ matrix.path }}
-      continue-on-error: true
+        directory: ${{ matrix.path }}

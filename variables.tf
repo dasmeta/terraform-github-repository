@@ -1,5 +1,5 @@
 variable "name" {
-  description = "(Required) The name of the repository."
+  description = "(Required) The name of the github repository without organization/owner prefix. The owner determined on github provider block"
   type        = string
 }
 
@@ -365,7 +365,7 @@ variable "branch_toPush" {
 }
 
 variable "create_repository" {
-  description = "Whether create repository  or not"
+  description = "Whether to create repository or not and just link existing one"
   type        = bool
   default     = true
 }
