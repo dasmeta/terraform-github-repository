@@ -13,7 +13,7 @@ jobs:
       pull-requests: write
     steps:
     - name: Pre-Commit
-      uses: dasmeta/reusable-actions-workflows/pre-commit@4.1.0
+      uses: dasmeta/reusable-actions-workflows/pre-commit@4.1.1
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
