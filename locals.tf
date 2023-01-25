@@ -105,6 +105,6 @@ locals {
 locals {
   repository_name = try(github_repository.repository[0].name, data.github_repository.existing_repo[0].name)
   full_name       = try(github_repository.repository[0].full_name, data.github_repository.existing_repo[0].full_name)
-  branch_name     = var.create_repository ? var.default_branch : var.branch_toPush
+  branch_name     = coalesce(var.branch_toPush, var.default_branch)
   commit_message  = var.commit_message
 }
