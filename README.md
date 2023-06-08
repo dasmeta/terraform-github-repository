@@ -108,14 +108,14 @@ module "github_repository" {
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.3 |
-| <a name="requirement_github"></a> [github](#requirement\_github) | ~> 5.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3 |
+| <a name="requirement_github"></a> [github](#requirement\_github) | >= 5.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_github"></a> [github](#provider\_github) | ~> 5.0 |
+| <a name="provider_github"></a> [github](#provider\_github) | >= 5.0 |
 
 ## Modules
 
@@ -123,6 +123,7 @@ module "github_repository" {
 |------|--------|---------|
 | <a name="module_branch_name_checker"></a> [branch\_name\_checker](#module\_branch\_name\_checker) | ./modules/branch-name-checker | n/a |
 | <a name="module_checkov"></a> [checkov](#module\_checkov) | ./modules/checkov | n/a |
+| <a name="module_dependabot"></a> [dependabot](#module\_dependabot) | ./modules/dependabot | n/a |
 | <a name="module_infracost"></a> [infracost](#module\_infracost) | ./modules/infracost | n/a |
 | <a name="module_pr_description_checker"></a> [pr\_description\_checker](#module\_pr\_description\_checker) | ./modules/pr-description-checker | n/a |
 | <a name="module_pr_terraform_plan"></a> [pr\_terraform\_plan](#module\_pr\_terraform\_plan) | ./modules/terraform-plan-actions | n/a |
@@ -146,6 +147,7 @@ module "github_repository" {
 | [github_repository.repository](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository) | resource |
 | [github_repository_collaborator.collaborator](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_collaborator) | resource |
 | [github_repository_file.user-files](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_file) | resource |
+| [github_repository_pull_request.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_pull_request) | resource |
 | [github_repository_webhook.repository_webhook](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_webhook) | resource |
 | [github_team_repository.team_repository](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/team_repository) | resource |
 | [github_team_repository.team_repository_by_slug](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/team_repository) | resource |
@@ -166,15 +168,15 @@ module "github_repository" {
 | <a name="input_archived"></a> [archived](#input\_archived) | (Optional) Specifies if the repository should be archived | `bool` | `false` | no |
 | <a name="input_auto_init"></a> [auto\_init](#input\_auto\_init) | (Optional) Wether or not to produce an initial commit in the repository | `bool` | `true` | no |
 | <a name="input_branch_name_checker"></a> [branch\_name\_checker](#input\_branch\_name\_checker) | n/a | `bool` | `false` | no |
-| <a name="input_branch_protections"></a> [branch\_protections](#input\_branch\_protections) | Default is []. | `any` | `null` | no |
-| <a name="input_branch_protections_v3"></a> [branch\_protections\_v3](#input\_branch\_protections\_v3) | (Optional) A list of branch protections to apply to the repository. Default is [] unless branch\_protections is set. | `any` | `null` | no |
+| <a name="input_branch_protections"></a> [branch\_protections](#input\_branch\_protections) | (Optional) A list of branch protections to apply to the repository. | `any` | <pre>[<br>  {<br>    "branch": "main",<br>    "enforce_admins": true,<br>    "require_signed_commits": true,<br>    "required_pull_request_reviews": {<br>      "dismiss_stale_reviews": true,<br>      "require_code_owner_reviews": true,<br>      "required_approving_review_count": 1<br>    }<br>  }<br>]</pre> | no |
 | <a name="input_branch_toPush"></a> [branch\_toPush](#input\_branch\_toPush) | The Branch, where to push best practices | `string` | `""` | no |
 | <a name="input_branches"></a> [branches](#input\_branches) | (Optional) A list of branches to be created in this repository. | `list(string)` | `[]` | no |
 | <a name="input_checkov"></a> [checkov](#input\_checkov) | n/a | `bool` | `false` | no |
 | <a name="input_commit_message"></a> [commit\_message](#input\_commit\_message) | Message to apply when default files are commited | `string` | `"initial commit"` | no |
 | <a name="input_create_repository"></a> [create\_repository](#input\_create\_repository) | Whether to create repository or not and just link existing one | `bool` | `true` | no |
-| <a name="input_default_branch"></a> [default\_branch](#input\_default\_branch) | (Optional) The name of the default branch of the repository. | `string` | `null` | no |
+| <a name="input_default_branch"></a> [default\_branch](#input\_default\_branch) | (Optional) The name of the default branch of the repository. | `string` | `"main"` | no |
 | <a name="input_delete_branch_on_merge"></a> [delete\_branch\_on\_merge](#input\_delete\_branch\_on\_merge) | (Optional) Whether or not to delete the merged branch after merging a pull request | `bool` | `null` | no |
+| <a name="input_dependabot"></a> [dependabot](#input\_dependabot) | Allows to enable/configure dependabot for github repository | <pre>object({<br>    enabled    = optional(bool, false)<br>    ecosystems = optional(list(string), ["github-actions"]) # the list can be "terraform", "github-actions". Check for available values here https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file<br>  })</pre> | `null` | no |
 | <a name="input_description"></a> [description](#input\_description) | (Optional) A description of the repository. | `string` | `""` | no |
 | <a name="input_encrypted_secrets"></a> [encrypted\_secrets](#input\_encrypted\_secrets) | (Optional) Configuring encrypted actions secrets. | `map(string)` | `{}` | no |
 | <a name="input_files"></a> [files](#input\_files) | List of local and remote path binding objects, ability to push files from local to remote | <pre>list(object({<br>    remote_path = string<br>    local_path  = string<br>  }))</pre> | `[]` | no |
@@ -200,6 +202,7 @@ module "github_repository" {
 | <a name="input_pre_commit"></a> [pre\_commit](#input\_pre\_commit) | n/a | `bool` | `false` | no |
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | Project name variable to configure in default-files | `string` | `"DMVP"` | no |
 | <a name="input_pull_collaborators"></a> [pull\_collaborators](#input\_pull\_collaborators) | (Optional) A list of users to add as collaborators granting them pull (read-only) permission. | `list(string)` | `[]` | no |
+| <a name="input_pull_request"></a> [pull\_request](#input\_pull\_request) | Whether to create poll request | <pre>object({<br>    create   = optional(bool, false)<br>    base_ref = optional(string, null) # if not set the default_branch will be used as target for PR<br>    title    = optional(string, "Workflows changes")<br>    body     = optional(string, "Terraform generated PR for best practices changes")<br>  })</pre> | `null` | no |
 | <a name="input_pull_team_ids"></a> [pull\_team\_ids](#input\_pull\_team\_ids) | (Optional) A list of teams (by id) to grant pull (read-only) permission to. | `list(string)` | `[]` | no |
 | <a name="input_pull_teams"></a> [pull\_teams](#input\_pull\_teams) | (Optional) A list of teams (by name/slug) to grant pull (read-only) permission to. | `list(string)` | `[]` | no |
 | <a name="input_push_collaborators"></a> [push\_collaborators](#input\_push\_collaborators) | (Optional) A list of users to add as collaborators granting them push (read-write) permission. | `list(string)` | `[]` | no |
@@ -216,7 +219,7 @@ module "github_repository" {
 | <a name="input_triage_collaborators"></a> [triage\_collaborators](#input\_triage\_collaborators) | (Optional) A list of users to add as collaborators granting them triage permission. | `list(string)` | `[]` | no |
 | <a name="input_triage_team_ids"></a> [triage\_team\_ids](#input\_triage\_team\_ids) | (Optional) A list of teams (by id) to grant triage permission to. | `list(string)` | `[]` | no |
 | <a name="input_triage_teams"></a> [triage\_teams](#input\_triage\_teams) | (Optional) A list of teams (by name/slug) to grant triage permission to. | `list(string)` | `[]` | no |
-| <a name="input_visibility"></a> [visibility](#input\_visibility) | (Optional) Can be 'public', 'private' or 'internal' | `string` | `null` | no |
+| <a name="input_visibility"></a> [visibility](#input\_visibility) | (Optional) Can be 'public', 'private' or 'internal' | `string` | `"private"` | no |
 | <a name="input_vulnerability_alerts"></a> [vulnerability\_alerts](#input\_vulnerability\_alerts) | (Optional) Set to `false` to disable security alerts for vulnerable dependencies | `bool` | `null` | no |
 | <a name="input_webhooks"></a> [webhooks](#input\_webhooks) | (Optional) Configuring webhooks. | `any` | `[]` | no |
 
@@ -224,6 +227,7 @@ module "github_repository" {
 
 | Name | Description |
 |------|-------------|
+| <a name="output_files"></a> [files](#output\_files) | The list of all files created/commited |
 | <a name="output_full_name"></a> [full\_name](#output\_full\_name) | The name of git repo with org.owner in form '{owner}/{name}' |
 | <a name="output_name"></a> [name](#output\_name) | The name of git repo without org/owner |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

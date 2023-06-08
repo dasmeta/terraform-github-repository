@@ -1,3 +1,4 @@
-output "repository_name" {
-  value = { for file in local.default_files : file.remote_path => github_repository_file.githooks-default-files[file.remote_path].commit_message }
+output "files" {
+  value       = module.this.files
+  description = "The list of files created/commited by workflow module"
 }

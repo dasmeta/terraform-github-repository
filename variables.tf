@@ -18,7 +18,7 @@ variable "homepage_url" {
 variable "visibility" {
   description = "(Optional) Can be 'public', 'private' or 'internal'"
   type        = string
-  default     = null
+  default     = "private"
 }
 
 variable "has_issues" {
@@ -182,47 +182,25 @@ variable "branches" {
 variable "default_branch" {
   description = "(Optional) The name of the default branch of the repository."
   type        = string
-  default     = null
+  default     = "main"
 }
 
 variable "branch_protections" {
-  description = "Default is []."
+  description = "(Optional) A list of branch protections to apply to the repository."
   type        = any
-  default     = null
+  default = [
+    {
+      branch                 = "main"
+      enforce_admins         = true
+      require_signed_commits = true
+      required_pull_request_reviews = {
+        dismiss_stale_reviews           = true
+        require_code_owner_reviews      = true
+        required_approving_review_count = 1
+      }
+    }
+  ]
 }
-
-variable "branch_protections_v3" {
-  description = "(Optional) A list of branch protections to apply to the repository. Default is [] unless branch_protections is set."
-  type        = any
-  default     = null
-  # Example:
-  # branch_protections = [
-  #   {
-  #     branch                 = "main"
-  #     enforce_admins         = true
-  #     require_signed_commits = true
-  #
-  #     required_status_checks = {
-  #       strict   = false
-  #       contexts = ["ci/travis"]
-  #     }
-  #
-  #     required_pull_request_reviews = {
-  #       dismiss_stale_reviews           = true
-  #       dismissal_users                 = ["user1", "user2"]
-  #       dismissal_teams                 = ["team-slug-1", "team-slug-2"]
-  #       require_code_owner_reviews      = true
-  #       required_approving_review_count = 1
-  #     }
-  #
-  #     restrictions = {
-  #       users = ["user1"]
-  #       teams = ["team-slug-1"]
-  #     }
-  #   }
-  # ]
-}
-
 
 variable "admin_team_ids" {
   description = "(Optional) A list of teams (by id) to grant admin (full) permission to."
@@ -370,7 +348,6 @@ variable "create_repository" {
   default     = true
 }
 
-
 variable "branch_name_checker" {
   description = ""
   type        = bool
@@ -429,6 +406,7 @@ variable "tfsec" {
   type        = bool
   default     = false
 }
+
 variable "terraform_plan_and_apply" {
   description = ""
   type = object({
@@ -436,4 +414,24 @@ variable "terraform_plan_and_apply" {
     module_variables = map(string)
   })
   default = null
+}
+
+variable "dependabot" {
+  type = object({
+    enabled    = optional(bool, false)
+    ecosystems = optional(list(string), ["github-actions"]) # the list can be "terraform", "github-actions". Check for available values here https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+  })
+  default     = null
+  description = "Allows to enable/configure dependabot for github repository"
+}
+
+variable "pull_request" {
+  type = object({
+    create   = optional(bool, false)
+    base_ref = optional(string, null) # if not set the default_branch will be used as target for PR
+    title    = optional(string, "Workflows changes")
+    body     = optional(string, "Terraform generated PR for best practices changes")
+  })
+  default     = null
+  description = "Whether to create poll request"
 }

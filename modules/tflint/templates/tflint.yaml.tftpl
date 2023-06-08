@@ -22,7 +22,7 @@ jobs:
      %{ endfor ~}
 
     steps:
-    - uses: dasmeta/reusable-actions-workflows/tflint@main
+    - uses: dasmeta/reusable-actions-workflows/tflint@4.2.0
       with:
         aws-region: ${aws-region}
         aws-access-key-id: ${aws-access-key-id}

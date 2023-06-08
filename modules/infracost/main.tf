@@ -1,21 +1,13 @@
-resource "github_repository_file" "githooks-default-files" {
-  for_each            = { for file in local.default_files : file.remote_path => file }
-  repository          = var.repository_name
-  branch              = var.branch_name
-  file                = each.value.remote_path
-  content             = templatefile("${path.module}/${each.value.local_path}", { paths = var.paths, secret = var.secret, ref = var.ref, path = var.path, token = var.token, pr = var.pr })
-  commit_message      = "${local.commit_message}, Add ${each.value.remote_path}"
-  overwrite_on_create = true
+module "this" {
+  source = "../workflow-files-base"
 
-}
-
-locals {
-  default_files = [
+  repository = var.repository_name
+  branch     = var.branch_name
+  variables  = { paths = var.paths, secret = var.secret, ref = var.ref, path = var.path, token = var.token, pr = var.pr }
+  files = [
     {
       remote_path = ".github/workflows/infracost.yaml"
-      local_path  = "/resources/infracost.yaml.tpl"
+      local_path  = "${path.module}/templates/infracost.yaml.tftpl"
     }
   ]
-
-  commit_message = "Initial commit"
 }
