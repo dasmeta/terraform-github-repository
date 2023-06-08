@@ -1,0 +1,9 @@
+version: 2
+
+updates:
+%{ for key, value in ecosystems }
+  - package-ecosystem: ${value}
+    directory: "/"
+    schedule:
+      interval: "daily"
+%{ endfor ~}

@@ -5,23 +5,21 @@
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_github"></a> [github](#requirement\_github) | ~> 5.0 |
+| <a name="requirement_github"></a> [github](#requirement\_github) | >= 5.0 |
 
 ## Providers
 
-| Name | Version |
-|------|---------|
-| <a name="provider_github"></a> [github](#provider\_github) | ~> 5.0 |
+No providers.
 
 ## Modules
 
-No modules.
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_this"></a> [this](#module\_this) | ../workflow-files-base | n/a |
 
 ## Resources
 
-| Name | Type |
-|------|------|
-| [github_repository_file.githooks-default-files](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_file) | resource |
+No resources.
 
 ## Inputs
 
@@ -36,6 +34,5 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_commit_message"></a> [commit\_message](#output\_commit\_message) | n/a |
-| <a name="output_repository_name"></a> [repository\_name](#output\_repository\_name) | n/a |
+| <a name="output_files"></a> [files](#output\_files) | The list of files created/commited by workflow module |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

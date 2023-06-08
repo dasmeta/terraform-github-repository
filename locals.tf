@@ -1,9 +1,6 @@
 locals {
-  template              = var.template == null ? [] : [var.template]
-  branch_protections_v3 = var.branch_protections_v3 == null ? var.branch_protections : var.branch_protections_v3
-}
+  template = var.template == null ? [] : [var.template]
 
-locals {
   collab_admin    = { for i in var.admin_collaborators : i => "admin" }
   collab_push     = { for i in var.push_collaborators : i => "push" }
   collab_pull     = { for i in var.pull_collaborators : i => "pull" }
@@ -17,11 +14,10 @@ locals {
     local.collab_triage,
     local.collab_maintain,
   )
-}
 
-locals {
+
   branch_protections = try([
-    for b in local.branch_protections_v3 : merge({
+    for b in var.branch_protections : merge({
       branch                          = null
       enforce_admins                  = null
       require_conversation_resolution = null
@@ -61,9 +57,8 @@ locals {
         apps  = []
     }, b.restrictions)] : []
   ]
-}
 
-locals {
+
   team_id_admin    = [for i in var.admin_team_ids : { team_id = i, permission = "admin" }]
   team_id_push     = [for i in var.push_team_ids : { team_id = i, permission = "push" }]
   team_id_pull     = [for i in var.pull_team_ids : { team_id = i, permission = "pull" }]
@@ -77,9 +72,8 @@ locals {
     local.team_id_triage,
     local.team_id_maintain,
   )
-}
 
-locals {
+
   team_admin    = [for i in var.admin_teams : { slug = replace(lower(i), "/[^a-z0-9_]/", "-"), permission = "admin" }]
   team_push     = [for i in var.push_teams : { slug = replace(lower(i), "/[^a-z0-9_]/", "-"), permission = "push" }]
   team_pull     = [for i in var.pull_teams : { slug = replace(lower(i), "/[^a-z0-9_]/", "-"), permission = "pull" }]
@@ -93,16 +87,14 @@ locals {
     local.team_triage,
     local.team_maintain,
   ) : i.slug => i }
-}
 
-locals {
+
   plaintext_secrets = { for name, value in var.plaintext_secrets : name => { plaintext = value } }
   encrypted_secrets = { for name, value in var.encrypted_secrets : name => { encrypted = value } }
 
   secrets = merge(local.plaintext_secrets, local.encrypted_secrets)
-}
 
-locals {
+
   repository_name = try(github_repository.repository[0].name, data.github_repository.existing_repo[0].name)
   full_name       = try(github_repository.repository[0].full_name, data.github_repository.existing_repo[0].full_name)
   branch_name     = coalesce(var.branch_toPush, var.default_branch)

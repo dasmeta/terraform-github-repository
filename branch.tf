@@ -59,3 +59,21 @@ resource "github_branch_protection_v3" "branch_protection" {
     }
   }
 }
+
+
+resource "github_repository_pull_request" "this" {
+  count = try(var.pull_request.create, false) ? 1 : 0
+
+  base_repository = local.repository_name
+  base_ref        = coalesce(var.pull_request.base_ref, var.default_branch)
+  head_ref        = var.branch_toPush
+  title           = var.pull_request.title
+  body            = var.pull_request.body
+
+  depends_on = [
+    github_repository.repository,
+    github_branch.branch,
+    data.github_repository.existing_repo,
+    github_branch_default.default
+  ]
+}
