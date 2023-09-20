@@ -1,46 +1,18 @@
-variable "repositories" {
-  type = list(object({
-    name        = string
-    description = string
-    tags        = list(string)
-  }))
-  description = "description"
-  # default     = "type"
+variable "name" {
+  description = "(Required) The name of the github repository without organization/owner prefix. The owner determined on github provider block"
+  type        = string
 }
 
-variable "defaults" {
-  description = "Default attributes for each repository"
-
-  type = object({
-    license_template = string
-    tags             = list(string)
-    homepage_url     = string
-    visibility       = string
-  })
-
-  default = {
-    "license_template" : "Apache-2.0 license",
-    "tags" : ["terraform", "aws"],
-    "homepage_url" : "www.example.com",
-    "visibility" : "public"
-  }
+variable "tags" {
+  description = "(Required) The name of the github repository without organization/owner prefix. The owner determined on github provider block"
+  type        = list(string)
 }
 
-# variable "name" {
-#   description = "(Required) The name of the github repository without organization/owner prefix. The owner determined on github provider block"
-#   type        = string
-# }
-
-# variable "tags" {
-#   description = "(Required) The name of the github repository without organization/owner prefix. The owner determined on github provider block"
-#   type        = list(string)
-# }
-
-# variable "description" {
-#   description = "(Optional) A description of the repository."
-#   type        = string
-#   default     = ""
-# }
+variable "description" {
+  description = "(Optional) A description of the repository."
+  type        = string
+  default     = ""
+}
 
 variable "homepage_url" {
   description = "(Optional) The website of the repository."

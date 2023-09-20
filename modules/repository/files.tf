@@ -17,7 +17,7 @@ resource "github_repository_file" "user-files" {
 }
 
 module "branch_name_checker" {
-  source = "./modules/branch-name-checker"
+  source = "../branch-name-checker"
   count  = var.branch_name_checker ? 1 : 0
 
   branch_name     = var.branch_toPush
@@ -32,7 +32,7 @@ module "branch_name_checker" {
 }
 
 module "pr_description_checker" {
-  source = "./modules/pr-description-checker"
+  source = "../pr-description-checker"
   count  = var.pr_description_checker ? 1 : 0
 
   branch_name     = var.branch_toPush
@@ -47,7 +47,7 @@ module "pr_description_checker" {
 }
 
 module "pr_title_checker" {
-  source = "./modules/pr-title-checker"
+  source = "../pr-title-checker"
   count  = var.pr_title_checker ? 1 : 0
 
   branch_name     = var.branch_toPush
@@ -62,7 +62,7 @@ module "pr_title_checker" {
 }
 
 module "pre_commit" {
-  source = "./modules/pre-commit"
+  source = "../pre-commit"
   count  = var.pre_commit ? 1 : 0
 
   branch_name     = var.branch_toPush
@@ -76,7 +76,7 @@ module "pre_commit" {
 }
 
 module "semantic_release" {
-  source = "./modules/semantic-release"
+  source = "../semantic-release"
   count  = var.semantic_release ? 1 : 0
 
   branch_name     = var.branch_toPush
@@ -90,7 +90,7 @@ module "semantic_release" {
 }
 
 module "checkov" {
-  source = "./modules/checkov"
+  source = "../checkov"
   count  = var.checkov ? 1 : 0
 
   branch_name     = var.branch_toPush
@@ -105,7 +105,7 @@ module "checkov" {
 }
 
 module "infracost" {
-  source = "./modules/infracost"
+  source = "../infracost"
   count  = var.infracost ? 1 : 0
 
   branch_name     = var.branch_toPush
@@ -120,7 +120,7 @@ module "infracost" {
 }
 
 module "terraform-test" {
-  source = "./modules/terraform-test"
+  source = "../terraform-test"
   count  = var.terraform-test ? 1 : 0
 
   branch_name     = var.branch_toPush
@@ -134,7 +134,7 @@ module "terraform-test" {
 }
 
 module "tflint" {
-  source = "./modules/tflint"
+  source = "../tflint"
   count  = var.tflint ? 1 : 0
 
   branch_name     = var.branch_toPush
@@ -149,7 +149,7 @@ module "tflint" {
 }
 
 module "tfsec" {
-  source = "./modules/tfsec"
+  source = "../tfsec"
   count  = var.tfsec ? 1 : 0
 
   branch_name     = var.branch_toPush
@@ -163,7 +163,7 @@ module "tfsec" {
 }
 
 module "pr_terraform_plan" {
-  source = "./modules/terraform-plan-actions"
+  source = "../terraform-plan-actions"
   count  = var.terraform_plan_and_apply != null ? 1 : 0
 
   branch_name      = var.branch_toPush
@@ -179,7 +179,7 @@ module "pr_terraform_plan" {
 }
 
 module "terraform_apply" {
-  source = "./modules/terraform-apply-actions"
+  source = "../terraform-apply-actions"
   count  = var.terraform_plan_and_apply != null ? 1 : 0
 
   branch_name      = var.branch_toPush
@@ -195,7 +195,7 @@ module "terraform_apply" {
 }
 
 module "dependabot" {
-  source = "./modules/dependabot"
+  source = "../dependabot"
   count  = try(var.dependabot.enabled, false) ? 1 : 0
 
   branch_name     = var.branch_toPush
