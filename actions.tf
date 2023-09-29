@@ -10,6 +10,5 @@ resource "github_actions_repository_permissions" "actions" {
       verified_allowed     = var.allowed_github_actions_config.verified_allowed
     }
   }
-
   repository = github_repository.repository[0].name
 }
