@@ -300,12 +300,6 @@ variable "webhooks" {
   # }]
 }
 
-variable "commit_message" {
-  description = "Message to apply when default files are commited"
-  type        = string
-  default     = "initial commit"
-}
-
 variable "files" {
   description = "List of local and remote path binding objects, ability to push files from local to remote"
   type = list(object({
