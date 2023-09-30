@@ -440,3 +440,19 @@ variable "pull_request" {
   default     = null
   description = "Whether to create poll request"
 }
+
+variable "enable_github_actions" {
+  type        = string
+  description = "The permissions policy that controls the actions that are allowed to run. Can be one of: all, local_only, or selected."
+  default     = "all"
+}
+
+variable "allowed_github_actions_config" {
+  type = object({
+    github_owned_allowed = bool
+    patterns_allowed     = optional(list(string), ["actions/checkout@*"])
+    verified_allowed     = optional(bool, true)
+  })
+  description = "description"
+  default     = null
+}

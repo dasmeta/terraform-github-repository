@@ -21,4 +21,3 @@ terraform {
 provider "github" {
   owner = "dasmeta"
 }
-

@@ -1,126 +1,55 @@
-## How to
-This module allows you to create and manage repositories within your GitHub organization or personal account also allows you to manage your GitHub organization's members and teams easily.
+# repository
 
-
-## the following sample is for adding providers for this module
-
-```terraform
-terraform {
-  required_providers {
-    github = {
-      source  = "integrations/github"
-      version = "~> 4.0"
-    }
-  }
-}
-
-provider "github" {
-  token = ""  //  personal access token for your account, better to set env variable GITHUB_TOKEN
-  owner = ""  // name of the organization/owner of repo
-}
-
-```
-
-## Minimal requirements
-```terraform
-module "github_repository" {
-  source  = "dasmeta/repository/github"
-  version = "0.7.1"
-
-  name           = "my-test-repo"
-  default_branch = "main"
-  visibility     = "private"
-}
-```
-
-## Enable Pipilines
-```terraform
-module "github_repository" {
-  source  = "dasmeta/repository/github"
-  version = "0.7.1"
-
-  name             = "Test"
-  description      = "Terraform test"
-  default_branch   = "main"
-  visibility       = "private"
-  pre_commit       = true
-  branch_toPush    = "main"
-  semantic_release = true
-  checkov          = true
-  infracost        = true
-  terraform-test   = true
-  tflint           = true
-  tfsec            = true
-}
-```
-
-## Maximal example of usage
-```terraform
-module "github_repository" {
-  source  = "dasmeta/repository/github"
-  version = "0.7.1"
-
-  name                   = "test-repository"
-  description            = "Testing env for terraform github repo"
-  default_branch         = "main"
-  visibility             = "public"
-  license_template       = "apache-2.0"
-  gitignore_template     = "Terraform"
-  allow_auto_merge       = false
-  allow_rebase_merge     = true
-  delete_branch_on_merge = false
-  auto_init              = true
-  gitignore_template     = "*.tfvars"
-  admin_collaborators    = ["user1", "user2"]
-  push_collaborators     = ["user1"]
-  pull_collaborators     = ["user1"]
-  branch_protections_v3 = [
-    {
-      branch                 = "main"
-      enforce_admins         = true
-      require_signed_commits = true
-
-      required_status_checks = {
-        strict   = false
-        contexts = ["ci"]
-      }
-
-      required_pull_request_reviews = {
-        dismiss_stale_reviews           = true
-        dismissal_users                 = ["user1", "user2"]
-        dismissal_teams                 = ["team-slug-1", "team-slug-2"]
-        require_code_owner_reviews      = true
-        required_approving_review_count = 1
-      }
-
-      restrictions = {
-        users = ["user1"]
-        teams = ["team-slug-1"]
-      }
-    }
-  ]
-
-  admin_teams = ["user1"]
-}
-```
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3 |
+| <a name="requirement_github"></a> [github](#requirement\_github) | >= 5.0 |
 
 ## Providers
 
-No providers.
+| Name | Version |
+|------|---------|
+| <a name="provider_github"></a> [github](#provider\_github) | >= 5.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_this"></a> [this](#module\_this) | ./modules/repository | n/a |
+| <a name="module_branch_name_checker"></a> [branch\_name\_checker](#module\_branch\_name\_checker) | ../branch-name-checker | n/a |
+| <a name="module_checkov"></a> [checkov](#module\_checkov) | ../checkov | n/a |
+| <a name="module_dependabot"></a> [dependabot](#module\_dependabot) | ../dependabot | n/a |
+| <a name="module_infracost"></a> [infracost](#module\_infracost) | ../infracost | n/a |
+| <a name="module_pr_description_checker"></a> [pr\_description\_checker](#module\_pr\_description\_checker) | ../pr-description-checker | n/a |
+| <a name="module_pr_terraform_plan"></a> [pr\_terraform\_plan](#module\_pr\_terraform\_plan) | ../terraform-plan-actions | n/a |
+| <a name="module_pr_title_checker"></a> [pr\_title\_checker](#module\_pr\_title\_checker) | ../pr-title-checker | n/a |
+| <a name="module_pre_commit"></a> [pre\_commit](#module\_pre\_commit) | ../pre-commit | n/a |
+| <a name="module_semantic_release"></a> [semantic\_release](#module\_semantic\_release) | ../semantic-release | n/a |
+| <a name="module_terraform-test"></a> [terraform-test](#module\_terraform-test) | ../terraform-test | n/a |
+| <a name="module_terraform_apply"></a> [terraform\_apply](#module\_terraform\_apply) | ../terraform-apply-actions | n/a |
+| <a name="module_tflint"></a> [tflint](#module\_tflint) | ../tflint | n/a |
+| <a name="module_tfsec"></a> [tfsec](#module\_tfsec) | ../tfsec | n/a |
 
 ## Resources
 
-No resources.
+| Name | Type |
+|------|------|
+| [github_actions_repository_permissions.actions](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_repository_permissions) | resource |
+| [github_actions_secret.example_secret](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_secret) | resource |
+| [github_actions_secret.repository_secret](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_secret) | resource |
+| [github_branch.branch](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch) | resource |
+| [github_branch_default.default](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_default) | resource |
+| [github_branch_protection_v3.branch_protection](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_protection_v3) | resource |
+| [github_repository.repository](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository) | resource |
+| [github_repository_collaborator.collaborator](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_collaborator) | resource |
+| [github_repository_file.user-files](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_file) | resource |
+| [github_repository_pull_request.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_pull_request) | resource |
+| [github_repository_webhook.repository_webhook](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_webhook) | resource |
+| [github_team_repository.team_repository](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/team_repository) | resource |
+| [github_team_repository.team_repository_by_slug](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/team_repository) | resource |
+| [github_repository.existing_repo](https://registry.terraform.io/providers/integrations/github/latest/docs/data-sources/repository) | data source |
 
 ## Inputs
 
@@ -142,11 +71,12 @@ No resources.
 | <a name="input_branch_toPush"></a> [branch\_toPush](#input\_branch\_toPush) | The Branch, where to push best practices | `string` | `""` | no |
 | <a name="input_branches"></a> [branches](#input\_branches) | (Optional) A list of branches to be created in this repository. | `list(string)` | `[]` | no |
 | <a name="input_checkov"></a> [checkov](#input\_checkov) | n/a | `bool` | `false` | no |
+| <a name="input_commit_message"></a> [commit\_message](#input\_commit\_message) | Message to apply when default files are commited | `string` | `"initial commit"` | no |
 | <a name="input_create_repository"></a> [create\_repository](#input\_create\_repository) | Whether to create repository or not and just link existing one | `bool` | `true` | no |
 | <a name="input_default_branch"></a> [default\_branch](#input\_default\_branch) | (Optional) The name of the default branch of the repository. | `string` | `"main"` | no |
-| <a name="input_defaults"></a> [defaults](#input\_defaults) | Default attributes for each repository | <pre>object({<br>    license_template = string<br>    tags             = list(string)<br>    homepage_url     = string<br>    visibility       = string<br>  })</pre> | <pre>{<br>  "homepage_url": "www.example.com",<br>  "license_template": "Apache-2.0 license",<br>  "tags": [<br>    "terraform",<br>    "aws"<br>  ],<br>  "visibility": "public"<br>}</pre> | no |
 | <a name="input_delete_branch_on_merge"></a> [delete\_branch\_on\_merge](#input\_delete\_branch\_on\_merge) | (Optional) Whether or not to delete the merged branch after merging a pull request | `bool` | `null` | no |
 | <a name="input_dependabot"></a> [dependabot](#input\_dependabot) | Allows to enable/configure dependabot for github repository | <pre>object({<br>    enabled    = optional(bool, false)<br>    ecosystems = optional(list(string), ["github-actions"]) # the list can be "terraform", "github-actions". Check for available values here https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file<br>  })</pre> | `null` | no |
+| <a name="input_description"></a> [description](#input\_description) | (Optional) A description of the repository. | `string` | `""` | no |
 | <a name="input_enable_github_actions"></a> [enable\_github\_actions](#input\_enable\_github\_actions) | The permissions policy that controls the actions that are allowed to run. Can be one of: all, local\_only, or selected. | `string` | `"all"` | no |
 | <a name="input_encrypted_secrets"></a> [encrypted\_secrets](#input\_encrypted\_secrets) | (Optional) Configuring encrypted actions secrets. | `map(string)` | `{}` | no |
 | <a name="input_files"></a> [files](#input\_files) | List of local and remote path binding objects, ability to push files from local to remote | <pre>list(object({<br>    remote_path = string<br>    local_path  = string<br>  }))</pre> | `[]` | no |
@@ -164,6 +94,7 @@ No resources.
 | <a name="input_maintain_team_ids"></a> [maintain\_team\_ids](#input\_maintain\_team\_ids) | (Optional) A list of teams (by id) to grant maintain permission to. | `list(string)` | `[]` | no |
 | <a name="input_maintain_teams"></a> [maintain\_teams](#input\_maintain\_teams) | (Optional) A list of teams (by name/slug) to grant maintain permission to. | `list(string)` | `[]` | no |
 | <a name="input_module_depends_on"></a> [module\_depends\_on](#input\_module\_depends\_on) | (Optional) Define resources this module indirectly depends\_on. | `any` | `[]` | no |
+| <a name="input_name"></a> [name](#input\_name) | (Required) The name of the github repository without organization/owner prefix. The owner determined on github provider block | `string` | n/a | yes |
 | <a name="input_pages"></a> [pages](#input\_pages) | (Optional) The repository's GitHub Pages configuration. (Default: {}) | `any` | `null` | no |
 | <a name="input_plaintext_secrets"></a> [plaintext\_secrets](#input\_plaintext\_secrets) | (Optional) Configuring actions secrets. | `map(string)` | `{}` | no |
 | <a name="input_pr_description_checker"></a> [pr\_description\_checker](#input\_pr\_description\_checker) | n/a | `bool` | `false` | no |
@@ -177,9 +108,9 @@ No resources.
 | <a name="input_push_collaborators"></a> [push\_collaborators](#input\_push\_collaborators) | (Optional) A list of users to add as collaborators granting them push (read-write) permission. | `list(string)` | `[]` | no |
 | <a name="input_push_team_ids"></a> [push\_team\_ids](#input\_push\_team\_ids) | (Optional) A list of teams (by id) to grant push (read-write) permission to. | `list(string)` | `[]` | no |
 | <a name="input_push_teams"></a> [push\_teams](#input\_push\_teams) | (Optional) A list of teams (by name/slug) to grant push (read-write) permission to. | `list(string)` | `[]` | no |
-| <a name="input_repositories"></a> [repositories](#input\_repositories) | description | <pre>list(object({<br>    name        = string<br>    description = string<br>    tags        = list(string)<br>  }))</pre> | n/a | yes |
 | <a name="input_secrets"></a> [secrets](#input\_secrets) | Secret list to create in repository | <pre>list(object({<br>    secret_name     = string<br>    plaintext_value = string<br>  }))</pre> | `[]` | no |
 | <a name="input_semantic_release"></a> [semantic\_release](#input\_semantic\_release) | n/a | `bool` | `false` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | (Required) The name of the github repository without organization/owner prefix. The owner determined on github provider block | `list(string)` | n/a | yes |
 | <a name="input_template"></a> [template](#input\_template) | (Optional) Template repository to use. (Default: {}) | <pre>object({<br>    owner      = string<br>    repository = string<br>  })</pre> | `null` | no |
 | <a name="input_terraform-test"></a> [terraform-test](#input\_terraform-test) | n/a | `bool` | `false` | no |
 | <a name="input_terraform_plan_and_apply"></a> [terraform\_plan\_and\_apply](#input\_terraform\_plan\_and\_apply) | n/a | <pre>object({<br>    path_to_module   = string<br>    module_variables = map(string)<br>  })</pre> | `null` | no |
@@ -195,5 +126,9 @@ No resources.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_files"></a> [files](#output\_files) | The list of all files created/commited |
+| <a name="output_full_name"></a> [full\_name](#output\_full\_name) | The name of git repo with org.owner in form '{owner}/{name}' |
+| <a name="output_name"></a> [name](#output\_name) | The name of git repo without org/owner |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
