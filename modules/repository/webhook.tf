@@ -1,5 +1,5 @@
 resource "github_repository_webhook" "repository_webhook" {
-  count = length(var.webhooks)
+  count = var.webhooks != null ? length(var.webhooks) : 0
 
   repository = local.repository_name
   active     = try(var.webhooks[count.index].active, true)

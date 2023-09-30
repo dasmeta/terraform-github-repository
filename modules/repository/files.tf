@@ -1,5 +1,5 @@
 resource "github_repository_file" "user-files" {
-  for_each = { for file in var.files : file.remote_path => file }
+  for_each = { for file in coalesce(var.files, []) : file.remote_path => file }
 
   repository          = local.repository_name
   branch              = local.branch_name
@@ -17,8 +17,9 @@ resource "github_repository_file" "user-files" {
 }
 
 module "branch_name_checker" {
-  source = "./modules/branch-name-checker"
-  count  = var.branch_name_checker ? 1 : 0
+  source = "../branch-name-checker"
+  count  = coalesce(var.branch_name_checker, false) ? 1 : 0
+
 
   branch_name     = var.branch_toPush
   repository_name = local.repository_name
@@ -32,8 +33,8 @@ module "branch_name_checker" {
 }
 
 module "pr_description_checker" {
-  source = "./modules/pr-description-checker"
-  count  = var.pr_description_checker ? 1 : 0
+  source = "../pr-description-checker"
+  count  = coalesce(var.pr_description_checker, false) ? 1 : 0
 
   branch_name     = var.branch_toPush
   repository_name = local.repository_name
@@ -47,8 +48,8 @@ module "pr_description_checker" {
 }
 
 module "pr_title_checker" {
-  source = "./modules/pr-title-checker"
-  count  = var.pr_title_checker ? 1 : 0
+  source = "../pr-title-checker"
+  count  = coalesce(var.pr_title_checker, false) ? 1 : 0
 
   branch_name     = var.branch_toPush
   repository_name = local.repository_name
@@ -62,8 +63,9 @@ module "pr_title_checker" {
 }
 
 module "pre_commit" {
-  source = "./modules/pre-commit"
-  count  = var.pre_commit ? 1 : 0
+  source = "../pre-commit"
+  count  = coalesce(var.pre_commit, false) ? 1 : 0
+
 
   branch_name     = var.branch_toPush
   repository_name = local.repository_name
@@ -76,8 +78,9 @@ module "pre_commit" {
 }
 
 module "semantic_release" {
-  source = "./modules/semantic-release"
-  count  = var.semantic_release ? 1 : 0
+  source = "../semantic-release"
+  count  = coalesce(var.semantic_release, false) ? 1 : 0
+
 
   branch_name     = var.branch_toPush
   repository_name = local.repository_name
@@ -90,8 +93,9 @@ module "semantic_release" {
 }
 
 module "checkov" {
-  source = "./modules/checkov"
-  count  = var.checkov ? 1 : 0
+  source = "../checkov"
+  count  = coalesce(var.checkov, false) ? 1 : 0
+
 
   branch_name     = var.branch_toPush
   repository_name = local.repository_name
@@ -105,8 +109,9 @@ module "checkov" {
 }
 
 module "infracost" {
-  source = "./modules/infracost"
-  count  = var.infracost ? 1 : 0
+  source = "../infracost"
+  count  = coalesce(var.infracost, false) ? 1 : 0
+
 
   branch_name     = var.branch_toPush
   repository_name = local.repository_name
@@ -120,8 +125,9 @@ module "infracost" {
 }
 
 module "terraform-test" {
-  source = "./modules/terraform-test"
-  count  = var.terraform-test ? 1 : 0
+  source = "../terraform-test"
+  count  = coalesce(var.terraform_test, false) ? 1 : 0
+
 
   branch_name     = var.branch_toPush
   repository_name = local.repository_name
@@ -134,8 +140,8 @@ module "terraform-test" {
 }
 
 module "tflint" {
-  source = "./modules/tflint"
-  count  = var.tflint ? 1 : 0
+  source = "../tflint"
+  count  = coalesce(var.tflint, false) ? 1 : 0
 
   branch_name     = var.branch_toPush
   repository_name = local.repository_name
@@ -149,8 +155,8 @@ module "tflint" {
 }
 
 module "tfsec" {
-  source = "./modules/tfsec"
-  count  = var.tfsec ? 1 : 0
+  source = "../tfsec"
+  count  = coalesce(var.tfsec, false) ? 1 : 0
 
   branch_name     = var.branch_toPush
   repository_name = local.repository_name
@@ -163,7 +169,7 @@ module "tfsec" {
 }
 
 module "pr_terraform_plan" {
-  source = "./modules/terraform-plan-actions"
+  source = "../terraform-plan-actions"
   count  = var.terraform_plan_and_apply != null ? 1 : 0
 
   branch_name      = var.branch_toPush
@@ -179,7 +185,7 @@ module "pr_terraform_plan" {
 }
 
 module "terraform_apply" {
-  source = "./modules/terraform-apply-actions"
+  source = "../terraform-apply-actions"
   count  = var.terraform_plan_and_apply != null ? 1 : 0
 
   branch_name      = var.branch_toPush
@@ -195,7 +201,7 @@ module "terraform_apply" {
 }
 
 module "dependabot" {
-  source = "./modules/dependabot"
+  source = "../dependabot"
   count  = try(var.dependabot.enabled, false) ? 1 : 0
 
   branch_name     = var.branch_toPush
