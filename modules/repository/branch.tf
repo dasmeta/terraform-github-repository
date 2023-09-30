@@ -1,5 +1,5 @@
 resource "github_branch" "branch" {
-  for_each = toset(var.branches)
+  for_each = toset(coalesce(var.branches, []))
 
   repository = local.repository_name
   branch     = each.key

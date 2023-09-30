@@ -3,11 +3,6 @@ variable "name" {
   type        = string
 }
 
-variable "tags" {
-  description = "(Required) The name of the github repository without organization/owner prefix. The owner determined on github provider block"
-  type        = list(string)
-}
-
 variable "description" {
   description = "(Optional) A description of the repository."
   type        = string
@@ -23,7 +18,7 @@ variable "homepage_url" {
 variable "visibility" {
   description = "(Optional) Can be 'public', 'private' or 'internal'"
   type        = string
-  default     = "private"
+  default     = "public"
 }
 
 variable "has_issues" {
@@ -181,7 +176,7 @@ variable "maintain_collaborators" {
 variable "branches" {
   description = "(Optional) A list of branches to be created in this repository."
   type        = list(string)
-  default     = []
+  default     = ["DMVP-tf-init"]
 }
 
 variable "default_branch" {
@@ -342,9 +337,9 @@ variable "secrets" {
 }
 
 variable "branch_toPush" {
-  description = "The Branch, where to push best practices"
+  description = "The Branch, where to push best practices: the default DMVP-tf-init branch name is used by default to push files for best practices"
   type        = string
-  default     = ""
+  default     = "DMVP-tf-init"
 }
 
 variable "create_repository" {
@@ -394,7 +389,7 @@ variable "infracost" {
   default     = false
 }
 
-variable "terraform-test" {
+variable "terraform_test" {
   description = ""
   type        = bool
   default     = false
@@ -437,7 +432,10 @@ variable "pull_request" {
     title    = optional(string, "Workflows changes")
     body     = optional(string, "Terraform generated PR for best practices changes")
   })
-  default     = null
+  default = {
+    create = true
+    title  = "feat(DMVP): Initial PR"
+  }
   description = "Whether to create poll request"
 }
 

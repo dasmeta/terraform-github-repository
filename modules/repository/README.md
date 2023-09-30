@@ -68,8 +68,8 @@
 | <a name="input_auto_init"></a> [auto\_init](#input\_auto\_init) | (Optional) Wether or not to produce an initial commit in the repository | `bool` | `true` | no |
 | <a name="input_branch_name_checker"></a> [branch\_name\_checker](#input\_branch\_name\_checker) | n/a | `bool` | `false` | no |
 | <a name="input_branch_protections"></a> [branch\_protections](#input\_branch\_protections) | (Optional) A list of branch protections to apply to the repository. | `any` | <pre>[<br>  {<br>    "branch": "main",<br>    "enforce_admins": true,<br>    "require_signed_commits": true,<br>    "required_pull_request_reviews": {<br>      "dismiss_stale_reviews": true,<br>      "require_code_owner_reviews": true,<br>      "required_approving_review_count": 1<br>    }<br>  }<br>]</pre> | no |
-| <a name="input_branch_toPush"></a> [branch\_toPush](#input\_branch\_toPush) | The Branch, where to push best practices | `string` | `""` | no |
-| <a name="input_branches"></a> [branches](#input\_branches) | (Optional) A list of branches to be created in this repository. | `list(string)` | `[]` | no |
+| <a name="input_branch_toPush"></a> [branch\_toPush](#input\_branch\_toPush) | The Branch, where to push best practices: the default DMVP-tf-init branch name is used by default to push files for best practices | `string` | `"DMVP-tf-init"` | no |
+| <a name="input_branches"></a> [branches](#input\_branches) | (Optional) A list of branches to be created in this repository. | `list(string)` | <pre>[<br>  "DMVP-tf-init"<br>]</pre> | no |
 | <a name="input_checkov"></a> [checkov](#input\_checkov) | n/a | `bool` | `false` | no |
 | <a name="input_commit_message"></a> [commit\_message](#input\_commit\_message) | Message to apply when default files are commited | `string` | `"initial commit"` | no |
 | <a name="input_create_repository"></a> [create\_repository](#input\_create\_repository) | Whether to create repository or not and just link existing one | `bool` | `true` | no |
@@ -102,7 +102,7 @@
 | <a name="input_pre_commit"></a> [pre\_commit](#input\_pre\_commit) | n/a | `bool` | `false` | no |
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | Project name variable to configure in default-files | `string` | `"DMVP"` | no |
 | <a name="input_pull_collaborators"></a> [pull\_collaborators](#input\_pull\_collaborators) | (Optional) A list of users to add as collaborators granting them pull (read-only) permission. | `list(string)` | `[]` | no |
-| <a name="input_pull_request"></a> [pull\_request](#input\_pull\_request) | Whether to create poll request | <pre>object({<br>    create   = optional(bool, false)<br>    base_ref = optional(string, null) # if not set the default_branch will be used as target for PR<br>    title    = optional(string, "Workflows changes")<br>    body     = optional(string, "Terraform generated PR for best practices changes")<br>  })</pre> | `null` | no |
+| <a name="input_pull_request"></a> [pull\_request](#input\_pull\_request) | Whether to create poll request | <pre>object({<br>    create   = optional(bool, false)<br>    base_ref = optional(string, null) # if not set the default_branch will be used as target for PR<br>    title    = optional(string, "Workflows changes")<br>    body     = optional(string, "Terraform generated PR for best practices changes")<br>  })</pre> | <pre>{<br>  "create": true,<br>  "title": "feat(DMVP): Initial PR"<br>}</pre> | no |
 | <a name="input_pull_team_ids"></a> [pull\_team\_ids](#input\_pull\_team\_ids) | (Optional) A list of teams (by id) to grant pull (read-only) permission to. | `list(string)` | `[]` | no |
 | <a name="input_pull_teams"></a> [pull\_teams](#input\_pull\_teams) | (Optional) A list of teams (by name/slug) to grant pull (read-only) permission to. | `list(string)` | `[]` | no |
 | <a name="input_push_collaborators"></a> [push\_collaborators](#input\_push\_collaborators) | (Optional) A list of users to add as collaborators granting them push (read-write) permission. | `list(string)` | `[]` | no |
@@ -110,17 +110,16 @@
 | <a name="input_push_teams"></a> [push\_teams](#input\_push\_teams) | (Optional) A list of teams (by name/slug) to grant push (read-write) permission to. | `list(string)` | `[]` | no |
 | <a name="input_secrets"></a> [secrets](#input\_secrets) | Secret list to create in repository | <pre>list(object({<br>    secret_name     = string<br>    plaintext_value = string<br>  }))</pre> | `[]` | no |
 | <a name="input_semantic_release"></a> [semantic\_release](#input\_semantic\_release) | n/a | `bool` | `false` | no |
-| <a name="input_tags"></a> [tags](#input\_tags) | (Required) The name of the github repository without organization/owner prefix. The owner determined on github provider block | `list(string)` | n/a | yes |
 | <a name="input_template"></a> [template](#input\_template) | (Optional) Template repository to use. (Default: {}) | <pre>object({<br>    owner      = string<br>    repository = string<br>  })</pre> | `null` | no |
-| <a name="input_terraform-test"></a> [terraform-test](#input\_terraform-test) | n/a | `bool` | `false` | no |
 | <a name="input_terraform_plan_and_apply"></a> [terraform\_plan\_and\_apply](#input\_terraform\_plan\_and\_apply) | n/a | <pre>object({<br>    path_to_module   = string<br>    module_variables = map(string)<br>  })</pre> | `null` | no |
+| <a name="input_terraform_test"></a> [terraform\_test](#input\_terraform\_test) | n/a | `bool` | `false` | no |
 | <a name="input_tflint"></a> [tflint](#input\_tflint) | n/a | `bool` | `false` | no |
 | <a name="input_tfsec"></a> [tfsec](#input\_tfsec) | n/a | `bool` | `false` | no |
 | <a name="input_topics"></a> [topics](#input\_topics) | (Optional) The list of topics of the repository | `list(string)` | `null` | no |
 | <a name="input_triage_collaborators"></a> [triage\_collaborators](#input\_triage\_collaborators) | (Optional) A list of users to add as collaborators granting them triage permission. | `list(string)` | `[]` | no |
 | <a name="input_triage_team_ids"></a> [triage\_team\_ids](#input\_triage\_team\_ids) | (Optional) A list of teams (by id) to grant triage permission to. | `list(string)` | `[]` | no |
 | <a name="input_triage_teams"></a> [triage\_teams](#input\_triage\_teams) | (Optional) A list of teams (by name/slug) to grant triage permission to. | `list(string)` | `[]` | no |
-| <a name="input_visibility"></a> [visibility](#input\_visibility) | (Optional) Can be 'public', 'private' or 'internal' | `string` | `"private"` | no |
+| <a name="input_visibility"></a> [visibility](#input\_visibility) | (Optional) Can be 'public', 'private' or 'internal' | `string` | `"public"` | no |
 | <a name="input_vulnerability_alerts"></a> [vulnerability\_alerts](#input\_vulnerability\_alerts) | (Optional) Set to `false` to disable security alerts for vulnerable dependencies | `bool` | `null` | no |
 | <a name="input_webhooks"></a> [webhooks](#input\_webhooks) | (Optional) Configuring webhooks. | `any` | `[]` | no |
 

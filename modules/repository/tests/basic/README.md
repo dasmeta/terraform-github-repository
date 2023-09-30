@@ -1,5 +1,4 @@
-# repositories
-This example creates 2 github repositories mainly with default configuration specified in the root module which includes enabling some github workflows(PR name checker, tfsec and etc.). This example can be applied for best practices.
+# basic
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
