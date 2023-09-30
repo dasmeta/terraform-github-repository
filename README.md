@@ -139,6 +139,7 @@ module "github_repository" {
 
 | Name | Type |
 |------|------|
+| [github_actions_repository_permissions.actions](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_repository_permissions) | resource |
 | [github_actions_secret.example_secret](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_secret) | resource |
 | [github_actions_secret.repository_secret](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_secret) | resource |
 | [github_branch.branch](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch) | resource |
@@ -164,6 +165,7 @@ module "github_repository" {
 | <a name="input_allow_merge_commit"></a> [allow\_merge\_commit](#input\_allow\_merge\_commit) | (Optional) Set to false to disable merge commits on the repository | `bool` | `null` | no |
 | <a name="input_allow_rebase_merge"></a> [allow\_rebase\_merge](#input\_allow\_rebase\_merge) | (Optional) Set to true to enable rebase merges on the repository | `bool` | `null` | no |
 | <a name="input_allow_squash_merge"></a> [allow\_squash\_merge](#input\_allow\_squash\_merge) | (Optional) Set to true to enable squash merges on the repository | `bool` | `null` | no |
+| <a name="input_allowed_github_actions_config"></a> [allowed\_github\_actions\_config](#input\_allowed\_github\_actions\_config) | description | <pre>object({<br>    github_owned_allowed = bool<br>    patterns_allowed     = optional(list(string), ["actions/checkout@*"])<br>    verified_allowed     = optional(bool, true)<br>  })</pre> | `null` | no |
 | <a name="input_archive_on_destroy"></a> [archive\_on\_destroy](#input\_archive\_on\_destroy) | (Optional) Set to `false` to not archive the repository instead of deleting on destroy. | `string` | `true` | no |
 | <a name="input_archived"></a> [archived](#input\_archived) | (Optional) Specifies if the repository should be archived | `bool` | `false` | no |
 | <a name="input_auto_init"></a> [auto\_init](#input\_auto\_init) | (Optional) Wether or not to produce an initial commit in the repository | `bool` | `true` | no |
@@ -172,12 +174,12 @@ module "github_repository" {
 | <a name="input_branch_toPush"></a> [branch\_toPush](#input\_branch\_toPush) | The Branch, where to push best practices | `string` | `""` | no |
 | <a name="input_branches"></a> [branches](#input\_branches) | (Optional) A list of branches to be created in this repository. | `list(string)` | `[]` | no |
 | <a name="input_checkov"></a> [checkov](#input\_checkov) | n/a | `bool` | `false` | no |
-| <a name="input_commit_message"></a> [commit\_message](#input\_commit\_message) | Message to apply when default files are commited | `string` | `"initial commit"` | no |
 | <a name="input_create_repository"></a> [create\_repository](#input\_create\_repository) | Whether to create repository or not and just link existing one | `bool` | `true` | no |
 | <a name="input_default_branch"></a> [default\_branch](#input\_default\_branch) | (Optional) The name of the default branch of the repository. | `string` | `"main"` | no |
 | <a name="input_delete_branch_on_merge"></a> [delete\_branch\_on\_merge](#input\_delete\_branch\_on\_merge) | (Optional) Whether or not to delete the merged branch after merging a pull request | `bool` | `null` | no |
 | <a name="input_dependabot"></a> [dependabot](#input\_dependabot) | Allows to enable/configure dependabot for github repository | <pre>object({<br>    enabled    = optional(bool, false)<br>    ecosystems = optional(list(string), ["github-actions"]) # the list can be "terraform", "github-actions". Check for available values here https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file<br>  })</pre> | `null` | no |
 | <a name="input_description"></a> [description](#input\_description) | (Optional) A description of the repository. | `string` | `""` | no |
+| <a name="input_enable_github_actions"></a> [enable\_github\_actions](#input\_enable\_github\_actions) | The permissions policy that controls the actions that are allowed to run. Can be one of: all, local\_only, or selected. | `string` | `"all"` | no |
 | <a name="input_encrypted_secrets"></a> [encrypted\_secrets](#input\_encrypted\_secrets) | (Optional) Configuring encrypted actions secrets. | `map(string)` | `{}` | no |
 | <a name="input_files"></a> [files](#input\_files) | List of local and remote path binding objects, ability to push files from local to remote | <pre>list(object({<br>    remote_path = string<br>    local_path  = string<br>  }))</pre> | `[]` | no |
 | <a name="input_files_commit_message"></a> [files\_commit\_message](#input\_files\_commit\_message) | Message to set on commit of above files | `string` | `"repo file create/change"` | no |
