@@ -34,6 +34,7 @@ module "this" {
   delete_branch_on_merge   = each.value.delete_branch_on_merge
   is_template              = each.value.is_template
   has_downloads            = each.value.has_downloads
+  has_discussions          = each.value.has_discussions
   auto_init                = each.value.auto_init
   gitignore_template       = each.value.gitignore_template
   archived                 = each.value.archived
