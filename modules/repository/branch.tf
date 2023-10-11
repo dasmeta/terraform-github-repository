@@ -60,7 +60,6 @@ resource "github_branch_protection_v3" "branch_protection" {
   }
 }
 
-
 resource "github_repository_pull_request" "this" {
   count = try(var.pull_request.create, false) ? 1 : 0
 

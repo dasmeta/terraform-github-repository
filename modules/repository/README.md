@@ -82,6 +82,7 @@
 | <a name="input_files"></a> [files](#input\_files) | List of local and remote path binding objects, ability to push files from local to remote | <pre>list(object({<br>    remote_path = string<br>    local_path  = string<br>  }))</pre> | `[]` | no |
 | <a name="input_files_commit_message"></a> [files\_commit\_message](#input\_files\_commit\_message) | Message to set on commit of above files | `string` | `"repo file create/change"` | no |
 | <a name="input_gitignore_template"></a> [gitignore\_template](#input\_gitignore\_template) | (Optional) Use the name of the template without the extension | `string` | `null` | no |
+| <a name="input_has_discussions"></a> [has\_discussions](#input\_has\_discussions) | (Optional) Set to true to enable the Discussions features on the repository | `bool` | `null` | no |
 | <a name="input_has_downloads"></a> [has\_downloads](#input\_has\_downloads) | (Optional) Set to true to enable the (deprecated) downloads features on the repository | `bool` | `null` | no |
 | <a name="input_has_issues"></a> [has\_issues](#input\_has\_issues) | (Optional) Set to true to enable the GitHub Issues features on the repository | `bool` | `null` | no |
 | <a name="input_has_projects"></a> [has\_projects](#input\_has\_projects) | (Optional) Set to true to enable the GitHub Projects features on the repository | `bool` | `null` | no |

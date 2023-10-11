@@ -1,8 +1,8 @@
 variable "repositories" {
   type = list(object({
     name        = string
-    description = string
-    topics      = list(string)
+    description = optional(string)
+    topics      = optional(list(string), ["terraform"])
   }))
   description = "description"
   # default     = "type"
@@ -26,6 +26,7 @@ variable "defaults" {
     delete_branch_on_merge = optional(bool, false)
     is_template            = optional(bool, null)
     has_downloads          = optional(bool, null)
+    has_discussions        = optional(bool, null)
     auto_init              = optional(bool, true)
     gitignore_template     = optional(bool, true)
     archived               = optional(bool, false)
