@@ -8,6 +8,7 @@ variable "repositories" {
   # default     = "type"
 }
 
+//
 variable "defaults" {
   description = "Default attributes for each repository"
 
