@@ -5,7 +5,7 @@
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_github"></a> [github](#requirement\_github) | >= 5.0 |
+| <a name="requirement_github"></a> [github](#requirement\_github) | >= 5.39.0 |
 
 ## Providers
 

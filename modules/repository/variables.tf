@@ -198,11 +198,18 @@ variable "branch_protections" {
     {
       branch                 = "main"
       enforce_admins         = true
-      require_signed_commits = true
+      require_signed_commits = false
       required_pull_request_reviews = {
         dismiss_stale_reviews           = true
         require_code_owner_reviews      = true
         required_approving_review_count = 1
+      }
+      required_status_checks = {
+        checks = [
+          "GitGuardian Security Checks:46505"
+        ]
+        include_admins = false
+        strict         = true
       }
     }
   ]
@@ -375,7 +382,7 @@ variable "pr_title_checker" {
 variable "pre_commit" {
   description = ""
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "semantic_release" {
