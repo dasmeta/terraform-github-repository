@@ -13,14 +13,11 @@ module "this" {
       "description" : "EKS module description",
       "name" : "terraform-aws-repo-test",
       "topics" : ["kubernetes", "aws", "cloudwatch", "eks"],
-      # "dependabot" : {
-      #   enabled = false
-      # }
     },
-    # {
-    #   "description" : "ELK module description",
-    #   "name" : "terraform-aws-elasticache-test",
-    #   "topics" : ["aws", "cloudwatch", "elk"]
-    # }
+    {
+      "description" : "ELK module description",
+      "name" : "terraform-aws-elasticache-test",
+      "topics" : ["aws", "cloudwatch", "elk"]
+    }
   ]
 }
