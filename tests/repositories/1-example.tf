@@ -11,8 +11,8 @@ module "this" {
   repositories = [
     {
       "description" : "EKS module description",
-      "name" : "terraform-aws-eks-test",
-      "topics" : ["kubernetes", "aws", "cloudwatch", "eks"]
+      "name" : "terraform-aws-repo-test",
+      "topics" : ["kubernetes", "aws", "cloudwatch", "eks"],
     },
     {
       "description" : "ELK module description",

@@ -6,13 +6,13 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3 |
-| <a name="requirement_github"></a> [github](#requirement\_github) | >= 5.0 |
+| <a name="requirement_github"></a> [github](#requirement\_github) | >= 5.39.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_github"></a> [github](#provider\_github) | >= 5.0 |
+| <a name="provider_github"></a> [github](#provider\_github) | >= 5.39.0 |
 
 ## Modules
 
@@ -67,7 +67,7 @@
 | <a name="input_archived"></a> [archived](#input\_archived) | (Optional) Specifies if the repository should be archived | `bool` | `false` | no |
 | <a name="input_auto_init"></a> [auto\_init](#input\_auto\_init) | (Optional) Wether or not to produce an initial commit in the repository | `bool` | `true` | no |
 | <a name="input_branch_name_checker"></a> [branch\_name\_checker](#input\_branch\_name\_checker) | n/a | `bool` | `false` | no |
-| <a name="input_branch_protections"></a> [branch\_protections](#input\_branch\_protections) | (Optional) A list of branch protections to apply to the repository. | `any` | <pre>[<br>  {<br>    "branch": "main",<br>    "enforce_admins": true,<br>    "require_signed_commits": true,<br>    "required_pull_request_reviews": {<br>      "dismiss_stale_reviews": true,<br>      "require_code_owner_reviews": true,<br>      "required_approving_review_count": 1<br>    }<br>  }<br>]</pre> | no |
+| <a name="input_branch_protections"></a> [branch\_protections](#input\_branch\_protections) | (Optional) A list of branch protections to apply to the repository. | `any` | <pre>[<br>  {<br>    "branch": "main",<br>    "enforce_admins": true,<br>    "require_signed_commits": false,<br>    "required_pull_request_reviews": {<br>      "dismiss_stale_reviews": true,<br>      "require_code_owner_reviews": true,<br>      "required_approving_review_count": 1<br>    },<br>    "required_status_checks": {<br>      "checks": [<br>        "GitGuardian Security Checks:46505"<br>      ],<br>      "include_admins": false,<br>      "strict": true<br>    }<br>  }<br>]</pre> | no |
 | <a name="input_branch_toPush"></a> [branch\_toPush](#input\_branch\_toPush) | The Branch, where to push best practices: the default DMVP-tf-init branch name is used by default to push files for best practices | `string` | `"DMVP-tf-init"` | no |
 | <a name="input_branches"></a> [branches](#input\_branches) | (Optional) A list of branches to be created in this repository. | `list(string)` | <pre>[<br>  "DMVP-tf-init"<br>]</pre> | no |
 | <a name="input_checkov"></a> [checkov](#input\_checkov) | n/a | `bool` | `false` | no |
@@ -100,7 +100,7 @@
 | <a name="input_plaintext_secrets"></a> [plaintext\_secrets](#input\_plaintext\_secrets) | (Optional) Configuring actions secrets. | `map(string)` | `{}` | no |
 | <a name="input_pr_description_checker"></a> [pr\_description\_checker](#input\_pr\_description\_checker) | n/a | `bool` | `false` | no |
 | <a name="input_pr_title_checker"></a> [pr\_title\_checker](#input\_pr\_title\_checker) | n/a | `bool` | `false` | no |
-| <a name="input_pre_commit"></a> [pre\_commit](#input\_pre\_commit) | n/a | `bool` | `false` | no |
+| <a name="input_pre_commit"></a> [pre\_commit](#input\_pre\_commit) | n/a | `bool` | `true` | no |
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | Project name variable to configure in default-files | `string` | `"DMVP"` | no |
 | <a name="input_pull_collaborators"></a> [pull\_collaborators](#input\_pull\_collaborators) | (Optional) A list of users to add as collaborators granting them pull (read-only) permission. | `list(string)` | `[]` | no |
 | <a name="input_pull_request"></a> [pull\_request](#input\_pull\_request) | Whether to create poll request | <pre>object({<br>    create   = optional(bool, false)<br>    base_ref = optional(string, null) # if not set the default_branch will be used as target for PR<br>    title    = optional(string, "Workflows changes")<br>    body     = optional(string, "Terraform generated PR for best practices changes")<br>  })</pre> | <pre>{<br>  "create": true,<br>  "title": "feat(DMVP): Initial PR"<br>}</pre> | no |
@@ -128,7 +128,9 @@
 
 | Name | Description |
 |------|-------------|
+| <a name="output_branch_protections"></a> [branch\_protections](#output\_branch\_protections) | n/a |
 | <a name="output_files"></a> [files](#output\_files) | The list of all files created/commited |
 | <a name="output_full_name"></a> [full\_name](#output\_full\_name) | The name of git repo with org.owner in form '{owner}/{name}' |
 | <a name="output_name"></a> [name](#output\_name) | The name of git repo without org/owner |
+| <a name="output_required_status_checks"></a> [required\_status\_checks](#output\_required\_status\_checks) | n/a |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

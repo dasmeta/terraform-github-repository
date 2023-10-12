@@ -7,7 +7,7 @@ This example creates 2 github repositories mainly with default configuration spe
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.0 |
-| <a name="requirement_github"></a> [github](#requirement\_github) | >= 5.0 |
+| <a name="requirement_github"></a> [github](#requirement\_github) | >= 5.39.0 |
 
 ## Providers
 

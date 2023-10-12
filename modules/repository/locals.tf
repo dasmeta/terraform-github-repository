@@ -27,13 +27,27 @@ locals {
       restrictions                    = {}
     }, b)
   ], [])
+
   required_status_checks = [
     for b in local.branch_protections :
     length(keys(b.required_status_checks)) > 0 ? [
-      merge({
-        strict   = null
-        contexts = []
-    }, b.required_status_checks)] : []
+      merge(b.required_status_checks, {
+        checks = concat(
+          [
+            "GitGuardian Security Checks:46505"
+          ],
+          var.pr_title_checker ? ["title-check:15368"] : [],
+          var.semantic_release ? ["publish:15368"] : [],
+          var.checkov || var.infracost || var.terraform_test || var.tflint ? ["terraform-validate (/):15368"] : [],
+          var.tfsec ? ["terraform-tfsec:15368"] : [],
+          var.dependabot.enabled ? [".github/dependabot.yaml:29110"] : [],
+          var.branch_name_checker ? ["branch-naming-rules:15368"] : [],
+          var.infracost ? ["defsec:57789"] : [],
+          var.pre_commit ? ["terraform-validate"] : []
+        )
+        include_admins = false
+        strict         = true
+    })] : []
   ]
 
   required_pull_request_reviews = [
@@ -99,4 +113,12 @@ locals {
   full_name       = try(github_repository.repository[0].full_name, data.github_repository.existing_repo[0].full_name)
   branch_name     = var.branch_toPush != "" ? var.branch_toPush : var.default_branch != null ? var.default_branch : "main"
   commit_message  = var.commit_message
+}
+
+output "branch_protections" {
+  value = local.branch_protections
+}
+
+output "required_status_checks" {
+  value = local.required_status_checks
 }
