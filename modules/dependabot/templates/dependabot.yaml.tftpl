@@ -2,8 +2,10 @@ version: 2
 
 updates:
 %{ for key, value in ecosystems }
-  - package-ecosystem: ${value}
+  - package-ecosystem: "${value}"
     directory: "/"
     schedule:
       interval: "daily"
+    commit-message:
+      prefix: feat
 %{ endfor ~}

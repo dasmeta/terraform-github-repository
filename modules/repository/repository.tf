@@ -17,10 +17,10 @@ resource "github_repository" "repository" {
   is_template            = var.is_template
   has_downloads          = var.has_downloads
   auto_init              = var.auto_init
-  # gitignore_template     = var.gitignore_template
-  license_template = var.license_template
-  archived         = var.archived
-  topics           = var.topics
+  gitignore_template     = var.gitignore_template
+  license_template       = var.license_template
+  archived               = var.archived
+  topics                 = var.topics
 
   archive_on_destroy   = var.archive_on_destroy
   vulnerability_alerts = var.vulnerability_alerts

@@ -36,13 +36,9 @@ locals {
           [
             "GitGuardian Security Checks:46505"
           ],
-          var.pr_title_checker ? ["title-check:15368"] : [],
           var.semantic_release ? ["publish:15368"] : [],
           var.checkov || var.infracost || var.terraform_test || var.tflint ? ["terraform-validate (/):15368"] : [],
           var.tfsec ? ["terraform-tfsec:15368"] : [],
-          var.dependabot.enabled ? [".github/dependabot.yaml:29110"] : [],
-          var.branch_name_checker ? ["branch-naming-rules:15368"] : [],
-          var.infracost ? ["defsec:57789"] : [],
           var.pre_commit ? ["terraform-validate"] : []
         )
         include_admins = false
