@@ -6,7 +6,8 @@ locals {
       {
         "description" = repo.description,
         "name"        = repo.name,
-        "topics"      = setunion(var.defaults.topics, repo.topics)
+        "topics"      = setunion(var.defaults.topics, repo.topics),
+        "pages"       = repo.pages
       }
     )
   ]

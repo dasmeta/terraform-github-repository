@@ -3,6 +3,11 @@ variable "repositories" {
     name        = string
     description = optional(string)
     topics      = optional(list(string), ["terraform"])
+    pages = optional(object({
+      branch = string
+      path   = optional(string, "/")
+      cname  = optional(string, null)
+    }), null)
   }))
   description = "description"
   # default     = "type"
@@ -24,23 +29,18 @@ variable "defaults" {
     allow_rebase_merge     = optional(bool, true)
     allow_squash_merge     = optional(bool, true)
     allow_auto_merge       = optional(bool, false)
-    delete_branch_on_merge = optional(bool, false)
+    delete_branch_on_merge = optional(bool, true)
     is_template            = optional(bool, null)
     has_downloads          = optional(bool, null)
     has_discussions        = optional(bool, null)
     auto_init              = optional(bool, true)
-    gitignore_template     = optional(bool, true)
+    gitignore_template     = optional(string, "Terraform")
     archived               = optional(bool, false)
     archive_on_destroy     = optional(bool, true)
     vulnerability_alerts   = optional(bool, true)
     template = optional(object({
       owner      = string
       repository = string
-    }), null)
-    pages = optional(object({
-      branch = string
-      path   = string
-      cname  = string
     }), null)
     admin_collaborators    = optional(list(string), [])
     push_collaborators     = optional(list(string), [])
@@ -101,7 +101,7 @@ variable "defaults" {
     pre_commit             = optional(bool, true)
     semantic_release       = optional(bool, true)
     checkov                = optional(bool, true)
-    infracost              = optional(bool, true)
+    infracost              = optional(bool, false)
     terraform_test         = optional(bool, true)
     tflint                 = optional(bool, true)
     tfsec                  = optional(bool, true)

@@ -11,8 +11,12 @@ module "this" {
   repositories = [
     {
       "description" : "EKS module description",
-      "name" : "terraform-aws-repo-test",
+      "name" : "terraform-aws-mongodb-backup",
       "topics" : ["kubernetes", "aws", "cloudwatch", "eks"],
+      "pages" : {
+        "branch" : "gh-pages"
+        "path" : "/"
+      }
     },
     {
       "description" : "ELK module description",
