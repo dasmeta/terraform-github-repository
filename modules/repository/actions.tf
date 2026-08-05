@@ -10,5 +10,11 @@ resource "github_actions_repository_permissions" "actions" {
       verified_allowed     = var.allowed_github_actions_config.verified_allowed
     }
   }
-  repository = github_repository.repository[0].name
+  # local.repository_name resolves for both created and linked (create_repository = false) repositories
+  repository = local.repository_name
+
+  depends_on = [
+    github_repository.repository,
+    data.github_repository.existing_repo
+  ]
 }
