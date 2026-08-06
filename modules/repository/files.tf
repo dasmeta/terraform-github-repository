@@ -154,9 +154,9 @@ module "tflint" {
   ]
 }
 
-module "tfsec" {
-  source = "../tfsec"
-  count  = coalesce(var.tfsec, false) ? 1 : 0
+module "trivy" {
+  source = "../trivy"
+  count  = coalesce(var.trivy, false) ? 1 : 0
 
   branch_name     = var.branch_toPush
   repository_name = local.repository_name

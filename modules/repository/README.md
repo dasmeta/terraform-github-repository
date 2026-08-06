@@ -30,7 +30,7 @@
 | <a name="module_terraform-test"></a> [terraform-test](#module\_terraform-test) | ../terraform-test | n/a |
 | <a name="module_terraform_apply"></a> [terraform\_apply](#module\_terraform\_apply) | ../terraform-apply-actions | n/a |
 | <a name="module_tflint"></a> [tflint](#module\_tflint) | ../tflint | n/a |
-| <a name="module_tfsec"></a> [tfsec](#module\_tfsec) | ../tfsec | n/a |
+| <a name="module_trivy"></a> [trivy](#module\_trivy) | ../trivy | n/a |
 
 ## Resources
 
@@ -115,7 +115,7 @@
 | <a name="input_terraform_plan_and_apply"></a> [terraform\_plan\_and\_apply](#input\_terraform\_plan\_and\_apply) | n/a | <pre>object({<br>    path_to_module   = string<br>    module_variables = map(string)<br>  })</pre> | `null` | no |
 | <a name="input_terraform_test"></a> [terraform\_test](#input\_terraform\_test) | n/a | `bool` | `false` | no |
 | <a name="input_tflint"></a> [tflint](#input\_tflint) | n/a | `bool` | `false` | no |
-| <a name="input_tfsec"></a> [tfsec](#input\_tfsec) | n/a | `bool` | `false` | no |
+| <a name="input_trivy"></a> [trivy](#input\_trivy) | Whether to add the Trivy security scan workflow, replaces the retired tfsec one | `bool` | `false` | no |
 | <a name="input_topics"></a> [topics](#input\_topics) | (Optional) The list of topics of the repository | `list(string)` | `null` | no |
 | <a name="input_triage_collaborators"></a> [triage\_collaborators](#input\_triage\_collaborators) | (Optional) A list of users to add as collaborators granting them triage permission. | `list(string)` | `[]` | no |
 | <a name="input_triage_team_ids"></a> [triage\_team\_ids](#input\_triage\_team\_ids) | (Optional) A list of teams (by id) to grant triage permission to. | `list(string)` | `[]` | no |

@@ -104,7 +104,8 @@ variable "defaults" {
     infracost              = optional(bool, false)
     terraform_test         = optional(bool, true)
     tflint                 = optional(bool, true)
-    tfsec                  = optional(bool, true)
+    trivy                  = optional(bool, true)
+    tfsec                  = optional(bool, null) # deprecated, kept as an alias for trivy, tfsec was retired into trivy
     terraform_plan_and_apply = optional(object({
       path_to_module   = string
       module_variables = map(string)

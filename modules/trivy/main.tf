@@ -5,8 +5,8 @@ module "this" {
   branch     = var.branch_name
   files = [
     {
-      remote_path = ".github/workflows/tfsec.yaml"
-      local_path  = "${path.module}/templates/tfsec.yaml.tftpl"
+      remote_path = ".github/workflows/trivy.yaml"
+      local_path  = "${path.module}/templates/trivy.yaml.tftpl"
     }
   ]
 }

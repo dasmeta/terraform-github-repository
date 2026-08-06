@@ -25,7 +25,7 @@ module "this" {
     checkov                = true
     terraform_test         = true
     tflint                 = true
-    tfsec                  = true
+    trivy                  = true
     dependabot             = { enabled : true, ecosystems = ["github-actions", "terraform"] }
     pull_request           = { create : true }
   }
