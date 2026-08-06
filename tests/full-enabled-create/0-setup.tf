@@ -1,9 +1,5 @@
 terraform {
   required_providers {
-    test = {
-      source = "terraform.io/builtin/test"
-    }
-
     github = {
       source  = "integrations/github"
       version = ">= 5.0"

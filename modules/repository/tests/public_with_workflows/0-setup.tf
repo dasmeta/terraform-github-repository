@@ -1,9 +1,5 @@
 terraform {
   required_providers {
-    test = {
-      source = "terraform.io/builtin/test"
-    }
-
     github = {
       source  = "integrations/github"
       version = ">= 5.0"
@@ -19,5 +15,5 @@ terraform {
  export GITHUB_TOKEN=ghp_xxxxxxxxxxxxxxx
 **/
 provider "github" {
-  owner = "your-git-organization"
+  owner = "dasmeta"
 }
