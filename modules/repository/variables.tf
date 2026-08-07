@@ -414,8 +414,8 @@ variable "tflint" {
   default     = false
 }
 
-variable "tfsec" {
-  description = ""
+variable "trivy" {
+  description = "Whether to add the Trivy security scan workflow, replaces the retired tfsec one"
   type        = bool
   default     = false
 }

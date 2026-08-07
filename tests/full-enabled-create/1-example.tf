@@ -1,12 +1,12 @@
 module "this" {
   source = "../../"
 
-  repositories = [{
-    name               = "terraform-github-repository-full-enabled-test"
+  # a repositories entry only accepts name/description/topics/pages, every other
+  # setting is configured for the whole set through defaults
+  defaults = {
     archive_on_destroy = false
     visibility         = "public"
     create_repository  = true
-    description        = "Test repository created by terraform"
 
     branches      = ["best-practices"]
     branch_toPush = "best-practices"
@@ -23,10 +23,15 @@ module "this" {
     pre_commit             = true
     semantic_release       = true
     checkov                = true
-    terraform-test         = true
+    terraform_test         = true
     tflint                 = true
-    tfsec                  = true
+    trivy                  = true
     dependabot             = { enabled : true, ecosystems = ["github-actions", "terraform"] }
     pull_request           = { create : true }
+  }
+
+  repositories = [{
+    name        = "terraform-github-repository-full-enabled-test"
+    description = "Test repository created by terraform"
   }]
 }

@@ -28,5 +28,8 @@ No inputs.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_full_name"></a> [full\_name](#output\_full\_name) | n/a |
+| <a name="output_name"></a> [name](#output\_name) | n/a |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
