@@ -16,10 +16,10 @@ jobs:
       discussions: write
       pull-requests: write
     steps:
-    # 4.3.1 is the first release that runs `terraform init` before
-    # `terraform test`, and whose default Terraform version supports the native
-    # test framework. 4.3.0 could not run these tests at all.
-    - uses: dasmeta/reusable-actions-workflows/terraform-test@4.3.1
+    # 4.3.2 skips AWS credential setup when no AWS inputs are given. 4.3.1 added
+    # the `terraform init` step and a default Terraform version supporting the
+    # native test framework. Neither 4.3.0 nor 4.3.1 could run these tests.
+    - uses: dasmeta/reusable-actions-workflows/terraform-test@4.3.2
       with:
         # No AWS inputs: this module uses the github provider only. Passing
         # AWS credentials made the job fail at Configure AWS Credentials with
