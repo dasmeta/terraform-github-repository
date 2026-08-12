@@ -16,13 +16,13 @@ jobs:
       discussions: write
       pull-requests: write
     steps:
-    - uses: dasmeta/reusable-actions-workflows/terraform-test@4.3.0
+    # 4.3.1 is the first release that runs `terraform init` before
+    # `terraform test`, and whose default Terraform version supports the native
+    # test framework. 4.3.0 could not run these tests at all.
+    - uses: dasmeta/reusable-actions-workflows/terraform-test@4.3.1
       with:
-        aws-region: ${{ secrets.AWS_REGION}}
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        # No AWS inputs: this module uses the github provider only. Passing
+        # AWS credentials made the job fail at Configure AWS Credentials with
+        # "The security token included in the request is invalid", before
+        # Terraform ever ran.
         path: ${{ matrix.path }}
-        # The action defaults to Terraform 1.3.6, which predates the native test
-        # framework and cannot parse .tftest.hcl files. Pin explicitly to a
-        # version that supports `terraform test` (>= 1.6).
-        terraform_version: 1.9.8
