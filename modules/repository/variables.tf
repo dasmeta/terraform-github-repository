@@ -431,8 +431,16 @@ variable "terraform_plan_and_apply" {
 
 variable "dependabot" {
   type = object({
-    enabled    = optional(bool, false)
-    ecosystems = optional(list(string), ["github-actions"]) # the list can be "terraform", "github-actions". Check for available values here https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+    enabled    = optional(bool, false)                # master switch for the whole dependabot config file
+    repo_type  = optional(string, "terraform-module") # picks the default update set: terraform-module, terraform-setup, helm-chart, nodejs, php, none
+    ecosystems = optional(list(string), null)         # deprecated, use `updates`; each entry becomes a weekly root-directory update
+    updates = optional(list(object({                  # per-ecosystem configuration; overrides whatever repo_type selects
+      package_ecosystem = string                      # dependabot ecosystem id, see https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+      directory         = optional(string, null)      # single path to scan; mutually exclusive with directories
+      directories       = optional(list(string))      # several paths, globs allowed such as /modules/*; takes precedence over directory
+      interval          = optional(string, "weekly")  # daily, weekly or monthly
+      enabled           = optional(bool, true)        # set false to switch this ecosystem off while keeping it documented
+    })), null)
   })
   default     = null
   description = "Allows to enable/configure dependabot for github repository"

@@ -1,11 +1,16 @@
 version: 2
 
 updates:
-%{ for key, value in ecosystems }
-  - package-ecosystem: "${value}"
-    directory: "/"
+%{~ for update in updates }
+  - package-ecosystem: "${update.package_ecosystem}"
+%{~ if length(update.directories) > 0 }
+    directories:
+%{~ for directory in update.directories }
+      - "${directory}"
+%{~ endfor }
+%{~ else }
+    directory: "${update.directory}"
+%{~ endif }
     schedule:
-      interval: "daily"
-    commit-message:
-      prefix: feat
-%{ endfor ~}
+      interval: "${update.interval}"
+%{~ endfor }
