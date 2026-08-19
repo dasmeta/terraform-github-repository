@@ -36,4 +36,5 @@ No resources.
 | Name | Description |
 |------|-------------|
 | <a name="output_files"></a> [files](#output\_files) | The list of files created/commited by workflow module. Empty when no dependabot update is enabled, in which case no config file is written. |
+| <a name="output_updates"></a> [updates](#output\_updates) | The resolved dependabot update entries written to the config file, after preset/legacy/custom selection and dropping disabled entries. Empty when no config file is written. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

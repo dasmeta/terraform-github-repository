@@ -10,6 +10,10 @@ jobs:
       matrix:
         path:
           - ./
+          # The dependabot module owns the rendered-config regression tests, and
+          # `terraform test` only reads the tests directory of the module it runs
+          # in, so the root entry above never executes them.
+          - ./modules/dependabot
     permissions:
       actions: write
       contents: write
