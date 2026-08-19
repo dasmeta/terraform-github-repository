@@ -64,6 +64,83 @@ run "helm_chart_preset_renders_chart_directories" {
   }
 }
 
+run "terraform_setup_preset_renders_root_only" {
+  command = plan
+
+  variables {
+    repo_type = "terraform-setup"
+  }
+
+  assert {
+    condition = yamldecode(templatefile("${path.module}/templates/dependabot.yaml.tftpl", { updates = output.updates })).updates == [
+      {
+        package-ecosystem = "terraform"
+        directory         = "/"
+        schedule          = { interval = "weekly" }
+      },
+      {
+        package-ecosystem = "github-actions"
+        directory         = "/"
+        schedule          = { interval = "weekly" }
+      },
+      {
+        package-ecosystem = "npm"
+        directory         = "/"
+        schedule          = { interval = "weekly" }
+      },
+    ]
+    error_message = "The terraform-setup preset must scan the repository root only, with no submodule tree."
+  }
+}
+
+run "nodejs_preset_renders_npm_and_actions" {
+  command = plan
+
+  variables {
+    repo_type = "nodejs"
+  }
+
+  assert {
+    condition = yamldecode(templatefile("${path.module}/templates/dependabot.yaml.tftpl", { updates = output.updates })).updates == [
+      {
+        package-ecosystem = "npm"
+        directory         = "/"
+        schedule          = { interval = "weekly" }
+      },
+      {
+        package-ecosystem = "github-actions"
+        directory         = "/"
+        schedule          = { interval = "weekly" }
+      },
+    ]
+    error_message = "The nodejs preset must select npm and github-actions at the repository root."
+  }
+}
+
+run "php_preset_renders_composer_and_actions" {
+  command = plan
+
+  variables {
+    repo_type = "php"
+  }
+
+  assert {
+    condition = yamldecode(templatefile("${path.module}/templates/dependabot.yaml.tftpl", { updates = output.updates })).updates == [
+      {
+        package-ecosystem = "composer"
+        directory         = "/"
+        schedule          = { interval = "weekly" }
+      },
+      {
+        package-ecosystem = "github-actions"
+        directory         = "/"
+        schedule          = { interval = "weekly" }
+      },
+    ]
+    error_message = "The php preset must select composer and github-actions at the repository root."
+  }
+}
+
 run "legacy_ecosystems_render_weekly_root_updates" {
   command = plan
 
