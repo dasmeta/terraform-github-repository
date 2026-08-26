@@ -206,7 +206,9 @@ module "dependabot" {
 
   branch_name     = var.branch_toPush
   repository_name = local.repository_name
-  ecosystems      = try(var.dependabot.ecosystems, [])
+  repo_type       = try(var.dependabot.repo_type, "terraform-module")
+  ecosystems      = try(var.dependabot.ecosystems, null)
+  updates         = try(var.dependabot.updates, null)
 
   depends_on = [
     github_repository.repository,
