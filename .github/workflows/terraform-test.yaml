@@ -16,6 +16,8 @@ jobs:
           - ./modules/dependabot
           - ./modules/pre-commit
           - ./modules/terraform-test
+          - ./modules/checkov
+          - ./modules/tflint
     permissions:
       actions: write
       contents: write

@@ -8,7 +8,7 @@ variable "branch_name" {
   type        = string
 }
 variable "paths" {
-  default = ["/"]
+  default = ["./"]
 }
 variable "path" {
   default = "$${{ matrix.path }}"
