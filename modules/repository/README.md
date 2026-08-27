@@ -12,7 +12,7 @@
 
 | Name | Version |
 |------|---------|
-| <a name="provider_github"></a> [github](#provider\_github) | >= 5.39.0 |
+| <a name="provider_github"></a> [github](#provider\_github) | 6.13.0 |
 
 ## Modules
 
@@ -101,6 +101,7 @@
 | <a name="input_pr_description_checker"></a> [pr\_description\_checker](#input\_pr\_description\_checker) | n/a | `bool` | `false` | no |
 | <a name="input_pr_title_checker"></a> [pr\_title\_checker](#input\_pr\_title\_checker) | n/a | `bool` | `false` | no |
 | <a name="input_pre_commit"></a> [pre\_commit](#input\_pre\_commit) | n/a | `bool` | `true` | no |
+| <a name="input_pre_commit_configs"></a> [pre\_commit\_configs](#input\_pre\_commit\_configs) | Versions used by the generated pre-commit setup. Left unset it uses the<br/>defaults, which are the supported combination.<br/><br/>Pin `terraform_docs_version` to the same release locally: generated<br/>documentation differs between terraform-docs versions, so a mismatch makes<br/>every README look out of date on somebody's machine. | <pre>object({<br/>    actions_version              = optional(string, "4.4.0")    # >= 4.4.0, earlier pre-commit action releases could not fail<br/>    terraform_docs_version       = optional(string, "0.20.0")   # matches what managed repositories have committed<br/>    pre_commit_terraform_version = optional(string, "v1.109.0") # >= v1.93 migrates legacy docs markers in place<br/>  })</pre> | `null` | no |
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | Project name variable to configure in default-files | `string` | `"DMVP"` | no |
 | <a name="input_pull_collaborators"></a> [pull\_collaborators](#input\_pull\_collaborators) | (Optional) A list of users to add as collaborators granting them pull (read-only) permission. | `list(string)` | `[]` | no |
 | <a name="input_pull_request"></a> [pull\_request](#input\_pull\_request) | Whether to create poll request | <pre>object({<br/>    create   = optional(bool, false)<br/>    base_ref = optional(string, null) # if not set the default_branch will be used as target for PR<br/>    title    = optional(string, "Workflows changes")<br/>    body     = optional(string, "Terraform generated PR for best practices changes")<br/>  })</pre> | <pre>{<br/>  "create": true,<br/>  "title": "feat(DMVP): Initial PR"<br/>}</pre> | no |
@@ -113,7 +114,8 @@
 | <a name="input_semantic_release"></a> [semantic\_release](#input\_semantic\_release) | n/a | `bool` | `false` | no |
 | <a name="input_template"></a> [template](#input\_template) | (Optional) Template repository to use. (Default: {}) | <pre>object({<br/>    owner      = string<br/>    repository = string<br/>  })</pre> | `null` | no |
 | <a name="input_terraform_plan_and_apply"></a> [terraform\_plan\_and\_apply](#input\_terraform\_plan\_and\_apply) | n/a | <pre>object({<br/>    path_to_module   = string<br/>    module_variables = map(string)<br/>  })</pre> | `null` | no |
-| <a name="input_terraform_test"></a> [terraform\_test](#input\_terraform\_test) | n/a | `bool` | `false` | no |
+| <a name="input_terraform_test"></a> [terraform\_test](#input\_terraform\_test) | Master switch for the generated Terraform validation workflow | `bool` | `false` | no |
+| <a name="input_terraform_test_configs"></a> [terraform\_test\_configs](#input\_terraform\_test\_configs) | Shape of the generated Terraform validation workflow. Left unset it keeps<br/>the previous behaviour: native `terraform test` at the repository root.<br/><br/>The required status context is always `terraform-validate`, whatever<br/>`paths` contains. Individual paths report as `validate (<path>)` for<br/>visibility only, so branch protection does not need editing when the path<br/>list changes. | <pre>object({<br/>    paths             = optional(list(string), ["./"]) # module roots to validate, one matrix leg each<br/>    mode              = optional(string, "test")       # test = native terraform test; validate = init -backend=false && validate, no credentials<br/>    terraform_version = optional(string, "1.9.8")      # >= 1.6 required for the native test framework<br/>    actions_version   = optional(string, "4.4.0")      # dasmeta/reusable-actions-workflows release, only used by test mode<br/>  })</pre> | `null` | no |
 | <a name="input_tflint"></a> [tflint](#input\_tflint) | n/a | `bool` | `false` | no |
 | <a name="input_topics"></a> [topics](#input\_topics) | (Optional) The list of topics of the repository | `list(string)` | `null` | no |
 | <a name="input_triage_collaborators"></a> [triage\_collaborators](#input\_triage\_collaborators) | (Optional) A list of users to add as collaborators granting them triage permission. | `list(string)` | `[]` | no |

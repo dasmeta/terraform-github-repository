@@ -103,9 +103,20 @@ variable "defaults" {
     checkov                = optional(bool, true)
     infracost              = optional(bool, false)
     terraform_test         = optional(bool, true)
-    tflint                 = optional(bool, true)
-    trivy                  = optional(bool, true)
-    tfsec                  = optional(bool, null) # deprecated, kept as an alias for trivy, tfsec was retired into trivy
+    terraform_test_configs = optional(object({           # shape of the generated validation workflow; required context stays terraform-validate
+      paths             = optional(list(string), ["./"]) # module roots to validate, one matrix leg each
+      mode              = optional(string, "test")       # test = native terraform test; validate = init -backend=false && validate, no credentials
+      terraform_version = optional(string, "1.9.8")      # >= 1.6 required for the native test framework
+      actions_version   = optional(string, "4.4.0")      # dasmeta/reusable-actions-workflows release, only used by test mode
+    }), null)
+    pre_commit_configs = optional(object({                        # versions used by the generated pre-commit setup
+      actions_version              = optional(string, "4.4.0")    # >= 4.4.0, earlier pre-commit action releases could not fail
+      terraform_docs_version       = optional(string, "0.20.0")   # matches what managed repositories have committed; pin the same locally
+      pre_commit_terraform_version = optional(string, "v1.109.0") # >= v1.93 migrates legacy docs markers in place
+    }), null)
+    tflint = optional(bool, true)
+    trivy  = optional(bool, true)
+    tfsec  = optional(bool, null) # deprecated, kept as an alias for trivy, tfsec was retired into trivy
     terraform_plan_and_apply = optional(object({
       path_to_module   = string
       module_variables = map(string)

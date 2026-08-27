@@ -80,6 +80,8 @@ module "this" {
   checkov                = each.value.checkov
   infracost              = each.value.infracost
   terraform_test         = each.value.terraform_test
+  terraform_test_configs = each.value.terraform_test_configs
+  pre_commit_configs     = each.value.pre_commit_configs
   tflint                 = each.value.tflint
   # tfsec is deprecated, when set it still wins so existing callers keep working
   trivy                    = each.value.tfsec == null ? each.value.trivy : each.value.tfsec

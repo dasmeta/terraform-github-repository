@@ -14,6 +14,8 @@ jobs:
           # `terraform test` only reads the tests directory of the module it runs
           # in, so the root entry above never executes them.
           - ./modules/dependabot
+          - ./modules/pre-commit
+          - ./modules/terraform-test
     permissions:
       actions: write
       contents: write
