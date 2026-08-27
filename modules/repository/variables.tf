@@ -403,9 +403,45 @@ variable "infracost" {
 }
 
 variable "terraform_test" {
-  description = ""
+  description = "Master switch for the generated Terraform validation workflow"
   type        = bool
   default     = false
+}
+
+variable "terraform_test_configs" {
+  description = <<-EOT
+    Shape of the generated Terraform validation workflow. Left unset it keeps
+    the previous behaviour: native `terraform test` at the repository root.
+
+    The required status context is always `terraform-validate`, whatever
+    `paths` contains. Individual paths report as `validate (<path>)` for
+    visibility only, so branch protection does not need editing when the path
+    list changes.
+  EOT
+  type = object({
+    paths             = optional(list(string), ["./"]) # module roots to validate, one matrix leg each
+    mode              = optional(string, "test")       # test = native terraform test; validate = init -backend=false && validate, no credentials
+    terraform_version = optional(string, "1.9.8")      # >= 1.6 required for the native test framework
+    actions_version   = optional(string, "4.4.0")      # dasmeta/reusable-actions-workflows release, only used by test mode
+  })
+  default = null
+}
+
+variable "pre_commit_configs" {
+  description = <<-EOT
+    Versions used by the generated pre-commit setup. Left unset it uses the
+    defaults, which are the supported combination.
+
+    Pin `terraform_docs_version` to the same release locally: generated
+    documentation differs between terraform-docs versions, so a mismatch makes
+    every README look out of date on somebody's machine.
+  EOT
+  type = object({
+    actions_version              = optional(string, "4.4.0")    # >= 4.4.0, earlier pre-commit action releases could not fail
+    terraform_docs_version       = optional(string, "0.20.0")   # matches what managed repositories have committed
+    pre_commit_terraform_version = optional(string, "v1.109.0") # >= v1.93 migrates legacy docs markers in place
+  })
+  default = null
 }
 
 variable "tflint" {

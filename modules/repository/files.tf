@@ -66,9 +66,12 @@ module "pre_commit" {
   source = "../pre-commit"
   count  = coalesce(var.pre_commit, false) ? 1 : 0
 
-
   branch_name     = var.branch_toPush
   repository_name = local.repository_name
+
+  actions_version              = try(var.pre_commit_configs.actions_version, "4.4.0")
+  terraform_docs_version       = try(var.pre_commit_configs.terraform_docs_version, "0.20.0")
+  pre_commit_terraform_version = try(var.pre_commit_configs.pre_commit_terraform_version, "v1.109.0")
 
   depends_on = [
     github_repository.repository,
@@ -128,9 +131,13 @@ module "terraform-test" {
   source = "../terraform-test"
   count  = coalesce(var.terraform_test, false) ? 1 : 0
 
-
   branch_name     = var.branch_toPush
   repository_name = local.repository_name
+
+  paths             = try(var.terraform_test_configs.paths, ["./"])
+  mode              = try(var.terraform_test_configs.mode, "test")
+  terraform_version = try(var.terraform_test_configs.terraform_version, "1.9.8")
+  actions_version   = try(var.terraform_test_configs.actions_version, "4.4.0")
 
   depends_on = [
     github_repository.repository,
