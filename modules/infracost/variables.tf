@@ -9,7 +9,7 @@ variable "branch_name" {
 }
 
 variable "paths" {
-  default = ["/"]
+  default = ["./"]
 }
 
 variable "secret" {
