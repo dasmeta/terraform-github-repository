@@ -102,7 +102,6 @@ module "checkov" {
 
   branch_name     = var.branch_toPush
   repository_name = local.repository_name
-  paths           = ["/"]
 
   depends_on = [
     github_repository.repository,
@@ -118,7 +117,6 @@ module "infracost" {
 
   branch_name     = var.branch_toPush
   repository_name = local.repository_name
-  paths           = ["/"]
 
   depends_on = [
     github_repository.repository,
@@ -152,7 +150,6 @@ module "tflint" {
 
   branch_name     = var.branch_toPush
   repository_name = local.repository_name
-  paths           = ["/"]
 
   depends_on = [
     github_repository.repository,
