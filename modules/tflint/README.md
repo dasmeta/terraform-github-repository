@@ -30,7 +30,7 @@ No resources.
 | <a name="input_aws-secret-access-key"></a> [aws-secret-access-key](#input\_aws-secret-access-key) | n/a | `string` | `"${{ secrets.AWS_SECRET_ACCESS_KEY }}"` | no |
 | <a name="input_branch_name"></a> [branch\_name](#input\_branch\_name) | Branch name to apply actions | `string` | n/a | yes |
 | <a name="input_path"></a> [path](#input\_path) | n/a | `string` | `"${{ matrix.path }}"` | no |
-| <a name="input_paths"></a> [paths](#input\_paths) | n/a | `list` | <pre>[<br/>  "/"<br/>]</pre> | no |
+| <a name="input_paths"></a> [paths](#input\_paths) | n/a | `list` | <pre>[<br/>  "./"<br/>]</pre> | no |
 | <a name="input_repo-token"></a> [repo-token](#input\_repo-token) | n/a | `string` | `"${{ secrets.GITHUB_TOKEN }}"` | no |
 | <a name="input_repository_name"></a> [repository\_name](#input\_repository\_name) | Repository name to apply actions | `string` | n/a | yes |
 
@@ -39,4 +39,5 @@ No resources.
 | Name | Description |
 |------|-------------|
 | <a name="output_files"></a> [files](#output\_files) | The list of files created/commited by workflow module |
+| <a name="output_workflow"></a> [workflow](#output\_workflow) | The rendered workflow body, exposed so regression tests assert on generated content. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

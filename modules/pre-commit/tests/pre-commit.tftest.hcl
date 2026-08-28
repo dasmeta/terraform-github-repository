@@ -108,3 +108,19 @@ run "workflow_pins_an_action_release_that_can_fail" {
     error_message = "CI must install the same terraform-docs version the repositories have committed."
   }
 }
+
+run "check_yaml_stays_syntax_only" {
+  command = plan
+
+  # Several managed repositories split YAML anchors across files on purpose,
+  # so a strict load fails on the undefined alias. githooks/pre-commit runs
+  # --all-files, which means without --unsafe every local commit in those
+  # repositories is blocked, not just CI.
+  assert {
+    condition = contains(flatten([
+      for hook in yamldecode(output.pre_commit_config).repos[0].hooks :
+      lookup(hook, "args", []) if hook.id == "check-yaml"
+    ]), "--unsafe")
+    error_message = "check-yaml must stay syntax-only; a strict load blocks commits in repositories with cross-file YAML anchors."
+  }
+}
