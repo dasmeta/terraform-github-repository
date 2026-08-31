@@ -33,4 +33,5 @@ No resources.
 | Name | Description |
 |------|-------------|
 | <a name="output_files"></a> [files](#output\_files) | The list of files created/commited by workflow module |
+| <a name="output_workflow"></a> [workflow](#output\_workflow) | The rendered publishing workflow, exposed so regression tests assert on generated content. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
