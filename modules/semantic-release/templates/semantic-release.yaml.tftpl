@@ -1,5 +1,29 @@
-name:  Semantic-Release
-on: [pull_request, push]
+name: Semantic-Release
+# Publishing runs on a push to a release branch only.
+#
+# The previous trigger was `[pull_request, push]`, which started the publisher
+# on every pull request as well. It could never publish from there — the
+# release branches below do not include a pull request ref — so the run existed
+# only to report a `publish` check that said nothing about the change.
+#
+# It was worse than useless: a branch with an open pull request fires both
+# events, so the publisher ran twice for one push.
+on:
+  push:
+    branches: [main, master, next]
+
+# Defense in depth for the release-notes race. Two pushes landing close
+# together would otherwise run semantic-release concurrently and fight over
+# `refs/notes/semantic-release`, and the loser fails with
+#
+#   cannot lock ref 'refs/notes/semantic-release' ... but expected ...
+#
+# even though the release itself succeeded in the other run. Queue instead of
+# cancelling: a half-finished release is worse than a slow one.
+concurrency:
+  group: semantic-release-$${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   publish:
     runs-on: ubuntu-latest
